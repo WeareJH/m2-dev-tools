@@ -1,0 +1,50 @@
+body {
+  font-family: 'Fira Code', 'Hack', 'Monaco', monospace;
+  font-size: 11px;
+  line-height: 1.8em;
+  background: #181d26;
+}
+
+p {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.token {
+  color: #53647b;
+  &.lt,
+  &.gt
+  {
+    color: #5a5a5a;
+  }
+}
+
+.token--attr {
+  color: #508aaa
+}
+.token--value {
+  //color: red
+}
+.token--key {
+  color: #777777;
+}
+.token--string {
+  color: #6ab0a3;
+}
+
+.node {
+  cursor: pointer;
+}
+
+.node_info--hovered {
+  background: black;
+}
+
+.node__props {
+  font-size: .8em;
+  padding-left: 5px;
+  background: #1b222d;
+  display: none;
+}
+
+

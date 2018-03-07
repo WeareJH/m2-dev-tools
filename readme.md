@@ -1,0 +1,3 @@
+## Run
+
+- Install Parcel JS 
