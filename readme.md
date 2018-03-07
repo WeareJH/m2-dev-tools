@@ -1,3 +1,6 @@
 ## Run
 
-- Install Parcel JS 
+```bash
+yarn
+yarn start
+```

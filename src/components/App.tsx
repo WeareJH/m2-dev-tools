@@ -128,14 +128,18 @@ function NodeAttr({data, attrName, dataKey}) {
     );
 }
 
-function NodeEnd({node, hasChildren, indent, isSelected}) {
+function NodeEnd({node, hasChildren, indent, isSelected, addHover, removeHover}) {
     const classes = classnames({
         node_info: true,
         'node_info--hovered': isSelected
     });
     return hasChildren && (
-        <p class={classes} style={{paddingLeft: String(indent) + 'px'}}>
+        <div
+            class={classes}
+            style={{paddingLeft: String(indent) + 'px'}}
+            onmouseleave={() => removeHover(node.label)}
+            onmouseenter={() => addHover(node.label)}>
             <span class="token lt">&lt;</span><span class="token">/{node.label}</span><span class="token gt">&gt;</span>
-        </p>
+        </div>
     )
 }
