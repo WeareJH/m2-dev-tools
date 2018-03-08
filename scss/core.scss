@@ -1,8 +1,8 @@
 body {
-  font-family: 'Fira Code', 'Hack', 'Monaco', monospace;
+  font-family: 'Monaco', monospace;
   font-size: 11px;
   line-height: 1.8em;
-  background: #181d26;
+  background: #eeeeee;
 }
 
 p {
@@ -11,11 +11,11 @@ p {
 }
 
 .token {
-  color: #53647b;
+  color: #67070f;
   &.lt,
   &.gt
   {
-    color: #5a5a5a;
+    color: #67070f;
   }
 }
 
@@ -29,15 +29,21 @@ p {
   color: #777777;
 }
 .token--string {
-  color: #6ab0a3;
+  color: #6b6ab0;
+}
+
+.node-tree {
+  width: auto;
+  overflow-x: scroll;
 }
 
 .node {
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .node_info--hovered {
-  background: black;
+  background: #dadada;
 }
 
 .node__props {

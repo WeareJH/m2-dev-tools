@@ -11,8 +11,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "9.4.6",
     "classnames": "^2.2.5",
+    "parcel-bundler": "1.6.2",
+    "parcel-plugin-typescript": "0.7.0",
     "parceljs": "^0.0.1",
-    "preact": "^8.2.7"
+    "preact": "8.2.7"
+  },
+  "devDependencies": {
+    "node-sass": "4.7.2",
+    "typescript": "2.7.2"
   }
 }

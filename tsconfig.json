@@ -4,5 +4,6 @@
     "target": "es2016",
     "jsxFactory": "h",
     "lib": ["DOM", "ES2015"]
-  }
+  },
+  "include": ["src/index.tsx"]
 }
