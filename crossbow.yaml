@@ -1,0 +1,18 @@
+tasks:
+  build-all:
+    - clean
+    - chrome
+    - app
+    - tasks/manifest
+
+  clean: '@sh rm -rf shells/chrome/dist/**'
+
+  app:
+    adaptor: npm
+    command: >
+      parcel build index.html --out-dir shells/chrome/dist
+
+  chrome:
+    adaptor: npm
+    command: >
+      tsc src/chrome/** --outdir shells/chrome/build

@@ -2015,6 +2015,12 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.0"
 
+hasha@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/hasha/-/hasha-3.0.0.tgz#52a32fab8569d41ca69a61ff1a214f8eb7c8bd39"
+  dependencies:
+    is-stream "^1.0.1"
+
 hawk@3.1.3, hawk@~3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/hawk/-/hawk-3.1.3.tgz#078444bd7c1640b0fe540d2c9b73d59678e8e1c4"
@@ -2319,6 +2325,10 @@ is-plain-object@^2.0.1, is-plain-object@^2.0.3, is-plain-object@^2.0.4:
 is-property@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/is-property/-/is-property-1.0.2.tgz#57fe1c4e48474edd65b09911f26b1cd4095dda84"
+
+is-stream@^1.0.1:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/is-stream/-/is-stream-1.1.0.tgz#12d4a3dd4e68e0b79ceb8dbc84173ae80d91ca44"
 
 is-svg@^2.0.0:
   version "2.1.0"
@@ -3071,6 +3081,12 @@ parcel-bundler@1.6.2:
     v8-compile-cache "^1.1.0"
     worker-farm "^1.5.2"
     ws "^4.0.0"
+
+parcel-plugin-bundle-manifest@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/parcel-plugin-bundle-manifest/-/parcel-plugin-bundle-manifest-0.1.0.tgz#0c85040665d1c8be3fa3df1fd3050bce93cf870a"
+  dependencies:
+    hasha "^3.0.0"
 
 parcel-plugin-typescript@0.7.0:
   version "0.7.0"

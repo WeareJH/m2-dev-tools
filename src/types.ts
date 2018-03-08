@@ -8,10 +8,10 @@ export interface NodeItem {
 interface INodeData {
     name: string;
     type: string;
-    block_type: string;
-    template: string;
-    template_file: string;
-    args: IArgs;
+    block_type?: string;
+    template?: string;
+    template_file?: string;
+    args?: IArgs;
 }
 
 interface IArgs {
