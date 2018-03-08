@@ -8,7 +8,7 @@ const nodes = require('../../fixtures/large.json');
 const root: NodeItem = {
     name: "$$root",
     children: nodes,
-    data: {type: "root"}
+    data: {type: "root", name: "$$root"}
 };
 
 export class App extends Component<any, {selected: Set<string>}> {
