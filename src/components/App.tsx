@@ -1,3 +1,5 @@
+import {chrome} from "../index";
+
 declare var require;
 import {h, Component} from 'preact';
 import {NodeItem} from "../types";
@@ -14,27 +16,21 @@ const root: NodeItem = {
 export class App extends Component<any, {selected: Set<string>}> {
 
     state = {
-        selected: new Set<string>([])
+        selected: new Set<string>([]),
+        message: null,
+    }
+
+    componentDidMount() {
+        const bgConnection = chrome.runtime.connect({ name: chrome.devtools.inspectedWindow.tabId });
+        bgConnection.onMessage.addListener(message => {
+            this.setState({message})
+        });
     }
 
     render() {
         return (
             <div class="node-tree">
-                <Node
-                    node={root}
-                    depth={1}
-                    selected={this.state.selected}
-                    addHover={(label) => {
-                        this.setState(prev => ({
-                            selected: (prev.selected.add(label), prev.selected)
-                        }))
-                    }}
-                    removeHover={(label) => {
-                        this.setState(prev => ({
-                            selected: (prev.selected.delete(label), prev.selected)
-                        }))
-                    }}
-                />
+                <pre><code>{JSON.stringify(this.state.message)}</code></pre>
             </div>
         )
     }

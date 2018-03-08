@@ -16,3 +16,8 @@ tasks:
     adaptor: npm
     command: >
       tsc src/chrome/** --outdir shells/chrome/build
+
+  chrome-watch:
+    adaptor: npm
+    command: >
+      tsc src/chrome/** -w --outdir shells/chrome/build
