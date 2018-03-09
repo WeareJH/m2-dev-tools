@@ -12,6 +12,11 @@ tasks:
     command: >
       parcel build index.html --out-dir shells/chrome/dist
 
+  app-watch:
+    adaptor: npm
+    command: >
+      parcel index.html
+
   chrome:
     adaptor: npm
     command: >
