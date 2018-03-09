@@ -47,5 +47,7 @@ var JhBlockLogger;
 })(JhBlockLogger || (JhBlockLogger = {}));
 var results = JhBlockLogger.parseComments();
 if (results && results.length) {
-    chrome.runtime.sendMessage({ type: "ParsedComments", payload: results });
+    chrome.extension.onMessage.addListener(function (message, sender, sendResponse) {
+        chrome.extension.sendMessage({ type: "ParsedComments", payload: results });
+    });
 }

@@ -1,7 +1,10 @@
-chrome.runtime.onMessage.addListener(function(request, sender) {
-    // if (request.type == "notification")
-    //     chrome.notifications.create('notification', request.options, function() { });
-    // chrome.runtime.sendMessage({name: 'shane'});
-    console.log(request);
+chrome.extension.onConnect.addListener(function (port) {
+    chrome.tabs.query({}, function (tabs) {
+        for (let tab in tabs) {
+            chrome.tabs.sendMessage(tabs[tab].id, {name: "scrape"});
+        }
+    });
+    chrome.extension.onMessage.addListener(function (message) {
+        port.postMessage(message);
+    });
 });
-
