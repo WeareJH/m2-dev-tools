@@ -8,13 +8,14 @@ export interface NodeProps {
     depth: number,
     selected: Set<string>,
     collapsed: Set<string>,
+    searchTerm: string,
     addHover(name: string): void,
     toggle(name: string): void,
     removeHover(name: string): void
 }
 
 export function Node(props: NodeProps) {
-    const {node, depth, addHover, removeHover, selected} = props;
+    const {node, depth, addHover, removeHover, selected, searchTerm} = props;
     const {children} = node;
     const hasNodes = children && (children.length > 0);
     const isCollapsed = props.collapsed.has(node.name);
@@ -31,6 +32,7 @@ export function Node(props: NodeProps) {
                     removeHover={removeHover}
                     toggle={props.toggle}
                     collapsed={props.collapsed}
+                    searchTerm={searchTerm}
                 />
             })}
         </div>
@@ -46,6 +48,7 @@ export function Node(props: NodeProps) {
         isSelected={isSelected}
         isCollapsed={isCollapsed}
         toggle={props.toggle}
+        searchTerm={searchTerm}
     />;
     const tail = (!isCollapsed) && (
         <NodeEnd

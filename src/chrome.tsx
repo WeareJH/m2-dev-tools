@@ -11,7 +11,7 @@ let root;
 
 port.onMessage.addListener(function (msg) {
     if (msg.type === "ParsedComments") {
-        render((
+        root = render((
             <App data={msg.payload}/>
         ), document.querySelector('#app'), root);
     } else {

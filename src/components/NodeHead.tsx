@@ -9,6 +9,7 @@ export interface NodeInfoProps {
     isSelected: boolean,
     isCollapsed: boolean,
     hasChildren: boolean,
+    searchTerm: string,
     toggle(name: string): void,
     addHover(name: string): void,
     removeHover(name: string): void
@@ -45,8 +46,18 @@ export function NodeHead(props: NodeInfoProps) {
                 )}
                 <span class="token lt">&lt;</span>
                 <span class="token">{nodeName}</span>
-                <NodeAttr data={node.data} dataKey={'name'} attrName={'name'}/>
-                <NodeAttr data={node.data} dataKey={'template_file'} attrName={'template'}/>
+                <NodeAttr
+                    data={node.data}
+                    dataKey={'name'}
+                    attrName={'name'}
+                    searchTerm={props.searchTerm}
+                />
+                <NodeAttr
+                    data={node.data}
+                    dataKey={'template_file'}
+                    attrName={'template'}
+                    searchTerm={props.searchTerm}
+                />
                 {!hasChildren && (
                     <span class="token gt">{' /'}</span>
                 )}

@@ -31,6 +31,10 @@ p {
 .token--string {
   color: #6b6ab0;
 }
+.token--search {
+  color: #6b6ab0;
+  background: yellow;
+}
 
 .node-tree {
   //width: auto;
@@ -67,4 +71,12 @@ p {
   outline: 0;
   border: 0;
   cursor: pointer;
+}
+
+.action-bar {
+  display: flex;
+}
+
+.search-bar {
+  margin-left: auto;
 }
