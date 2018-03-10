@@ -53,11 +53,12 @@ namespace JhBlockLogger {
         return stack;
     }
 }
-
 const results = JhBlockLogger.parseComments();
+
 if (results && results.length) {
     chrome.extension.onMessage.addListener(function (message, sender, sendResponse) {
         chrome.extension.sendMessage({type: "ParsedComments", payload: results});
     });
-
 }
+
+chrome.extension.sendMessage({type: 'Ping'});

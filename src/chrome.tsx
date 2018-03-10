@@ -4,7 +4,7 @@ import {App} from './components/App'
 declare var chrome;
 //Created a port with background page for continuous message communication
 var port = chrome.extension.connect({
-    name: "Sample Communication" //Given a Name
+    name: "Jh_BlockLogger" //Given a Name
 });
 
 let root;
