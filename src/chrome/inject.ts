@@ -2,7 +2,7 @@ namespace JhBlockLogger {
     const start = /^m2\((.+?)\) (.+?)$/;
     const end = /^\/m2/;
 
-    export function parseComments() {
+    export function parseComments(): [Map<any, any>, any[]] {
         const x = document.evaluate(
             '//comment()',
             document,
@@ -16,6 +16,7 @@ namespace JhBlockLogger {
 
         const stack = [];
         const elemstack = [];
+        const elemMap = new Map();
 
         function push(element) {
             const parent = elemstack[elemstack.length - 1]
@@ -37,28 +38,55 @@ namespace JhBlockLogger {
                 };
                 push(elem);
                 elemstack.push(elem);
+
+                // if (name === 'page.wrapper') {
+                    if ((comment as HTMLElement).nextElementSibling) {
+                        const siblings = [];
+                        let node: any = (comment as HTMLElement);
+                        while( node ) {
+                            if (node.nodeType !== Node.TEXT_NODE) {
+                                siblings.push( node );
+                            }
+                            node = node.nextSibling;
+                        }
+
+                        if (siblings[1].nodeType === Node.ELEMENT_NODE) {
+                            elemMap.set(name, siblings[1]);
+                        }
+                    }
             }
             if (end.test(text)) {
-                const last = elemstack.pop();
+                elemstack.pop();
             }
-            // if (template.test(text)) {
-            //     const parts = text.match(template);
-            //     if (lastElementAdded) {
-            //         lastElementAdded.element = (comment as any).nextElementSibling;
-            //         lastElementAdded.template = parts[1];
-            //     }
-            // }
             comment = x.iterateNext();
         }
-        return stack;
+        return [elemMap, stack];
     }
 }
-const results = JhBlockLogger.parseComments();
+
+const [elemMap, results] = JhBlockLogger.parseComments();
 
 if (results && results.length) {
     chrome.extension.onMessage.addListener(function (message, sender, sendResponse) {
-        chrome.extension.sendMessage({type: "ParsedComments", payload: results});
+        switch(message.type) {
+            case 'scrape': {
+                chrome.extension.sendMessage({type: "ParsedComments", payload: results});
+                break;
+            }
+            case 'hover': {
+                if (elemMap.has(message.payload)) {
+                    const element = elemMap.get(message.payload);
+                    element.scrollIntoView();
+                    // console.log('hover', elemMap.get(message.payload));
+                    // elemMap.get(message.payload).style.borderColor = 'red';
+                    // elemMap.get(message.payload).style.borderWidth = '10px';
+                    // elemMap.get(message.payload).style.borderStyle = 'solid';
+                }
+            }
+        }
     });
+} else {
+    console.log('no results found');
 }
 
 chrome.extension.sendMessage({type: 'Ping'});

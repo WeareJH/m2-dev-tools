@@ -5,7 +5,8 @@ import {collectNames} from "../utils";
 import {NodeItem} from "../types";
 
 export interface AppProps {
-    data: NodeItem[]
+    data: NodeItem[],
+    hover(name: string): void
 }
 
 export class App extends Component<AppProps, {selected: Set<string>}> {
@@ -66,7 +67,8 @@ export class App extends Component<AppProps, {selected: Set<string>}> {
                         selected={this.state.selected}
                         collapsed={this.state.collapsed}
                         searchTerm={this.state.searchTerm}
-                        addHover={(label) => {
+                        addHover={(label: string) => {
+                            this.props.hover(label);
                             this.setState(prev => ({
                                 selected: (prev.selected.add(label), prev.selected)
                             }))

@@ -12,7 +12,12 @@ let root;
 port.onMessage.addListener(function (msg) {
     if (msg.type === "ParsedComments") {
         root = render((
-            <App data={msg.payload}/>
+            <App
+                data={msg.payload}
+                hover={(name: string) => {
+                    chrome.runtime.sendMessage({type: 'hover', payload: name})
+                }}
+            />
         ), document.querySelector('#app'), root);
     } else {
         render((
