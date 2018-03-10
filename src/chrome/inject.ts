@@ -1,3 +1,4 @@
+import {Overlay} from './Overlay';
 namespace JhBlockLogger {
     const start = /^m2\((.+?)\) (.+?)$/;
     const end = /^\/m2/;
@@ -67,6 +68,7 @@ namespace JhBlockLogger {
 const [elemMap, results] = JhBlockLogger.parseComments();
 
 if (results && results.length) {
+    let o;
     chrome.extension.onMessage.addListener(function (message, sender, sendResponse) {
         switch(message.type) {
             case 'scrape': {
@@ -76,12 +78,17 @@ if (results && results.length) {
             case 'hover': {
                 if (elemMap.has(message.payload)) {
                     const element = elemMap.get(message.payload);
-                    element.scrollIntoView();
-                    // console.log('hover', elemMap.get(message.payload));
-                    // elemMap.get(message.payload).style.borderColor = 'red';
-                    // elemMap.get(message.payload).style.borderWidth = '10px';
-                    // elemMap.get(message.payload).style.borderStyle = 'solid';
+                    if (!o) {
+                        o = new Overlay(window);
+                    }
+                    o.inspect(element, message.payload);
+                } else {
+                    if (o) {
+                        o.remove();
+                        o = null;
+                    }
                 }
+                break;
             }
         }
     });

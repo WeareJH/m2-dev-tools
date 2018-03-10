@@ -5,6 +5,7 @@ tasks:
     tasks:
       - clean
       - chrome
+      - inject
       - build-chrome
       - tasks/manifest
 
@@ -34,13 +35,19 @@ tasks:
     command: >
       /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
       --auto-open-devtools-for-tabs
-      https://selco.m2
+      https://selco.m2/branches
 
   chrome:
     adaptor: npm
     command: >
       tsc src/chrome/** --outdir shells/chrome/build
       --lib ES2015,DOM
+
+  inject:
+    adaptor: npm
+    command: >
+      browserify shells/chrome/build/inject.js
+      > shells/chrome/build/inject.browser.js
 
   chrome-watch:
     adaptor: npm

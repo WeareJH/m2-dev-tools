@@ -1,3 +1,4 @@
+declare var require;
 import {h} from 'preact';
 import {NodeItem} from "../types";
 const classnames = require('classnames');

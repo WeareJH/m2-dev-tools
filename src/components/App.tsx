@@ -7,6 +7,7 @@ import {NodeItem} from "../types";
 export interface AppProps {
     data: NodeItem[],
     hover(name: string): void
+    removeHover(name: string): void
 }
 
 export class App extends Component<AppProps, {selected: Set<string>}> {
@@ -42,12 +43,14 @@ export class App extends Component<AppProps, {selected: Set<string>}> {
                         <div class="controls">
                             <button
                                 type="button"
-                                onClick={() => this.setState({collapsed: new Set([])})}
+                                onClick={() => this.setState(prev => ({collapsed: new Set([])}))}
                             >Expand all</button>
                             <button
                                 type="button"
                                 onClick={() => {
-                                    this.setState({collapsed: new Set([...collectNames(this.props.data), '$$root'])})
+                                    this.setState(prev => ({
+                                        collapsed: new Set([...collectNames(this.props.data), '$$root'])
+                                    }));
                                 }}
                             >Collapse all</button>
                         </div>
@@ -56,7 +59,7 @@ export class App extends Component<AppProps, {selected: Set<string>}> {
                         <input
                             type="text"
                             value={this.state.searchTerm}
-                            onKeyup={(e) => this.setState({searchTerm: e.target.value})}
+                            onKeyUp={(e: any) => this.setState({searchTerm: e.target.value} as any)}
                         />
                     </div>
                 </div>
@@ -74,6 +77,7 @@ export class App extends Component<AppProps, {selected: Set<string>}> {
                             }))
                         }}
                         removeHover={(label) => {
+                            this.props.removeHover(label);
                             this.setState(prev => ({
                                 selected: (prev.selected.delete(label), prev.selected)
                             }))

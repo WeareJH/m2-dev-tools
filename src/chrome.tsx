@@ -17,6 +17,9 @@ port.onMessage.addListener(function (msg) {
                 hover={(name: string) => {
                     chrome.runtime.sendMessage({type: 'hover', payload: name})
                 }}
+                removeHover={(name: string) => {
+                    chrome.runtime.sendMessage({type: 'remove-hover'})
+                }}
             />
         ), document.querySelector('#app'), root);
     } else {
