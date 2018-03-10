@@ -1,21 +1,39 @@
 tasks:
   build-all:
-    - clean
-    - chrome
-    - app
-    - tasks/manifest
+    description: |
+      Build all shells.
+    tasks:
+      - clean
+      - chrome
+      - build-chrome
+      - tasks/manifest
 
-  clean: '@sh rm -rf shells/chrome/dist/**'
+  start:
+    description: |
+      Run the application in a regular Browser window with sample data
+    tasks:
+      - app-watch
 
-  app:
+  build-chrome:
+    description: |
+      Build the chrome Shell
     adaptor: npm
     command: >
-      parcel build index.html --out-dir shells/chrome/dist
+      parcel build chrome.html --out-dir shells/chrome/dist --no-cache
 
   app-watch:
+    description: Run the extension in regular browser window
     adaptor: npm
     command: >
-      parcel index.html
+      parcel plain.html
+
+  lc:
+    description: |
+      Open a fresh instance of Chrome - this is a convience for easier debugging.
+    adaptor: sh
+    command: >
+      /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
+      https://selco.m2
 
   chrome:
     adaptor: npm
@@ -26,3 +44,5 @@ tasks:
     adaptor: npm
     command: >
       tsc src/chrome/** -w --outdir shells/chrome/build
+
+  clean: '@sh rm -rf shells/chrome/dist/**'

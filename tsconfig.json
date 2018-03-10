@@ -5,5 +5,5 @@
     "jsxFactory": "h",
     "lib": ["DOM", "ES2015"]
   },
-  "include": ["src/index.tsx"]
+  "include": ["src/chrome.tsx"]
 }
