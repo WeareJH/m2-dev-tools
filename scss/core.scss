@@ -41,6 +41,9 @@ p {
   cursor: pointer;
   white-space: nowrap;
 }
+.node__line {
+  position: relative;
+}
 
 .node_info--hovered {
   background: #dadada;
@@ -54,3 +57,14 @@ p {
 }
 
 
+
+
+.node__toggle {
+  position: absolute;
+  //top: 2px;
+  left: -20px;
+  background: none;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+}

@@ -7,13 +7,15 @@ export interface NodeInfoProps {
     node: NodeItem,
     indent: number,
     isSelected: boolean,
+    isCollapsed: boolean,
     hasChildren: boolean,
+    toggle(name: string): void,
     addHover(name: string): void,
     removeHover(name: string): void
 }
 
-export function NodeInfo(props: NodeInfoProps) {
-    const {node, indent, addHover, removeHover, hasChildren} = props;
+export function NodeHead(props: NodeInfoProps) {
+    const {node, indent, addHover, removeHover, hasChildren, isCollapsed} = props;
     const classes = classnames({
         node_info: true,
         'node_info--hovered': this.props.isSelected
@@ -24,7 +26,23 @@ export function NodeInfo(props: NodeInfoProps) {
              class={classes}
              onMouseLeave={() => removeHover(node.name)}
              onMouseEnter={() => addHover(node.name)}>
-            <p>
+            <p class="node__line">
+                {hasChildren && (
+                    <button
+                        class="node__toggle"
+                        type="button"
+                        onClick={() => props.toggle(node.name)}
+                    >
+                        <svg
+                            class="arrow"
+                            height="6"
+                            viewBox="0 0 50 50"
+                            transform={`${isCollapsed ? '' : 'rotate(-180)'}`}
+                            id="canvas">
+                            <polygon points="0,0 50,0 25.0,43.3" style="fill:000000"></polygon>
+                        </svg>
+                    </button>
+                )}
                 <span class="token lt">&lt;</span>
                 <span class="token">{nodeName}</span>
                 <NodeAttr data={node.data} dataKey={'name'} attrName={'name'}/>

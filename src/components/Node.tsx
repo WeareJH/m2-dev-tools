@@ -1,13 +1,15 @@
 import {h} from 'preact';
 import {NodeItem} from "../types";
-import {NodeInfo} from "./NodeInfo";
+import {NodeHead} from "./NodeHead";
 import {NodeEnd} from "./NodeEnd";
 
 export interface NodeProps {
     node: NodeItem,
     depth: number,
     selected: Set<string>,
+    collapsed: Set<string>,
     addHover(name: string): void,
+    toggle(name: string): void,
     removeHover(name: string): void
 }
 
@@ -15,7 +17,8 @@ export function Node(props: NodeProps) {
     const {node, depth, addHover, removeHover, selected} = props;
     const {children} = node;
     const hasNodes = children && (children.length > 0);
-    const body = (hasNodes) && (
+    const isCollapsed = props.collapsed.has(node.name);
+    const body = (hasNodes && !isCollapsed) && (
         <div class="nodes">
             {children.map(n => {
                 const nextDepth = depth + 1;
@@ -26,28 +29,34 @@ export function Node(props: NodeProps) {
                     selected={selected}
                     addHover={addHover}
                     removeHover={removeHover}
+                    toggle={props.toggle}
+                    collapsed={props.collapsed}
                 />
             })}
         </div>
     );
     const indent = depth * 15;
     const isSelected = selected.has(node.name);
-    const head = <NodeInfo
+    const head = <NodeHead
         node={node}
         hasChildren={hasNodes}
         indent={indent}
         addHover={addHover}
         removeHover={removeHover}
         isSelected={isSelected}
+        isCollapsed={isCollapsed}
+        toggle={props.toggle}
     />;
-    const tail = <NodeEnd
-        node={node}
-        hasChildren={hasNodes}
-        indent={indent}
-        addHover={addHover}
-        removeHover={removeHover}
-        isSelected={isSelected}
-    />;
+    const tail = (!isCollapsed) && (
+        <NodeEnd
+            node={node}
+            hasChildren={hasNodes}
+            indent={indent}
+            addHover={addHover}
+            removeHover={removeHover}
+            isSelected={isSelected}
+        />
+    );
     return (
         <div class="node">
             {head}
