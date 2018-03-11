@@ -1,4 +1,4 @@
-import {h} from 'preact';
+import * as React from 'react';
 import {NodeItem} from "../types";
 import {NodeHead} from "./NodeHead";
 import {NodeEnd} from "./NodeEnd";
@@ -20,7 +20,7 @@ export function Node(props: NodeProps) {
     const hasNodes = children && (children.length > 0);
     const isCollapsed = props.collapsed.has(node.name);
     const body = (hasNodes && !isCollapsed) && (
-        <div class="nodes">
+        <div className="nodes">
             {children.map(n => {
                 const nextDepth = depth + 1;
                 return <Node
@@ -61,7 +61,7 @@ export function Node(props: NodeProps) {
         />
     );
     return (
-        <div class="node">
+        <div className="node">
             {head}
             {body}
             {tail}

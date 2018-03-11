@@ -1,4 +1,5 @@
-import {h, render} from 'preact';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import {App} from './components/App'
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/take';
@@ -22,7 +23,7 @@ outgoing$.subscribe((message) => {
     chrome.runtime.sendMessage(message);
 });
 
-render((
+ReactDOM.render((
     <App
         incoming$={incoming$}
         outgoing$={outgoing$}

@@ -1,5 +1,5 @@
 declare var require;
-import {h} from 'preact';
+import * as React from 'react';
 import {NodeItem} from "../types";
 const classnames = require('classnames');
 
@@ -19,13 +19,13 @@ export function NodeEnd(props: NodeEndProps) {
     });
     return hasChildren && (
         <div
-            class={classes}
+            className={classes}
             style={{paddingLeft: String(indent) + 'px'}}
             onMouseLeave={() => removeHover(node.name)}
             onMouseEnter={() => addHover(node.name)}>
-            <span class="token lt">&lt;</span>
-            <span class="token">/{node.name}</span>
-            <span class="token gt">&gt;</span>
+            <span className="token lt">&lt;</span>
+            <span className="token">/{node.name}</span>
+            <span className="token gt">&gt;</span>
         </div>
     )
 }

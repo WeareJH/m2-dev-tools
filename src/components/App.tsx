@@ -1,6 +1,7 @@
+import * as React from 'react';
 import {Node} from "./Node";
+
 declare var require;
-import {h, Component} from 'preact';
 import {collectNames} from "../utils";
 import {NodeItem} from "../types";
 import {Subject} from "rxjs/Subject";
@@ -8,19 +9,21 @@ import {Subscription} from "rxjs/Subscription";
 
 
 export interface AppProps {
-    incoming$: Subject<{type: string, payload: any}>,
-    outgoing$: Subject<{type: string, payload: any}>,
+    incoming$: Subject<{ type: string, payload: any }>,
+    outgoing$: Subject<{ type: string, payload: any }>,
+
     hover(name: string): void
+
     removeHover(name: string): void
 }
 
-export class App extends Component {
-
+export class App extends React.Component<any, any> {
     props: AppProps;
-    sub: Subscription|null;
+    sub: Subscription | null;
     state: {
         hovered: Set<string>,
         collapsed: Set<string>,
+        selected: Set<string>,
         root: NodeItem,
         searchTerm: string,
         inspecting: boolean
@@ -28,6 +31,7 @@ export class App extends Component {
         inspecting: false,
         hovered: new Set<string>([]),
         collapsed: new Set<string>([]),
+        selected: new Set<string>([]),
         root: {
             name: "$$root",
             children: [],
@@ -44,8 +48,9 @@ export class App extends Component {
             .subscribe((nodes: NodeItem[]) => {
                 this.setState(prev => {
                     return {
-                        hovered: new Set([]),
+                        hovered: new Set<string>([]),
                         collapsed: new Set<string>([]),
+                        selected: new Set<string>([]),
                         inspecting: false,
                         root: {
                             ...prev.root,
@@ -65,43 +70,45 @@ export class App extends Component {
 
     render() {
         return (
-            <div class="app">
-                <div class="action-bar">
-                        <div class="controls">
-                            <button
-                                type="button"
-                                onClick={() => this.setState(() => ({collapsed: new Set([])}))}
-                            >Expand all</button>
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    this.setState(() => ({
-                                        collapsed: new Set([...collectNames(this.state.root.children), '$$root'])
-                                    }));
-                                }}
-                            >Collapse all</button>
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    this.setState((prev) => {
-                                        return {
-                                            inspecting: !prev.inspecting
-                                        }
-                                    }, () => this.props.outgoing$.next({type: 'inspect', payload: this.state.inspecting}));
+            <div className="app">
+                <div className="action-bar">
+                    <div className="controls">
+                        <button
+                            type="button"
+                            onClick={() => this.setState(() => ({collapsed: new Set([])}))}
+                        >Expand all
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                this.setState(() => ({
+                                    collapsed: new Set([...collectNames(this.state.root.children), '$$root'])
+                                }));
+                            }}
+                        >Collapse all
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                this.setState((prev) => {
+                                    return {
+                                        inspecting: !prev.inspecting
+                                    }
+                                }, () => this.props.outgoing$.next({type: 'inspect', payload: this.state.inspecting}));
 
-                                }}
-                            >{this.state.inspecting ? 'Stop inspecting' : 'Inspect page'}</button>
-                        </div>
-                    <div class="search-bar">
-                        <label for="Search">Search</label>
+                            }}
+                        >{this.state.inspecting ? 'Stop inspecting' : 'Inspect page'}</button>
+                    </div>
+                    <div className="search-bar">
+                        <label htmlFor="Search">Search</label>
                         <input
                             type="text"
                             value={this.state.searchTerm}
-                            onKeyUp={(e: any) => this.setState({searchTerm: e.target.value} as any)}
+                            onChange={(e: any) => this.setState({searchTerm: e.target.value} as any)}
                         />
                     </div>
                 </div>
-                <div class="node-tree">
+                <div className="node-tree">
                     <Node
                         node={this.state.root}
                         depth={1}

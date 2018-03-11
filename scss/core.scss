@@ -2,7 +2,7 @@ body {
   font-family: 'Monaco', monospace;
   font-size: 11px;
   line-height: 1.8em;
-  background: #eeeeee;
+  background: white;
 }
 
 p {
@@ -11,33 +11,41 @@ p {
 }
 
 .token {
-  color: #67070f;
+  color: #4c3f4c;
   &.lt,
   &.gt
   {
-    color: #67070f;
+    //color: #67070f;
   }
 }
 
 .token--icon {
   margin-left: 5px;
   position: relative;
-  top: 2px;
+  //top: 2px;
 }
+
+.token--name {
+  //margin-right: 5px;
+  color: #66256d;
+}
+
 .token--attr {
-  color: #508aaa
+  color: #909090;
+  margin-left: 5px;
 }
 .token--value {
   //color: red
 }
 .token--key {
-  color: #777777;
+  //color: #777777;
 }
 .token--string {
-  color: #6b6ab0;
+  //color: #6b6ab0;
+  color: #ee2053;
 }
 .token--search {
-  color: #6b6ab0;
+  //color: #6b6ab0;
   background: yellow;
 }
 
@@ -52,6 +60,8 @@ p {
 }
 .node__line {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .node_info--hovered {
@@ -66,16 +76,15 @@ p {
 }
 
 
-
-
 .node__toggle {
   position: absolute;
-  //top: 2px;
   left: -20px;
   background: none;
   outline: 0;
   border: 0;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .action-bar {
