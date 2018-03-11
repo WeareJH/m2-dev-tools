@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Node} from "./Node";
 
 declare var require;
-import {collectNames} from "../utils";
+import {collectNames, pullData} from "../utils";
 import {NodeItem} from "../types";
 import {Subject} from "rxjs/Subject";
 import {Subscription} from "rxjs/Subscription";
@@ -27,6 +27,7 @@ export class App extends React.Component<any, any> {
         root: NodeItem,
         searchTerm: string,
         inspecting: boolean
+        selectionOverlay: boolean
     } = {
         inspecting: false,
         hovered: new Set<string>([]),
@@ -38,7 +39,8 @@ export class App extends React.Component<any, any> {
             data: {type: "root", name: "$$root"},
             hasRelatedElement: false,
         },
-        searchTerm: ""
+        searchTerm: "",
+        selectionOverlay: false
     };
 
     componentDidMount() {
@@ -79,9 +81,28 @@ export class App extends React.Component<any, any> {
     }
 
     render() {
+        const hasSelection = this.state.selected.size > 0;
+        const selectionOverlay = this.state.selectionOverlay;
+        const data = (this.state.root && hasSelection)
+            ? pullData(this.state.root.children, Array.from(this.state.selected)[0])
+            : {};
+
         return (
             <div className="app">
                 <div className="action-bar">
+                    {hasSelection && selectionOverlay && (
+                        <div className="info-window">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    this.setState({selected: new Set([])})
+                                }}
+                            >
+                                Close
+                            </button>
+                            <pre><code>{JSON.stringify(data, null, 2)}</code></pre>
+                        </div>
+                    )}
                     <div className="controls">
                         <button
                             type="button"
@@ -111,12 +132,23 @@ export class App extends React.Component<any, any> {
 
                             }}
                         >{this.state.inspecting ? 'Stop inspecting' : 'Inspect page'}</button>
-                        <span>Selected: {this.state.selected}</span>
+                        <label htmlFor="check">
+                            <input
+                                type="checkbox"
+                                id="check"
+                                onChange={(e) => {
+                                    const checked = e.target.checked;
+                                    this.setState({selectionOverlay: checked});
+                                }}
+                            />
+                            Selection Overlay
+                        </label>
                     </div>
                     <div className="search-bar">
-                        <label htmlFor="Search">Search</label>
+                        <label htmlFor="search" className="search-bar__label">Search</label>
                         <input
                             type="text"
+                            id="search"
                             value={this.state.searchTerm}
                             onChange={(e: any) => this.setState({searchTerm: e.target.value} as any)}
                         />

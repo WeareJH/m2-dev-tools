@@ -11,3 +11,18 @@ export function collectNames(nodes: NodeItem[]) {
         }
     }
 }
+
+export function pullData(nodes: NodeItem[], name: string): NodeItem['data'] {
+    let match;
+    nodes.forEach(par);
+    return match ? match.data : {};
+    function par(node) {
+        if (node.name === name) {
+            match = node;
+            return;
+        }
+        if (node.children && node.children.length) {
+            node.children.forEach(par);
+        }
+    }
+}
