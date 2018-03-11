@@ -6,14 +6,17 @@ import {NodeItem} from "../types";
 import {Subject} from "rxjs/Subject";
 import {Subscription} from "rxjs/Subscription";
 
+
 export interface AppProps {
-    event$: Subject<NodeItem[]>,
+    incoming$: Subject<{type: string, payload: any}>,
+    outgoing$: Subject<{type: string, payload: any}>,
     hover(name: string): void
     removeHover(name: string): void
 }
 
 export class App extends Component<AppProps, {selected: Set<string>}> {
 
+    props: AppProps;
     sub: Subscription|null;
     state: {
         selected: Set<string>,
@@ -35,16 +38,19 @@ export class App extends Component<AppProps, {selected: Set<string>}> {
     };
 
     componentDidMount() {
-        this.sub = this.props.event$.subscribe((nodes: NodeItem[]) => {
-            this.setState(prev => {
-                return {
-                    root: {
-                        ...prev.root,
-                        children: nodes,
+        this.sub = this.props.incoming$
+            .filter(x => x.type === 'ParsedComments')
+            .pluck('payload')
+            .subscribe((nodes: NodeItem[]) => {
+                this.setState(prev => {
+                    return {
+                        root: {
+                            ...prev.root,
+                            children: nodes,
+                        }
                     }
-                }
-            })
-        });
+                })
+            });
     }
 
     componentWillUnmount() {
@@ -61,12 +67,12 @@ export class App extends Component<AppProps, {selected: Set<string>}> {
                         <div class="controls">
                             <button
                                 type="button"
-                                onClick={() => this.setState(prev => ({collapsed: new Set([])}))}
+                                onClick={() => this.setState(() => ({collapsed: new Set([])}))}
                             >Expand all</button>
                             <button
                                 type="button"
                                 onClick={() => {
-                                    this.setState(prev => ({
+                                    this.setState(() => ({
                                         collapsed: new Set([...collectNames(this.state.root.children), '$$root'])
                                     }));
                                 }}
@@ -74,9 +80,12 @@ export class App extends Component<AppProps, {selected: Set<string>}> {
                             <button
                                 type="button"
                                 onClick={() => {
-                                    const prev = this.state.inspecting;
-                                    this.setState({inspecting: !prev});
-                                    this.props.event$.next({type: 'inspect', payload: !prev});
+                                    this.setState((prev) => {
+                                        return {
+                                            inspecting: !prev.inspecting
+                                        }
+                                    }, () => this.props.outgoing$.next({type: 'inspect', payload: this.state.inspecting}));
+
                                 }}
                             >{this.state.inspecting ? 'Stop inspecting' : 'Inspect page'}</button>
                         </div>

@@ -1,7 +1,12 @@
 import {h, render} from 'preact';
 import {App} from './components/App'
 import {Subject} from 'rxjs/Subject';
-const event$ = new Subject();
+import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/pluck';
+const incoming$ = new Subject();
+const outgoing$ = new Subject();
 
 declare var chrome;
 //Created a port with background page for continuous message communication
@@ -10,20 +15,17 @@ var port = chrome.extension.connect({
 });
 
 port.onMessage.addListener(function (msg) {
-    if (msg.type === "ParsedComments") {
-        event$.next(msg.payload);
-    }
+    incoming$.next(msg);
 });
 
-event$.subscribe((message) => {
-    if (message.type === 'inspect') {
-        chrome.runtime.sendMessage(message);
-    }
-})
+outgoing$.subscribe((message) => {
+    chrome.runtime.sendMessage(message);
+});
 
 render((
     <App
-        event$={event$}
+        incoming$={incoming$}
+        outgoing$={outgoing$}
         hover={(name: string) => {
             chrome.runtime.sendMessage({type: 'hover', payload: name})
         }}
