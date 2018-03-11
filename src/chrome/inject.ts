@@ -75,9 +75,9 @@ namespace JhBlockLogger {
 const [elemMap, reverseElemMap, results] = JhBlockLogger.parseComments();
 
 if (results && results.length) {
-    let o;
+    let overlay;
     let inspect = false;
-    chrome.extension.onMessage.addListener(function (message, sender, sendResponse) {
+    chrome.extension.onMessage.addListener(function (message) {
         switch (message.type) {
             case 'scrape': {
                 chrome.extension.sendMessage({type: "ParsedComments", payload: results});
@@ -90,14 +90,14 @@ if (results && results.length) {
             case 'hover': {
                 if (elemMap.has(message.payload)) {
                     const {element, data} = elemMap.get(message.payload);
-                    if (!o) {
-                        o = new Overlay(window);
+                    if (!overlay) {
+                        overlay = new Overlay(window);
                     }
-                    o.inspect(element, data.type, data.name);
+                    overlay.inspect(element, data.type, data.name);
                 } else {
-                    if (o) {
-                        o.remove();
-                        o = null;
+                    if (overlay) {
+                        overlay.remove();
+                        overlay = null;
                     }
                 }
                 break;
@@ -114,10 +114,10 @@ if (results && results.length) {
         evt.cancelBubble = true;
         if (reverseElemMap.has(evt.target)) {
             const data = reverseElemMap.get(evt.target);
-            if (!o) {
-                o = new Overlay(window);
+            if (!overlay) {
+                overlay = new Overlay(window);
             }
-            o.inspect(evt.target, data.type, data.name);
+            overlay.inspect(evt.target, data.type, data.name);
         }
     }, true);
 
