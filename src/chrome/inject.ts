@@ -52,7 +52,7 @@ namespace JhBlockLogger {
                         }
 
                         if (siblings[1].nodeType === Node.ELEMENT_NODE) {
-                            elemMap.set(name, siblings[1]);
+                            elemMap.set(name, {element: siblings[1], data});
                         }
                     }
             }
@@ -77,11 +77,11 @@ if (results && results.length) {
             }
             case 'hover': {
                 if (elemMap.has(message.payload)) {
-                    const element = elemMap.get(message.payload);
+                    const {element, data} = elemMap.get(message.payload);
                     if (!o) {
                         o = new Overlay(window);
                     }
-                    o.inspect(element, message.payload);
+                    o.inspect(element, data.type, data.name);
                 } else {
                     if (o) {
                         o.remove();

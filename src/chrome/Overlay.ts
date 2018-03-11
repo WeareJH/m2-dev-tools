@@ -87,7 +87,7 @@ export class Overlay {
         }
     }
 
-    inspect(node, name) {
+    inspect(node, leftText?: string, rightText?: string) {
         // We can't get the size of text nodes or comment nodes. React as of v15
         // heavily uses comment nodes to delimit text.
         if (node.nodeType !== Node.ELEMENT_NODE) {
@@ -110,8 +110,8 @@ export class Overlay {
             left: box.left - dims.marginLeft + 'px',
         });
 
-        this.nameSpan.textContent = (name || node.nodeName.toLowerCase());
-        this.dimSpan.textContent = box.width + 'px × ' + box.height + 'px';
+        this.nameSpan.textContent = (leftText || node.nodeName.toLowerCase());
+        this.dimSpan.textContent = (rightText || box.width + 'px × ' + box.height + 'px');
 
         var tipPos = findTipPos({
             top: box.top - dims.marginTop,
