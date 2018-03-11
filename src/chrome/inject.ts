@@ -4,7 +4,7 @@ namespace JhBlockLogger {
     const start = /^m2\((.+?)\) (.+?)$/;
     const end = /^\/m2/;
 
-    export function parseComments(): [Map<any, any>, any[]] {
+    export function parseComments(): [Map<any, any>, Map<any, any>, any[]] {
         const x = document.evaluate(
             '//comment()',
             document,
@@ -19,6 +19,7 @@ namespace JhBlockLogger {
         const stack = [];
         const elemstack = [];
         const elemMap = new Map();
+        const reverseElemMap = new Map();
 
         function push(element) {
             const parent = elemstack[elemstack.length - 1]
@@ -55,6 +56,7 @@ namespace JhBlockLogger {
                     if (siblings[1].nodeType === Node.ELEMENT_NODE) {
                         elem.hasRelatedElement = true;
                         elemMap.set(name, {element: siblings[1], data});
+                        reverseElemMap.set(siblings[1], data);
                     }
                 }
 
@@ -66,18 +68,23 @@ namespace JhBlockLogger {
             }
             comment = x.iterateNext();
         }
-        return [elemMap, stack];
+        return [elemMap, reverseElemMap, stack];
     }
 }
 
-const [elemMap, results] = JhBlockLogger.parseComments();
+const [elemMap, reverseElemMap, results] = JhBlockLogger.parseComments();
 
 if (results && results.length) {
     let o;
+    let inspect = false;
     chrome.extension.onMessage.addListener(function (message, sender, sendResponse) {
         switch (message.type) {
             case 'scrape': {
                 chrome.extension.sendMessage({type: "ParsedComments", payload: results});
+                break;
+            }
+            case 'inspect': {
+                inspect = message.payload;
                 break;
             }
             case 'hover': {
@@ -97,6 +104,23 @@ if (results && results.length) {
             }
         }
     });
+
+    window.addEventListener('mouseover', function(evt) {
+        if (!inspect) {
+            return;
+        }
+        evt.preventDefault();
+        evt.stopPropagation();
+        evt.cancelBubble = true;
+        if (reverseElemMap.has(evt.target)) {
+            const data = reverseElemMap.get(evt.target);
+            if (!o) {
+                o = new Overlay(window);
+            }
+            o.inspect(evt.target, data.type, data.name);
+        }
+    }, true);
+
 } else {
     console.log('no results found');
 }

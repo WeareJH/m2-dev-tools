@@ -19,9 +19,11 @@ export class App extends Component<AppProps, {selected: Set<string>}> {
         selected: Set<string>,
         collapsed: Set<string>,
         root: NodeItem,
-        searchTerm: string
+        searchTerm: string,
+        inspecting: boolean
     } = {
         selected: new Set<string>([]),
+        inspecting: false,
         collapsed: new Set<string>([]),
         root: {
             name: "$$root",
@@ -69,6 +71,14 @@ export class App extends Component<AppProps, {selected: Set<string>}> {
                                     }));
                                 }}
                             >Collapse all</button>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    const prev = this.state.inspecting;
+                                    this.setState({inspecting: !prev});
+                                    this.props.event$.next({type: 'inspect', payload: !prev});
+                                }}
+                            >{this.state.inspecting ? 'Stop inspecting' : 'Inspect page'}</button>
                         </div>
                     <div class="search-bar">
                         <label for="Search">Search</label>

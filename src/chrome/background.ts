@@ -11,6 +11,10 @@ chrome.extension.onConnect.addListener(function (port) {
             case "hover": {
                 return sendToTabs(message);
             }
+            case "inspect": {
+                // console.log(message);
+                return sendToTabs(message);
+            }
         }
     });
 });

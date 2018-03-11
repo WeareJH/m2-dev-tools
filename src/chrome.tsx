@@ -15,6 +15,12 @@ port.onMessage.addListener(function (msg) {
     }
 });
 
+event$.subscribe((message) => {
+    if (message.type === 'inspect') {
+        chrome.runtime.sendMessage(message);
+    }
+})
+
 render((
     <App
         event$={event$}
