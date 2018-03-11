@@ -3,29 +3,40 @@ declare var require;
 import {h, Component} from 'preact';
 import {collectNames} from "../utils";
 import {NodeItem} from "../types";
+import {Subject} from "rxjs/Subject";
+import {Subscription} from "rxjs/Subscription";
 
 export interface AppProps {
-    data: NodeItem[],
+    event$: Subject<NodeItem[]>,
     hover(name: string): void
     removeHover(name: string): void
 }
 
 export class App extends Component<AppProps, {selected: Set<string>}> {
 
-    state = {
+    sub: Subscription|null;
+    state: {
+        selected: Set<string>,
+        collapsed: Set<string>,
+        root: NodeItem,
+        searchTerm: string
+    } = {
         selected: new Set<string>([]),
         collapsed: new Set<string>([]),
-        message: null,
-        root: {},
+        root: {
+            name: "$$root",
+            children: [],
+            data: {type: "root", name: "$$root"}
+        },
         searchTerm: ""
-    }
+    };
 
     constructor(props: AppProps) {
         super(props);
 
-        this.state.root ={
+        this.state.root = {
             name: "$$root",
-            children: props.data,
+            children: [],
             data: {type: "root", name: "$$root"}
         };
 
@@ -33,7 +44,23 @@ export class App extends Component<AppProps, {selected: Set<string>}> {
     }
 
     componentDidMount() {
+        this.sub = this.props.event$.subscribe((nodes: NodeItem[]) => {
+            this.setState(prev => {
+                return {
+                    root: {
+                        ...prev.root,
+                        children: nodes,
+                    }
+                }
+            })
+        });
+    }
 
+    componentWillUnmount() {
+        if (this.sub) {
+            this.sub.unsubscribe();
+            this.sub = null;
+        }
     }
 
     render() {
@@ -49,7 +76,7 @@ export class App extends Component<AppProps, {selected: Set<string>}> {
                                 type="button"
                                 onClick={() => {
                                     this.setState(prev => ({
-                                        collapsed: new Set([...collectNames(this.props.data), '$$root'])
+                                        collapsed: new Set([...collectNames(this.state.root.children), '$$root'])
                                     }));
                                 }}
                             >Collapse all</button>
