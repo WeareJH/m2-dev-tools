@@ -6,7 +6,7 @@ import {NodeEnd} from "./NodeEnd";
 export interface NodeProps {
     node: NodeItem,
     depth: number,
-    selected: Set<string>,
+    hovered: Set<string>,
     collapsed: Set<string>,
     searchTerm: string,
     addHover(name: string): void,
@@ -15,7 +15,7 @@ export interface NodeProps {
 }
 
 export function Node(props: NodeProps) {
-    const {node, depth, addHover, removeHover, selected, searchTerm} = props;
+    const {node, depth, addHover, removeHover, hovered, searchTerm} = props;
     const {children} = node;
     const hasNodes = children && (children.length > 0);
     const isCollapsed = props.collapsed.has(node.name);
@@ -27,7 +27,7 @@ export function Node(props: NodeProps) {
                     node={n}
                     depth={nextDepth}
                     key={n.name}
-                    selected={selected}
+                    hovered={hovered}
                     addHover={addHover}
                     removeHover={removeHover}
                     toggle={props.toggle}
@@ -38,14 +38,14 @@ export function Node(props: NodeProps) {
         </div>
     );
     const indent = depth * 15;
-    const isSelected = selected.has(node.name);
+    const isHovered = hovered.has(node.name);
     const head = <NodeHead
         node={node}
         hasChildren={hasNodes}
         indent={indent}
         addHover={addHover}
         removeHover={removeHover}
-        isSelected={isSelected}
+        isHovered={isHovered}
         isCollapsed={isCollapsed}
         toggle={props.toggle}
         searchTerm={searchTerm}
@@ -57,7 +57,7 @@ export function Node(props: NodeProps) {
             indent={indent}
             addHover={addHover}
             removeHover={removeHover}
-            isSelected={isSelected}
+            isHovered={isHovered}
         />
     );
     return (

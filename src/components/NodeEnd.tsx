@@ -9,13 +9,13 @@ export interface NodeEndProps {
     addHover(name: string): void,
     removeHover(name: string): void
     hasChildren: boolean
-    isSelected: boolean
+    isHovered: boolean
 }
 export function NodeEnd(props: NodeEndProps) {
-    const {node, hasChildren, indent, isSelected, addHover, removeHover} = props;
+    const {node, hasChildren, indent, isHovered, addHover, removeHover} = props;
     const classes = classnames({
         node_info: true,
-        'node_info--hovered': isSelected
+        'node_info--hovered': isHovered
     });
     return hasChildren && (
         <div

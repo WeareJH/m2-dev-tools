@@ -14,19 +14,19 @@ export interface AppProps {
     removeHover(name: string): void
 }
 
-export class App extends Component<AppProps, {selected: Set<string>}> {
+export class App extends Component {
 
     props: AppProps;
     sub: Subscription|null;
     state: {
-        selected: Set<string>,
+        hovered: Set<string>,
         collapsed: Set<string>,
         root: NodeItem,
         searchTerm: string,
         inspecting: boolean
     } = {
-        selected: new Set<string>([]),
         inspecting: false,
+        hovered: new Set<string>([]),
         collapsed: new Set<string>([]),
         root: {
             name: "$$root",
@@ -44,6 +44,9 @@ export class App extends Component<AppProps, {selected: Set<string>}> {
             .subscribe((nodes: NodeItem[]) => {
                 this.setState(prev => {
                     return {
+                        hovered: new Set([]),
+                        collapsed: new Set<string>([]),
+                        inspecting: false,
                         root: {
                             ...prev.root,
                             children: nodes,
@@ -102,19 +105,19 @@ export class App extends Component<AppProps, {selected: Set<string>}> {
                     <Node
                         node={this.state.root}
                         depth={1}
-                        selected={this.state.selected}
+                        hovered={this.state.hovered}
                         collapsed={this.state.collapsed}
                         searchTerm={this.state.searchTerm}
                         addHover={(label: string) => {
                             this.props.hover(label);
                             this.setState(prev => ({
-                                selected: (prev.selected.add(label), prev.selected)
+                                hovered: (prev.hovered.add(label), prev.hovered)
                             }))
                         }}
                         removeHover={(label) => {
                             this.props.removeHover(label);
                             this.setState(prev => ({
-                                selected: (prev.selected.delete(label), prev.selected)
+                                hovered: (prev.hovered.delete(label), prev.hovered)
                             }))
                         }}
                         toggle={(label) => {

@@ -6,7 +6,7 @@ const classnames = require('classnames');
 export interface NodeInfoProps {
     node: NodeItem,
     indent: number,
-    isSelected: boolean,
+    isHovered: boolean,
     isCollapsed: boolean,
     hasChildren: boolean,
     searchTerm: string,
@@ -19,7 +19,7 @@ export function NodeHead(props: NodeInfoProps) {
     const {node, indent, addHover, removeHover, hasChildren, isCollapsed} = props;
     const classes = classnames({
         node_info: true,
-        'node_info--hovered': this.props.isSelected
+        'node_info--hovered': this.props.isHovered
     });
     const nodeName = node.data && node.data.type;
     return (

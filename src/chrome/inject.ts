@@ -85,6 +85,10 @@ if (results && results.length) {
             }
             case 'inspect': {
                 inspect = message.payload;
+                if (!inspect && overlay) {
+                    overlay.remove();
+                    overlay = null;
+                }
                 break;
             }
             case 'hover': {
