@@ -9,6 +9,8 @@ export interface NodeProps {
     hovered: Set<string>,
     collapsed: Set<string>,
     searchTerm: string,
+    selected: Set<string>,
+    select(name: string): void,
     addHover(name: string): void,
     toggle(name: string): void,
     removeHover(name: string): void
@@ -19,6 +21,7 @@ export function Node(props: NodeProps) {
     const {children} = node;
     const hasNodes = children && (children.length > 0);
     const isCollapsed = props.collapsed.has(node.name);
+    const isSelected = props.selected.has(node.name);
     const body = (hasNodes && !isCollapsed) && (
         <div className="nodes">
             {children.map(n => {
@@ -33,6 +36,8 @@ export function Node(props: NodeProps) {
                     toggle={props.toggle}
                     collapsed={props.collapsed}
                     searchTerm={searchTerm}
+                    selected={props.selected}
+                    select={props.select}
                 />
             })}
         </div>
@@ -49,6 +54,8 @@ export function Node(props: NodeProps) {
         isCollapsed={isCollapsed}
         toggle={props.toggle}
         searchTerm={searchTerm}
+        isSelected={isSelected}
+        select={props.select}
     />;
     const tail = (!isCollapsed) && (
         <NodeEnd
@@ -58,6 +65,8 @@ export function Node(props: NodeProps) {
             addHover={addHover}
             removeHover={removeHover}
             isHovered={isHovered}
+            isSelected={isSelected}
+            select={props.select}
         />
     );
     return (

@@ -8,35 +8,45 @@ export interface NodeInfoProps {
     indent: number,
     isHovered: boolean,
     isCollapsed: boolean,
+    isSelected: boolean,
     hasChildren: boolean,
     searchTerm: string,
     toggle(name: string): void,
+    select(name: string): void,
     addHover(name: string): void,
     removeHover(name: string): void
 }
 
 export function NodeHead(props: NodeInfoProps) {
-    const {node, indent, addHover, removeHover, hasChildren, isCollapsed} = props;
+    const {node, indent, addHover, removeHover, hasChildren, isCollapsed, isSelected, select} = props;
     const classes = classnames({
         node_info: true,
-        'node_info--hovered': props.isHovered
+        'node_info--hovered': props.isHovered,
+        'node_info--selected': props.isSelected
     });
     const nodeName = node.data && node.data.type;
     return (
         <div style={{paddingLeft: String(indent) + 'px'}}
              className={classes}
              onMouseLeave={() => removeHover(node.name)}
-             onMouseEnter={() => addHover(node.name)}>
+             onMouseEnter={() => addHover(node.name)}
+             onClick={(e) => select(node.name)}>
             <p className="node__line">
                 {hasChildren && (
                     <button
                         className="node__toggle"
                         type="button"
-                        onClick={() => props.toggle(node.name)}
+                        onClick={(e) => {
+                            // don't let toggles propagate to node line
+                            e.preventDefault();
+                            e.stopPropagation();
+                            props.toggle(node.name)
+                        }}
                     >
                         <svg
                             className="arrow"
                             height="6"
+                            fill={isSelected ? 'white' : 'black'}
                             viewBox="0 0 50 50"
                             transform={`${isCollapsed ? '' : 'rotate(-180)'}`}
                             id="canvas">

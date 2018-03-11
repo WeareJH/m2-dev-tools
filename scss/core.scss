@@ -1,8 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Monaco', monospace;
   font-size: 11px;
   line-height: 1.8em;
   background: white;
+  margin: 0;
+  overflow: scroll;
 }
 
 p {
@@ -67,6 +73,18 @@ p {
 .node_info--hovered {
   background: #dadada;
 }
+.node_info--selected {
+  background: #66256d;
+  .token {
+    color: #ffeb3b;
+  }
+  .token--string {
+    color: white;
+  }
+  .token--search {
+    color: black;
+  }
+}
 
 .node__props {
   font-size: .8em;
@@ -78,7 +96,7 @@ p {
 
 .node__toggle {
   position: absolute;
-  left: -20px;
+  left: -17px;
   background: none;
   outline: 0;
   border: 0;
@@ -87,10 +105,37 @@ p {
   align-items: center;
 }
 
+.controls {
+  display: flex;
+  align-items: center;
+}
+
+.controls__button {
+  margin-right: 10px;
+}
+
+.app {
+  padding-top: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .action-bar {
   display: flex;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: white;
+  height: 30px;
+  box-shadow: 0 0 2px black;
+  z-index: 1;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .search-bar {
   margin-left: auto;
+  display: flex;
+  align-items: center;
 }

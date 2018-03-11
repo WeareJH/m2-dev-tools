@@ -68,6 +68,16 @@ export class App extends React.Component<any, any> {
         }
     }
 
+    selectByName = (label: string) => {
+        this.setState((prev) => {
+            if (prev.selected.has(label)) {
+                return { selected: (prev.selected.delete(label), prev.selected) }
+            }
+            // todo multiple selections?
+            return { selected: new Set([label]) }
+        });
+    }
+
     render() {
         return (
             <div className="app">
@@ -75,11 +85,13 @@ export class App extends React.Component<any, any> {
                     <div className="controls">
                         <button
                             type="button"
+                            className="controls__button"
                             onClick={() => this.setState(() => ({collapsed: new Set([])}))}
                         >Expand all
                         </button>
                         <button
                             type="button"
+                            className="controls__button"
                             onClick={() => {
                                 this.setState(() => ({
                                     collapsed: new Set([...collectNames(this.state.root.children), '$$root'])
@@ -89,6 +101,7 @@ export class App extends React.Component<any, any> {
                         </button>
                         <button
                             type="button"
+                            className="controls__button"
                             onClick={() => {
                                 this.setState((prev) => {
                                     return {
@@ -98,6 +111,7 @@ export class App extends React.Component<any, any> {
 
                             }}
                         >{this.state.inspecting ? 'Stop inspecting' : 'Inspect page'}</button>
+                        <span>Selected: {this.state.selected}</span>
                     </div>
                     <div className="search-bar">
                         <label htmlFor="Search">Search</label>
@@ -115,6 +129,8 @@ export class App extends React.Component<any, any> {
                         hovered={this.state.hovered}
                         collapsed={this.state.collapsed}
                         searchTerm={this.state.searchTerm}
+                        selected={this.state.selected}
+                        select={this.selectByName}
                         addHover={(label: string) => {
                             this.props.hover(label);
                             this.setState(prev => ({
