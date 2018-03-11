@@ -1,4 +1,5 @@
 import {Overlay} from './Overlay';
+
 namespace JhBlockLogger {
     const start = /^m2\((.+?)\) (.+?)$/;
     const end = /^\/m2/;
@@ -26,6 +27,7 @@ namespace JhBlockLogger {
             parent.push(element);
             lastElementAdded = element;
         }
+
         while (comment) {
             const text = comment.textContent.trim();
             if (start.test(text)) {
@@ -36,25 +38,28 @@ namespace JhBlockLogger {
                     json,
                     data,
                     children: [],
+                    hasRelatedElement: false,
                 };
-                push(elem);
-                elemstack.push(elem);
 
                 // if (name === 'page.wrapper') {
-                    if ((comment as HTMLElement).nextElementSibling) {
-                        const siblings = [];
-                        let node: any = (comment as HTMLElement);
-                        while( node ) {
-                            if (node.nodeType !== Node.TEXT_NODE) {
-                                siblings.push( node );
-                            }
-                            node = node.nextSibling;
+                if ((comment as HTMLElement).nextElementSibling) {
+                    const siblings = [];
+                    let node: any = (comment as HTMLElement);
+                    while (node) {
+                        if (node.nodeType !== Node.TEXT_NODE) {
+                            siblings.push(node);
                         }
-
-                        if (siblings[1].nodeType === Node.ELEMENT_NODE) {
-                            elemMap.set(name, {element: siblings[1], data});
-                        }
+                        node = node.nextSibling;
                     }
+
+                    if (siblings[1].nodeType === Node.ELEMENT_NODE) {
+                        elem.hasRelatedElement = true;
+                        elemMap.set(name, {element: siblings[1], data});
+                    }
+                }
+
+                push(elem);
+                elemstack.push(elem);
             }
             if (end.test(text)) {
                 elemstack.pop();
@@ -70,7 +75,7 @@ const [elemMap, results] = JhBlockLogger.parseComments();
 if (results && results.length) {
     let o;
     chrome.extension.onMessage.addListener(function (message, sender, sendResponse) {
-        switch(message.type) {
+        switch (message.type) {
             case 'scrape': {
                 chrome.extension.sendMessage({type: "ParsedComments", payload: results});
                 break;

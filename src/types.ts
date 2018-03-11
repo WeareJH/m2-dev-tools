@@ -3,6 +3,7 @@ export interface NodeItem {
     json?: string
     data?: INodeData
     children: NodeItem[]
+    hasRelatedElement: boolean
 }
 
 interface INodeData {

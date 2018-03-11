@@ -26,22 +26,11 @@ export class App extends Component<AppProps, {selected: Set<string>}> {
         root: {
             name: "$$root",
             children: [],
-            data: {type: "root", name: "$$root"}
+            data: {type: "root", name: "$$root"},
+            hasRelatedElement: false,
         },
         searchTerm: ""
     };
-
-    constructor(props: AppProps) {
-        super(props);
-
-        this.state.root = {
-            name: "$$root",
-            children: [],
-            data: {type: "root", name: "$$root"}
-        };
-
-        // this.state.collapsed = new Set([...collectNames(props.data), '$$root'])
-    }
 
     componentDidMount() {
         this.sub = this.props.event$.subscribe((nodes: NodeItem[]) => {
