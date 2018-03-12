@@ -35,7 +35,9 @@ tasks:
     command: >
       /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
       --auto-open-devtools-for-tabs
-      https://selco.m2/branches
+      --ignore-certificate-errors
+      --unsafely-treat-insecure-origin-as-secure=https://shop.pwa.m2
+      https://shop.pwa.m2/
 
   chrome:
     adaptor: npm

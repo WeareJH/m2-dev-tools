@@ -3359,9 +3359,9 @@ parcel-bundler@1.6.2:
     worker-farm "^1.5.2"
     ws "^4.0.0"
 
-parcel-plugin-bundle-manifest@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/parcel-plugin-bundle-manifest/-/parcel-plugin-bundle-manifest-0.1.0.tgz#0c85040665d1c8be3fa3df1fd3050bce93cf870a"
+parcel-plugin-bundle-manifest@shakyShane/parcel-plugin-bundle-manifest:
+  version "0.0.3"
+  resolved "https://codeload.github.com/shakyShane/parcel-plugin-bundle-manifest/tar.gz/f477c438d8e263b33db47c06da5c8ca251d355b8"
   dependencies:
     hasha "^3.0.0"
 

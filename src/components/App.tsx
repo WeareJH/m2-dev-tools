@@ -20,6 +20,7 @@ export interface AppProps {
 export class App extends React.Component<any, any> {
     props: AppProps;
     sub: Subscription | null;
+    setState: (...args) => void;
     state: {
         hovered: Set<string>,
         collapsed: Set<string>,

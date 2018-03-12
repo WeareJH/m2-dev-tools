@@ -4,14 +4,30 @@ namespace JhBlockLogger {
     const start = /^m2\((.+?)\) (.+?)$/;
     const end = /^\/m2/;
 
-    export function parseComments(): [Map<any, any>, Map<any, any>, any[]] {
-        const x = document.evaluate(
+    function getIterator() {
+        return document.evaluate(
             '//comment()',
             document,
             null,
             XPathResult.ANY_TYPE,
             null,
         );
+    }
+
+    export function removeComments() {
+        const coms = [];
+        const x = getIterator();
+
+        let comment = x.iterateNext();
+        while(comment) {
+            coms.push(comment);
+            comment = x.iterateNext();
+        }
+        coms.forEach(com => com.parentNode && com.parentNode.removeChild(com));
+    }
+
+    export function parseComments(): [Map<any, any>, Map<any, any>, any[]] {
+        const x = getIterator();
 
         let comment = x.iterateNext();
         let lastElementAdded;
@@ -79,6 +95,10 @@ if (results && results.length) {
     let inspect = false;
     chrome.extension.onMessage.addListener(function (message) {
         switch (message.type) {
+            case 'strip-comments': {
+                JhBlockLogger.removeComments();
+                break;
+            }
             case 'scrape': {
                 chrome.extension.sendMessage({type: "ParsedComments", payload: results});
                 break;
