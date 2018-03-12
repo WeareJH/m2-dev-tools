@@ -2,8 +2,7 @@
   "manifest_version": 2,
   "name": "M2 Developer Tools",
   "description": "Adds Magento 2 debugging tools to the Chrome Developer Tools.",
-  "version": "3.1.0",
-
+  "version": "1.0.0",
   "minimum_chrome_version": "49",
 //
 //  "icons": {
@@ -13,16 +12,16 @@
 //    "128": "icons/128-production.png"
 //  },
 
-  "browser_action": {
+//  "browser_action": {
 //    "default_icon": {
 //      "16": "icons/16-disabled.png",
 //      "32": "icons/32-disabled.png",
 //      "48": "icons/48-disabled.png",
 //      "128": "icons/128-disabled.png"
 //    },
-
-    "default_popup": "popups/disabled.html"
-  },
+//
+//    "default_popup": "popups/disabled.html"
+//  },
 
   "devtools_page": "main.html",
 
