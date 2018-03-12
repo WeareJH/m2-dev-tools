@@ -1,4 +1,5 @@
 import {Overlay} from './Overlay';
+import {Msg} from "../messages.types";
 
 namespace JhBlockLogger {
     const start = /^m2\((.+?)\) (.+?)$/;
@@ -93,7 +94,7 @@ const [elemMap, reverseElemMap, results] = JhBlockLogger.parseComments();
 if (results && results.length) {
     let overlay;
     let inspect = false;
-    chrome.extension.onMessage.addListener(function (message) {
+    chrome.extension.onMessage.addListener(function (message: Msg.InjectActions) {
         switch (message.type) {
             case 'strip-comments': {
                 JhBlockLogger.removeComments();
