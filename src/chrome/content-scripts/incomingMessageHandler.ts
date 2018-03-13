@@ -13,6 +13,13 @@ export function incomingMessageHandler(inputs: Inputs) {
     let overlay;
     let inspect = false;
 
+    window.addEventListener('mouseover', function(evt) {
+        if (overlay) {
+            overlay.remove();
+            overlay = null;
+        }
+    }, true);
+
     return function(message: Msg.InjectIncomingActions) {
         switch (message.type) {
             case Msg.Names.StripComments: {
