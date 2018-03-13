@@ -42,19 +42,21 @@ tasks:
   chrome:
     adaptor: npm
     command: >
-      tsc src/chrome/** --outdir shells/chrome/build
+      tsc src/chrome/{inject.ts,main.ts,background.ts}  --outdir shells/chrome/build
       --lib ES2015,DOM
 
   inject:
     adaptor: npm
     command: >
-      browserify shells/chrome/build/inject.js
+      browserify shells/chrome/build/chrome/inject.js
       > shells/chrome/build/inject.browser.js
 
   chrome-watch:
     adaptor: npm
     command: >
-      tsc src/chrome/** -w --outdir shells/chrome/build
+      tsc src/chrome/**/* -w --outdir shells/chrome/build
       --lib ES2015,DOM
 
-  clean: '@sh rm -rf shells/chrome/dist/**'
+  clean:
+    - '@sh rm -rf shells/chrome/dist/**'
+    - '@sh rm -rf shells/chrome/build/**'

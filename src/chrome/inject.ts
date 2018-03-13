@@ -1,153 +1,72 @@
-import {Overlay} from './Overlay';
+declare var chrome;
+
+import {NodeItem} from "../types";
 import {Msg} from "../messages.types";
+import {parseComments} from "./content-scripts/parseComments";
+import {incomingMessageHandler} from "./content-scripts/incomingMessageHandler";
 
-namespace JhBlockLogger {
-    const start = /^m2\((.+?)\) (.+?)$/;
-    const end = /^\/m2/;
+/**
+ * Run over every page to collect comments
+ */
+const [elemMap, ,results] = parseComments(document);
 
-    function getIterator() {
-        return document.evaluate(
-            '//comment()',
-            document,
-            null,
-            XPathResult.ANY_TYPE,
-            null,
-        );
+/**
+ * Common communication interface with typed messages
+ */
+const wall = {
+    listen(listener: (message: Msg.InjectIncomingActions) => void) {
+        chrome.extension.onMessage.addListener(listener);
+    },
+    emit(message: Msg.InjectOutgoingActions) {
+        chrome.extension.sendMessage(message);
     }
+};
 
-    export function removeComments() {
-        const coms = [];
-        const x = getIterator();
-
-        let comment = x.iterateNext();
-        while(comment) {
-            coms.push(comment);
-            comment = x.iterateNext();
-        }
-        coms.forEach(com => com.parentNode && com.parentNode.removeChild(com));
-    }
-
-    export function parseComments(): [Map<any, any>, Map<any, any>, any[]] {
-        const x = getIterator();
-
-        let comment = x.iterateNext();
-        let lastElementAdded;
-
-        const stack = [];
-        const elemstack = [];
-        const elemMap = new Map();
-        const reverseElemMap = new Map();
-
-        function push(element) {
-            const parent = elemstack[elemstack.length - 1]
-                ? elemstack[elemstack.length - 1].children
-                : stack;
-            parent.push(element);
-            lastElementAdded = element;
-        }
-
-        while (comment) {
-            const text = comment.textContent.trim();
-            if (start.test(text)) {
-                const [, name, json] = text.match(start);
-                const data = json && JSON.parse(json);
-                const elem = {
-                    name,
-                    json,
-                    data,
-                    children: [],
-                    hasRelatedElement: false,
-                };
-
-                // if (name === 'page.wrapper') {
-                if ((comment as HTMLElement).nextElementSibling) {
-                    const siblings = [];
-                    let node: any = (comment as HTMLElement);
-                    while (node) {
-                        if (node.nodeType !== Node.TEXT_NODE) {
-                            siblings.push(node);
-                        }
-                        node = node.nextSibling;
-                    }
-
-                    if (siblings[1].nodeType === Node.ELEMENT_NODE) {
-                        elem.hasRelatedElement = true;
-                        elemMap.set(name, {element: siblings[1], data});
-                        reverseElemMap.set(siblings[1], data);
-                    }
-                }
-
-                push(elem);
-                elemstack.push(elem);
-            }
-            if (end.test(text)) {
-                elemstack.pop();
-            }
-            comment = x.iterateNext();
-        }
-        return [elemMap, reverseElemMap, stack];
-    }
+/**
+ * Side effecting items to pass to functions
+ */
+export interface Inputs {
+    document: Document,
+    results: NodeItem[],
+    wall: {listen: any, emit: any}
+    elemMap: any
 }
 
-const [elemMap, reverseElemMap, results] = JhBlockLogger.parseComments();
+const inputs: Inputs = {
+    document,
+    results,
+    wall,
+    elemMap,
+};
 
+/**
+ * Only add listeners if results were found
+ */
 if (results && results.length) {
-    let overlay;
-    let inspect = false;
-    chrome.extension.onMessage.addListener(function (message: Msg.InjectActions) {
-        switch (message.type) {
-            case 'strip-comments': {
-                JhBlockLogger.removeComments();
-                break;
-            }
-            case 'scrape': {
-                chrome.extension.sendMessage({type: "ParsedComments", payload: results});
-                break;
-            }
-            case 'inspect': {
-                inspect = message.payload;
-                if (!inspect && overlay) {
-                    overlay.remove();
-                    overlay = null;
-                }
-                break;
-            }
-            case 'hover': {
-                if (elemMap.has(message.payload)) {
-                    const {element, data} = elemMap.get(message.payload);
-                    if (!overlay) {
-                        overlay = new Overlay(window);
-                    }
-                    overlay.inspect(element, data.type, data.name);
-                } else {
-                    if (overlay) {
-                        overlay.remove();
-                        overlay = null;
-                    }
-                }
-                break;
-            }
-        }
-    });
-
-    window.addEventListener('mouseover', function(evt) {
-        if (!inspect) {
-            return;
-        }
-        evt.preventDefault();
-        evt.stopPropagation();
-        evt.cancelBubble = true;
-        if (reverseElemMap.has(evt.target)) {
-            const data = reverseElemMap.get(evt.target);
-            if (!overlay) {
-                overlay = new Overlay(window);
-            }
-            overlay.inspect(evt.target, data.type, data.name);
-        }
-    }, true);
-
-} else {
-    console.log('no results found');
+    wall.listen(incomingMessageHandler(inputs));
 }
 
-chrome.extension.sendMessage({type: 'Ping'});
+/**
+ * Always ping dev-tools on every page load
+ */
+wall.emit({type: Msg.Names.Ping});
+
+// if (results && results.length) {
+// window.addEventListener('mouseover', function(evt) {
+//     if (!inspect) {
+//         return;
+//     }
+//     evt.preventDefault();
+//     evt.stopPropagation();
+//     evt.cancelBubble = true;
+//     if (reverseElemMap.has(evt.target)) {
+//         const data = reverseElemMap.get(evt.target);
+//         if (!overlay) {
+//             overlay = new Overlay(window);
+//         }
+//         overlay.inspect(evt.target, data.type, data.name);
+//     }
+// }, true);
+// } else {
+//     console.log('no results found');
+// }
