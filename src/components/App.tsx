@@ -1,19 +1,17 @@
 import * as React from 'react';
 import {Node} from "./Node";
-
 declare var require;
 import {collectNames, pullData} from "../utils";
 import {NodeItem} from "../types";
-import {Subject} from "rxjs/Subject";
-import {Subscription} from "rxjs/Subscription";
+import {Subject, Subscription} from "../rx";
+import {Msg} from "../messages.types";
+import {ActionBar} from "./ActionBar";
 
 
 export interface AppProps {
-    incoming$: Subject<{ type: string, payload: any }>,
-    outgoing$: Subject<{ type: string, payload: any }>,
-
+    incoming$: Subject<Msg.PanelIncomingMessages>,
+    outgoing$: Subject<Msg.PanelOutgoingMessages>,
     hover(name: string): void
-
     removeHover(name: string): void
 }
 
@@ -46,7 +44,7 @@ export class App extends React.Component<any, any> {
 
     componentDidMount() {
         this.sub = this.props.incoming$
-            .filter(x => x.type === 'ParsedComments')
+            .filter(x => x.type === Msg.Names.ParsedComments)
             .pluck('payload')
             .subscribe((nodes: NodeItem[]) => {
                 this.setState(prev => {
@@ -82,80 +80,21 @@ export class App extends React.Component<any, any> {
     }
 
     render() {
-        const hasSelection = this.state.selected.size > 0;
-        const selectionOverlay = this.state.selectionOverlay;
-        const data = (this.state.root && hasSelection)
-            ? pullData(this.state.root.children, Array.from(this.state.selected)[0])
-            : {};
-
         return (
             <div className="app">
-                <div className="action-bar">
-                    {hasSelection && selectionOverlay && (
-                        <div className="info-window">
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    this.setState({selected: new Set([])})
-                                }}
-                            >
-                                Close
-                            </button>
-                            <pre><code>{JSON.stringify(data, null, 2)}</code></pre>
-                        </div>
-                    )}
-                    <div className="controls">
-                        <button
-                            type="button"
-                            className="controls__button"
-                            onClick={() => this.setState(() => ({collapsed: new Set([])}))}
-                        >Expand all
-                        </button>
-                        <button
-                            type="button"
-                            className="controls__button"
-                            onClick={() => {
-                                this.setState(() => ({
-                                    collapsed: new Set([...collectNames(this.state.root.children), '$$root'])
-                                }));
-                            }}
-                        >Collapse all
-                        </button>
-                        <button
-                            type="button"
-                            className="controls__button"
-                            onClick={() => {
-                                this.setState((prev) => {
-                                    return {
-                                        inspecting: !prev.inspecting
-                                    }
-                                }, () => this.props.outgoing$.next({type: 'inspect', payload: this.state.inspecting}));
+                <ActionBar
+                    hovered={this.state.hovered}
+                    collapsed={this.state.collapsed}
+                    selected={this.state.selected}
+                    root={this.state.root}
+                    searchTerm={this.state.searchTerm}
+                    inspecting={this.state.inspecting}
+                    selectionOverlay={this.state.selectionOverlay}
+                    clearSelected={() => this.setState({selected: new Set([])})}
+                    expandAll={() => this.setState({selected: new Set([])})}
+                />
 
-                            }}
-                        >{this.state.inspecting ? 'Stop inspecting' : 'Inspect page'}</button>
-                        <label htmlFor="check">
-                            <input
-                                type="checkbox"
-                                id="check"
-                                onChange={(e) => {
-                                    const checked = e.target.checked;
-                                    this.setState({selectionOverlay: checked});
-                                }}
-                            />
-                            Selection Overlay
-                        </label>
-                    </div>
-                    <div className="search-bar">
-                        <label htmlFor="search" className="search-bar__label">Search</label>
-                        <input
-                            type="text"
-                            id="search"
-                            value={this.state.searchTerm}
-                            onChange={(e: any) => this.setState({searchTerm: e.target.value} as any)}
-                        />
-                    </div>
-                </div>
-                <div className="node-tree">
+              <div className="node-tree">
                     <Node
                         node={this.state.root}
                         depth={1}

@@ -54,7 +54,7 @@ tasks:
   chrome-watch:
     adaptor: npm
     command: >
-      tsc src/chrome/**/* -w --outdir shells/chrome/build
+      tsc src/chrome/{inject.ts,main.ts,background.ts} -w --outdir shells/chrome/build
       --lib ES2015,DOM
 
   clean:
