@@ -91,7 +91,31 @@ export class App extends React.Component<any, any> {
                     inspecting={this.state.inspecting}
                     selectionOverlay={this.state.selectionOverlay}
                     clearSelected={() => this.setState({selected: new Set([])})}
-                    expandAll={() => this.setState({selected: new Set([])})}
+                    expandAll={() => this.setState({collapsed: new Set([])})}
+                    collapseAll={() => {
+                        this.setState(() => ({
+                            collapsed: new Set([...collectNames(this.state.root.children), '$$root'])
+                        }));
+                    }}
+                    toggleInspecting={() => {
+                        this.setState((prev) => {
+                            return {
+                                inspecting: !prev.inspecting
+                            }
+                        }, () => {
+                            const msg: Msg.Inspect = {
+                                type: Msg.Names.Inspect,
+                                payload: this.state.inspecting
+                            };
+                            this.props.outgoing$.next(msg);
+                        });
+                    }}
+                    toggleSelectionOverlay={(checked: boolean) => {
+                        this.setState({selectionOverlay: checked});
+                    }}
+                    setSearchTerm={(searchTerm: string) => {
+                        this.setState({searchTerm});
+                    }}
                 />
 
               <div className="node-tree">
