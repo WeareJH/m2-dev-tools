@@ -7,6 +7,7 @@ import {Subject, Subscription} from "../rx";
 import {Msg} from "../messages.types";
 import {ActionBar} from "./ActionBar";
 import * as dlv from "dlv";
+import {Observable} from "../rx";
 
 export interface AppProps {
     incoming$: Subject<Msg.PanelIncomingMessages>,
@@ -15,10 +16,11 @@ export interface AppProps {
     removeHover(name: string): void
 }
 
-export class App extends React.Component<any, any> {
+export class App extends React.Component<AppProps, any> {
     props: AppProps;
     sub: Subscription | null;
     setState: (...args) => void;
+    ref: any;
     state: {
         hovered: Set<string>,
         collapsed: Set<string>,
@@ -48,26 +50,32 @@ export class App extends React.Component<any, any> {
     };
 
     componentDidMount() {
-        this.sub = this.props.incoming$
-            .filter(x => x.type === Msg.Names.ParsedComments)
-            .pluck('payload')
-            .subscribe((nodes: NodeItem[]) => {
-                this.setState((prev: App['state']) => {
-                    return {
-                        hovered: new Set<string>([]),
-                        collapsed: new Set<string>([]),
-                        selected: {
-                            id: null,
-                            path: null
-                        },
-                        inspecting: false,
-                        root: {
-                            ...prev.root,
-                            children: nodes,
+        this.sub = Observable.merge(
+            this.props.incoming$
+                .filter(x => x.type === Msg.Names.ParsedComments)
+                .pluck('payload')
+                .do((nodes: NodeItem[]) => {
+                    this.setState((prev: App['state']) => {
+                        return {
+                            hovered: new Set<string>([]),
+                            collapsed: new Set<string>([]),
+                            selected: {
+                                id: null,
+                                path: null
+                            },
+                            inspecting: false,
+                            root: {
+                                ...prev.root,
+                                children: nodes,
+                            }
                         }
-                    }
-                })
-            });
+                    })
+                }),
+            this.props.incoming$
+                .filter(x => x.type === Msg.Names.KeyUp)
+                .do(x => console.log(x))
+        ).subscribe();
+
     }
 
     componentWillUnmount() {
@@ -89,7 +97,7 @@ export class App extends React.Component<any, any> {
 
     render() {
         return (
-            <div className="app">
+            <div className="app" ref={(ref) => {this.ref = ref;}}>
                 <ActionBar
                     hovered={this.state.hovered}
                     collapsed={this.state.collapsed}
@@ -98,7 +106,7 @@ export class App extends React.Component<any, any> {
                     searchTerm={this.state.searchTerm}
                     inspecting={this.state.inspecting}
                     selectionOverlay={this.state.selectionOverlay}
-                    clearSelected={() => this.setState({selected: new Set([])})}
+                    clearSelected={() => this.setState({selected: {id: null, path: null}})}
                     expandAll={() => this.setState({collapsed: new Set([])})}
                     collapseAll={() => {
                         this.setState(() => ({
@@ -122,6 +130,7 @@ export class App extends React.Component<any, any> {
                         this.setState({selectionOverlay: checked});
                     }}
                     setSearchTerm={(searchTerm: string) => {
+                        // console.log(searchTerm);
                         this.setState({searchTerm});
                     }}
                 />

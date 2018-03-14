@@ -74,7 +74,7 @@ export function ActionBar(props: ActionBarProps) {
                     type="text"
                     id="search"
                     value={props.searchTerm}
-                    onChange={props.setSearchTerm}
+                    onChange={(e) => props.setSearchTerm(e.target.value)}
                 />
             </div>
         </div>

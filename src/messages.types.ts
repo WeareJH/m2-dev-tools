@@ -4,6 +4,13 @@ export type A<T, P = any> = {type: T, payload?: P}
 
 export namespace Msg {
 
+    export enum KeyCodes {
+        Left = 37,
+        Up = 38,
+        Right = 39,
+        Down = 40,
+    }
+
     export enum Names {
         StripComments = 'strip-comments',
         Scrape = 'scrape',
@@ -12,6 +19,7 @@ export namespace Msg {
         RemoveHover = 'remove-hover',
         ParsedComments = 'ParsedComments',
         Ping = 'Ping',
+        KeyUp = 'KeyUp',
     }
 
     export type StripComments = A<Names.StripComments>;
@@ -19,6 +27,7 @@ export namespace Msg {
     export type Inspect = A<Names.Inspect, boolean>;
     export type Hover = A<Names.Hover, string>;
     export type RemoveHover = A<Names.RemoveHover, string>;
+    export type KeyUp = A<Names.KeyUp, KeyCodes>;
 
     export type InjectIncomingActions
         = StripComments
@@ -39,7 +48,8 @@ export namespace Msg {
         | Inspect;
 
     export type PanelIncomingMessages
-        = ParsedComments;
+        = ParsedComments
+        | KeyUp;
 
     export type BackgroundToContent
         = InjectOutgoingActions
