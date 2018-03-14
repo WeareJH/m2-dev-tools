@@ -1,6 +1,5 @@
 import * as React from 'react';
-import {collectNames, pullData} from "../utils";
-import {Msg} from "../messages.types";
+import {pullData} from "../utils";
 import {NodeItem} from "../types";
 
 export interface ActionBarProps {

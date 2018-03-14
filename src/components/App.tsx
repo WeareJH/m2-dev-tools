@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {Node} from "./Node";
 declare var require;
-import {collectNames, pullData} from "../utils";
-import {NodeItem} from "../types";
+import {collectIds} from "../utils";
+import {NodeId, NodeItem} from "../types";
 import {Subject, Subscription} from "../rx";
 import {Msg} from "../messages.types";
 import {ActionBar} from "./ActionBar";
@@ -29,14 +29,16 @@ export class App extends React.Component<any, any> {
         selectionOverlay: boolean
     } = {
         inspecting: false,
-        hovered: new Set<string>([]),
-        collapsed: new Set<string>([]),
-        selected: new Set<string>([]),
+        hovered: new Set<NodeId>([]),
+        collapsed: new Set<NodeId>([]),
+        selected: new Set<NodeId>([]),
         root: {
             name: "$$root",
             children: [],
             data: {type: "root", name: "$$root"},
             hasRelatedElement: false,
+            path: [],
+            id: "$$root"
         },
         searchTerm: "",
         selectionOverlay: false
@@ -94,7 +96,7 @@ export class App extends React.Component<any, any> {
                     expandAll={() => this.setState({collapsed: new Set([])})}
                     collapseAll={() => {
                         this.setState(() => ({
-                            collapsed: new Set([...collectNames(this.state.root.children), '$$root'])
+                            collapsed: new Set([...collectIds(this.state.root.children), '$$root'])
                         }));
                     }}
                     toggleInspecting={() => {
@@ -127,27 +129,27 @@ export class App extends React.Component<any, any> {
                         searchTerm={this.state.searchTerm}
                         selected={this.state.selected}
                         select={this.selectByName}
-                        addHover={(label: string) => {
-                            this.props.hover(label);
+                        addHover={(id: NodeId) => {
+                            this.props.hover(id);
                             this.setState(prev => ({
-                                hovered: (prev.hovered.add(label), prev.hovered)
+                                hovered: (prev.hovered.add(id), prev.hovered)
                             }))
                         }}
-                        removeHover={(label) => {
-                            this.props.removeHover(label);
+                        removeHover={(id: NodeId) => {
+                            this.props.removeHover(id);
                             this.setState(prev => ({
-                                hovered: (prev.hovered.delete(label), prev.hovered)
+                                hovered: (prev.hovered.delete(id), prev.hovered)
                             }))
                         }}
-                        toggle={(label) => {
+                        toggle={(id: NodeId) => {
                             this.setState(prev => {
-                                if (prev.collapsed.has(label)) {
+                                if (prev.collapsed.has(id)) {
                                     return {
-                                        collapsed: (prev.collapsed.delete(label), prev.collapsed)
+                                        collapsed: (prev.collapsed.delete(id), prev.collapsed)
                                     }
                                 } else {
                                     return {
-                                        collapsed: (prev.collapsed.add(label), prev.collapsed)
+                                        collapsed: (prev.collapsed.add(id), prev.collapsed)
                                     }
                                 }
                             })

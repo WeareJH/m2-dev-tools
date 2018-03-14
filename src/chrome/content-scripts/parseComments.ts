@@ -10,14 +10,21 @@ export function parseComments(document: Document): [Map<any, any>, Map<any, any>
     let lastElementAdded;
 
     const stack = [];
+    const paths = [];
     const elemstack = [];
     const elemMap = new Map();
     const reverseElemMap = new Map();
 
     function push(element) {
-        const parent = elemstack[elemstack.length - 1]
-            ? elemstack[elemstack.length - 1].children
+        const prevStack = elemstack[elemstack.length - 1];
+        const parent = prevStack
+            ? prevStack.children
             : stack;
+
+        paths.push(parent.length);
+        element.path = paths.slice();
+        element.id = element.path.join('.');
+
         parent.push(element);
         lastElementAdded = element;
     }
@@ -33,6 +40,8 @@ export function parseComments(document: Document): [Map<any, any>, Map<any, any>
                 data,
                 children: [],
                 hasRelatedElement: false,
+                path: null,
+                id: ""
             };
 
             // if (name === 'page.wrapper') {
@@ -55,9 +64,12 @@ export function parseComments(document: Document): [Map<any, any>, Map<any, any>
 
             push(elem);
             elemstack.push(elem);
+            paths.push('children');
         }
         if (end.test(text)) {
             elemstack.pop();
+            paths.pop();
+            paths.pop();
         }
         comment = x.iterateNext();
     }

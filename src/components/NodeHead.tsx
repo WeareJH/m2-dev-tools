@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {NodeItem} from "../types";
+import {NodeId, NodeItem} from "../types";
 import {NodeAttr} from "./NodeAttr";
 import * as  classnames from 'classnames';
 
@@ -11,10 +11,10 @@ export interface NodeInfoProps {
     isSelected: boolean,
     hasChildren: boolean,
     searchTerm: string,
-    toggle(name: string): void,
-    select(name: string): void,
-    addHover(name: string): void,
-    removeHover(name: string): void
+    toggle(id: NodeId): void,
+    select(id: NodeId): void,
+    addHover(id: NodeId): void,
+    removeHover(id: NodeId): void
 }
 
 export function NodeHead(props: NodeInfoProps) {
@@ -28,9 +28,9 @@ export function NodeHead(props: NodeInfoProps) {
     return (
         <div style={{paddingLeft: String(indent) + 'px'}}
              className={classes}
-             onMouseLeave={() => removeHover(node.name)}
-             onMouseEnter={() => addHover(node.name)}
-             onClick={(e) => select(node.name)}>
+             onMouseLeave={() => removeHover(node.id)}
+             onMouseEnter={() => addHover(node.id)}
+             onClick={(e) => select(node.id)}>
             <p className="node__line">
                 {hasChildren && (
                     <button
@@ -40,7 +40,7 @@ export function NodeHead(props: NodeInfoProps) {
                             // don't let toggles propagate to node line
                             e.preventDefault();
                             e.stopPropagation();
-                            props.toggle(node.name)
+                            props.toggle(node.id)
                         }}
                     >
                         <svg

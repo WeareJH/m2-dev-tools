@@ -21,7 +21,6 @@ export function incomingMessageHandler(inputs: Inputs) {
     }, true);
 
     return function(message: Msg.InjectIncomingActions) {
-        console.log(message);
         switch (message.type) {
             case Msg.Names.StripComments: {
                 removeComments(document);
