@@ -6,6 +6,7 @@ tasks:
       - clean
       - chrome
       - inject
+      - bg
       - build-chrome
       - tasks/manifest
 
@@ -35,9 +36,7 @@ tasks:
     command: >
       /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
       --auto-open-devtools-for-tabs
-      --ignore-certificate-errors
-      --unsafely-treat-insecure-origin-as-secure=https://shop.pwa.m2
-      https://shop.pwa.m2/
+      fixtures/page.html
 
   chrome:
     adaptor: npm
@@ -50,6 +49,12 @@ tasks:
     command: >
       browserify shells/chrome/build/chrome/inject.js
       > shells/chrome/build/inject.browser.js
+
+  bg:
+    adaptor: npm
+    command: >
+      browserify shells/chrome/build/chrome/background.js
+      > shells/chrome/build/background.browser.js
 
   chrome-watch:
     adaptor: npm

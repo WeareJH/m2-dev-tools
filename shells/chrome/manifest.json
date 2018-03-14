@@ -10,13 +10,12 @@
   "web_accessible_resources": [
     "main.html",
     "build/chrome/main.js",
-    "build/chrome/backend.js",
     "dist/panel.css",
     "dist/panel.js"
   ],
 
   "background": {
-    "scripts": [ "build/chrome/background.js" ],
+    "scripts": [ "build/background.browser.js" ],
     "persistent": false
   },
 

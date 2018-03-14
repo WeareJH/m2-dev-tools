@@ -49,6 +49,7 @@ if (results && results.length) {
 /**
  * Always ping dev-tools on every page load
  */
+
 wall.emit({type: Msg.Names.Ping});
 
 // if (results && results.length) {
