@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {NodeId, NodeItem} from "../types";
+import {NodeId, NodeItem, NodePath} from "../types";
 import {NodeAttr} from "./NodeAttr";
 import * as  classnames from 'classnames';
 
@@ -12,7 +12,7 @@ export interface NodeInfoProps {
     hasChildren: boolean,
     searchTerm: string,
     toggle(id: NodeId): void,
-    select(id: NodeId): void,
+    select(id: NodeId, path: NodePath): void,
     addHover(id: NodeId): void,
     removeHover(id: NodeId): void
 }
@@ -30,7 +30,7 @@ export function NodeHead(props: NodeInfoProps) {
              className={classes}
              onMouseLeave={() => removeHover(node.id)}
              onMouseEnter={() => addHover(node.id)}
-             onClick={(e) => select(node.id)}>
+             onClick={(e) => select(node.id, node.path)}>
             <p className="node__line">
                 {hasChildren && (
                     <button

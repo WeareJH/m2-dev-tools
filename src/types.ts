@@ -1,11 +1,12 @@
 export type NodeId = string;
+export type NodePath = (string|number)[];
 export interface NodeItem {
     name: string
     json?: string
     data?: INodeData
     children: NodeItem[]
     hasRelatedElement: boolean;
-    path: (string|number)[] | null;
+    path: NodePath | null;
     id: NodeId;
 }
 

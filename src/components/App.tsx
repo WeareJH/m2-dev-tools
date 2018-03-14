@@ -2,11 +2,11 @@ import * as React from 'react';
 import {Node} from "./Node";
 declare var require;
 import {collectIds} from "../utils";
-import {NodeId, NodeItem} from "../types";
+import {NodeId, NodeItem, NodePath} from "../types";
 import {Subject, Subscription} from "../rx";
 import {Msg} from "../messages.types";
 import {ActionBar} from "./ActionBar";
-
+import * as dlv from "dlv";
 
 export interface AppProps {
     incoming$: Subject<Msg.PanelIncomingMessages>,
@@ -22,7 +22,10 @@ export class App extends React.Component<any, any> {
     state: {
         hovered: Set<string>,
         collapsed: Set<string>,
-        selected: Set<string>,
+        selected: {
+            id: NodeId | null,
+            path: NodePath | null,
+        },
         root: NodeItem,
         searchTerm: string,
         inspecting: boolean
@@ -31,7 +34,7 @@ export class App extends React.Component<any, any> {
         inspecting: false,
         hovered: new Set<NodeId>([]),
         collapsed: new Set<NodeId>([]),
-        selected: new Set<NodeId>([]),
+        selected: {id: null, path: null},
         root: {
             name: "$$root",
             children: [],
@@ -71,13 +74,13 @@ export class App extends React.Component<any, any> {
         }
     }
 
-    selectByName = (label: string) => {
+    selectByName = (id: NodeId, path: NodePath) => {
         this.setState((prev) => {
-            if (prev.selected.has(label)) {
-                return { selected: (prev.selected.delete(label), prev.selected) }
+            if (prev.selected.has(id)) {
+                return { selected: (prev.selected.delete(id), prev.selected) }
             }
             // todo multiple selections?
-            return { selected: new Set([label]) }
+            return { selected: new Set([id]) }
         });
     }
 

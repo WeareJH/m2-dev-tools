@@ -1,13 +1,13 @@
 declare var require;
 import * as React from 'react';
-import {NodeId, NodeItem} from "../types";
+import {NodeId, NodeItem, NodePath} from "../types";
 const classnames = require('classnames');
 
 export interface NodeEndProps {
     node: NodeItem,
     indent: number,
     isSelected: boolean,
-    select(id: NodeId): void,
+    select(id: NodeId, path: NodePath): void,
     addHover(id: NodeId): void,
     removeHover(id: NodeId): void
     hasChildren: boolean
@@ -26,7 +26,7 @@ export function NodeEnd(props: NodeEndProps) {
             style={{paddingLeft: String(indent) + 'px'}}
             onMouseLeave={() => removeHover(node.id)}
             onMouseEnter={() => addHover(node.id)}
-            onClick={() => props.select(node.id)}>
+            onClick={() => props.select(node.id, node.path)}>
             <span className="token lt">&lt;</span>
             <span className="token">/{node.name}</span>
             <span className="token gt">&gt;</span>

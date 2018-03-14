@@ -15,6 +15,7 @@
     "@types/node": "^9.4.7",
     "browserify": "^16.1.1",
     "classnames": "^2.2.5",
+    "dlv": "^1.1.1",
     "mitt": "^1.1.3",
     "parcel-bundler": "1.6.2",
     "parcel-plugin-bundle-manifest": "shakyShane/parcel-plugin-bundle-manifest",
