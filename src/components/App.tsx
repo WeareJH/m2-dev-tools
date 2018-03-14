@@ -52,11 +52,14 @@ export class App extends React.Component<any, any> {
             .filter(x => x.type === Msg.Names.ParsedComments)
             .pluck('payload')
             .subscribe((nodes: NodeItem[]) => {
-                this.setState(prev => {
+                this.setState((prev: App['state']) => {
                     return {
                         hovered: new Set<string>([]),
                         collapsed: new Set<string>([]),
-                        selected: new Set<string>([]),
+                        selected: {
+                            id: null,
+                            path: null
+                        },
                         inspecting: false,
                         root: {
                             ...prev.root,
@@ -75,12 +78,12 @@ export class App extends React.Component<any, any> {
     }
 
     selectByName = (id: NodeId, path: NodePath) => {
-        this.setState((prev) => {
-            if (prev.selected.has(id)) {
-                return { selected: (prev.selected.delete(id), prev.selected) }
+        this.setState(() => {
+            return {
+                selected: {
+                    id, path,
+                }
             }
-            // todo multiple selections?
-            return { selected: new Set([id]) }
         });
     }
 

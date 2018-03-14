@@ -1,7 +1,8 @@
 import * as React from 'react';
-import {NodeId, NodeItem} from "../types";
+import {NodeId, NodeItem, NodePath} from "../types";
 import {NodeHead} from "./NodeHead";
 import {NodeEnd} from "./NodeEnd";
+import {App} from "./App";
 
 export interface NodeProps {
     node: NodeItem,
@@ -9,8 +10,8 @@ export interface NodeProps {
     hovered: Set<string>,
     collapsed: Set<string>,
     searchTerm: string,
-    selected: Set<string>,
-    select(id: NodeId): void,
+    selected: App['state']['selected'],
+    select(id: NodeId, path: NodePath): void,
     addHover(id: NodeId): void,
     toggle(id: NodeId): void,
     removeHover(id: NodeId): void
@@ -21,7 +22,7 @@ export function Node(props: NodeProps) {
     const {children} = node;
     const hasNodes = children && (children.length > 0);
     const isCollapsed = props.collapsed.has(node.id);
-    const isSelected = props.selected.has(node.id);
+    const isSelected = props.selected.id === node.id;
     const body = (hasNodes && !isCollapsed) && (
         <div className="nodes">
             {children.map(n => {

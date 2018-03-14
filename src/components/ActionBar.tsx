@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {pullData} from "../utils";
 import {NodeItem} from "../types";
+import {App} from "./App";
 
 export interface ActionBarProps {
-    hovered: Set<string>,
-    collapsed: Set<string>,
-    selected: Set<string>,
+    hovered: App['state']['hovered'],
+    collapsed: App['state']['collapsed'],
+    selected: App['state']['selected'],
     root: NodeItem,
     searchTerm: string,
     inspecting: boolean
@@ -19,10 +20,10 @@ export interface ActionBarProps {
 }
 
 export function ActionBar(props: ActionBarProps) {
-    const hasSelection = props.selected.size > 0;
+    const hasSelection = props.selected.id !== null;
     const selectionOverlay = props.selectionOverlay;
     const data = (props.root && hasSelection)
-        ? pullData(props.root.children, Array.from(props.selected)[0])
+        ? pullData(props.root.children, props.selected.path)
         : {};
     return (
         <div className="action-bar">
