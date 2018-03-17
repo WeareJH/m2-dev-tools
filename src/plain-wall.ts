@@ -18,16 +18,28 @@ export function createWall(): ChromeWall {
         Msg.KeyCodes.Down,
     ]);
 
-    document.addEventListener('keyup', function(evt) {
-        if (arrows.has(evt.keyCode)) {
-            if (evt.target === body) {
-                const msg: Msg.KeyUp = {
-                    type: Msg.Names.KeyUp,
-                    payload: evt.keyCode
-                }
-                incoming$.next(msg);
-            }
+    window.addEventListener('keyup', function(evt) {
+        if (window.document.activeElement !== window.document.body) {
+            return;
         }
+
+        if (evt.shiftKey || evt.metaKey) {
+            return;
+        }
+
+        if (!arrows.has(evt.keyCode)) {
+            return;
+        }
+
+        evt.preventDefault();
+
+        const msg: Msg.KeyUp = {
+            type: Msg.Names.KeyUp,
+            payload: evt.keyCode
+        };
+
+        incoming$.next(msg);
+
     }, true);
 
     return {incoming$, outgoing$};

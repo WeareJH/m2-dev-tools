@@ -44,7 +44,10 @@ export function parseComments(document: Document): [Map<any, any>, Map<any, any>
                 id: ""
             };
 
-            // if (name === 'page.wrapper') {
+            push(elem);
+            elemstack.push(elem);
+            paths.push('children');
+
             if ((comment as HTMLElement).nextElementSibling) {
                 const siblings = [];
                 let node: any = (comment as HTMLElement);
@@ -57,14 +60,10 @@ export function parseComments(document: Document): [Map<any, any>, Map<any, any>
 
                 if (siblings[1].nodeType === Node.ELEMENT_NODE) {
                     elem.hasRelatedElement = true;
-                    elemMap.set(name, {element: siblings[1], data});
+                    elemMap.set(elem.id, {element: siblings[1], data});
                     reverseElemMap.set(siblings[1], data);
                 }
             }
-
-            push(elem);
-            elemstack.push(elem);
-            paths.push('children');
         }
         if (end.test(text)) {
             elemstack.pop();

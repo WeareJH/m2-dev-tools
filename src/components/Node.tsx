@@ -5,6 +5,7 @@ import {NodeEnd} from "./NodeEnd";
 import {App} from "./App";
 
 export interface NodeProps {
+    key?: string|number,
     node: NodeItem,
     depth: number,
     hovered: Set<string>,
