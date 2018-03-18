@@ -19,10 +19,11 @@ export function down(selection: Selected, data: NodeItems, collapsed: App['state
     const hasChildren = current.children && current.children.length > 0;
     const isRoot = node.id === '$$root';
 
-    if (tail && !nextSibling) {
+    if (tail && node.id === '$$root') {
         return {
             node: current,
-            head, tail
+            head,
+            tail
         }
     }
 

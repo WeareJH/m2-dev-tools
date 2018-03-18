@@ -114,4 +114,19 @@ describe('down', function () {
         const nextSelection = down(selected, data, collapsed);
         deepEqual(nextSelection, expected);
     });
+    it.only('can go from tail -> tail', function () {
+        const collapsed = new Set([]);
+        const selected = {
+            node: data['0'],
+            head: false,
+            tail: true
+        };
+        const expected = {
+            node: data['$$root'],
+            head: false,
+            tail: true
+        };
+        const nextSelection = down(selected, data, collapsed);
+        // deepEqual(nextSelection, expected);
+    });
 });
