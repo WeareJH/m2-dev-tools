@@ -103,7 +103,7 @@ describe('left', function () {
         deepEqual(selected, expected);
         deepEqual(collapsed, ['$$root']);
     });
-    it('skips from tail -> head', function () {
+    it('skips from tail -> head on head', function () {
         const currentCollapsed = new Set([]);
         const currentSelection = {
             node: data['$$root'],
@@ -112,6 +112,23 @@ describe('left', function () {
         };
         const expected = {
             node: data['$$root'],
+            head: true,
+            tail: false
+        };
+
+        const {selected} = left(currentSelection, data, currentCollapsed);
+
+        deepEqual(selected, expected);
+    });
+    it('skips from tail -> head on any element', function () {
+        const currentCollapsed = new Set([]);
+        const currentSelection = {
+            node: data['0'],
+            head: false,
+            tail: true
+        };
+        const expected = {
+            node: data['0'],
             head: true,
             tail: false
         };

@@ -172,6 +172,16 @@ export function left(selection: Selected, data: NodeItems, collapsed: App['state
             }
         }
     }
+    if (tail) {
+        return {
+            selected: {
+                node: selection.node,
+                head: true,
+                tail: false
+            },
+            collapsed: Array.from(collapsed)
+        }
+    }
     return {
         selected: selection,
         collapsed: Array.from(collapsed)
