@@ -150,6 +150,33 @@ p {
   overflow: auto;
   max-height: 100vh;
 }
+.info-window__controls {
+  //outline: 1px solid red;
+  margin-bottom: 10px;
+}
+.info-window__path {
+  //outline: 1px solid blue;
+  margin-bottom: 10px;
+}
+.info-window__segment {
+  //outline: 1px solid green;
+  margin-left: 5px;
+  &:first-child {
+    margin-left: 0;
+  }
+  &:after {
+    content: ">";
+    color: lightgray;
+    margin-left: 5px;
+  }
+  &:last-of-type {
+    font-weight: bold;
+    color: #66256d;
+    &:after {
+      display: none;
+    }
+  }
+}
 .search-bar {
   margin-left: auto;
   display: flex;
