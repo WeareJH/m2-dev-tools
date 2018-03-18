@@ -22,12 +22,22 @@ export function SelectionOverlay(props: SelectionOverlayProps) {
                 </button>
             </div>
             <div className="info-window__path">
-                {item.node.namePath.map((x) => (
+                {item.node && item.node.namePath.map((x) => (
                         <span className="info-window__segment" key={x}>{x}</span>
                     )
                 )}
             </div>
-            <pre><code>{JSON.stringify(item.data, null, 2)}</code></pre>
+            {Object.keys(item.data)
+                .filter(x => x !== 'args')
+                .map(key => {
+                return (
+                    <p key={key}>
+                        <span className="token">{key}:{' '}</span>
+                        <span className="token token--string">{item.data[key]}</span>
+                    </p>
+                )
+            })}
+            <pre><code>{JSON.stringify(item.data.args, null, 2)}</code></pre>
         </div>
     )
 }

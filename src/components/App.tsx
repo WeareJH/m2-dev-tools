@@ -62,35 +62,13 @@ export class App extends React.Component<AppProps, any> {
     };
 
     componentDidMount() {
+        this.sendStripComments();
         this.sub = Observable.merge(
             this.props.incoming$
                 .filter(x => x.type === Msg.Names.ParsedComments)
                 .pluck('payload')
                 .do((nodes: NodeItem[]) => {
-                    this.setState((prev: App['state']) => {
-                        const root = {
-                            ...prev.root,
-                            children: nodes,
-                        };
-                        const flattened = flattenNodes(nodes);
-                        const collapsedIds = Object.keys(flattened).filter(x => x!=='$$root');
-                        return {
-                            hovered: {
-                                node: null,
-                                head: false,
-                                tail: false,
-                            },
-                            collapsed: new Set<string>(collapsedIds),
-                            selected: {
-                                node: null,
-                                head: false,
-                                tail: false,
-                            },
-                            inspecting: false,
-                            flatNodes: flattened,
-                            root,
-                        }
-                    })
+                    this.resetNodes(nodes);
                 }),
             this.props.incoming$
                 .filter(x => x.type === Msg.Names.KeyUp)
@@ -106,16 +84,45 @@ export class App extends React.Component<AppProps, any> {
                 }),
             this.props.incoming$
                 .filter(x => x.type === Msg.Names.Ping)
-                .do(x => {
-                    if (this.state.stripComments) {
-                        const msg: Msg.StripComments = {
-                            type: Msg.Names.StripComments
-                        };
-                        this.props.outgoing$.next(msg);
-                    }
-                })
+                .do(() => this.sendStripComments())
         ).subscribe();
 
+    }
+
+    sendStripComments = () => {
+        if (this.state.stripComments) {
+            const msg: Msg.StripComments = {
+                type: Msg.Names.StripComments
+            };
+            this.props.outgoing$.next(msg);
+        }
+    };
+
+    resetNodes(nodes: NodeItem[]) {
+        this.setState((prev: App['state']) => {
+            const root = {
+                ...prev.root,
+                children: nodes,
+            };
+            const flattened = flattenNodes(nodes);
+            const collapsedIds = Object.keys(flattened).filter(x => x!=='$$root');
+            return {
+                hovered: {
+                    node: null,
+                    head: false,
+                    tail: false,
+                },
+                collapsed: new Set<string>(collapsedIds),
+                selected: {
+                    node: null,
+                    head: false,
+                    tail: false,
+                },
+                inspecting: false,
+                flatNodes: flattened,
+                root,
+            }
+        })
     }
 
     componentWillUnmount() {
@@ -138,6 +145,11 @@ export class App extends React.Component<AppProps, any> {
     }
 
     hoverById = (id: NodeId, path: NodePath, pos: { head: boolean, tail: boolean }) => {
+        const msg: Msg.Hover = {
+            type: Msg.Names.Hover,
+            payload: id
+        };
+        this.props.outgoing$.next(msg);
         this.setState((prev: App['state']) => {
             const subject = prev.flatNodes[id];
             return {
