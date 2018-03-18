@@ -78,7 +78,7 @@ export function up(selection: Selected, data: NodeItems, collapsed: App['state']
     if (!prevSibling) {
         if (tail && hasChildren) {
             const lastChild = current.children[current.children.length-1];
-            const lastChildHasChildren = (lastChild.children||[]).length > 0;
+            const lastChildHasChildren = (data[lastChild].children||[]).length > 0;
             if (!lastChildHasChildren) {
                 return {
                     node: data[lastChild],
@@ -174,7 +174,7 @@ export function left(selection: Selected, data: NodeItems, collapsed: App['state
     }
     return {
         selected: selection,
-        collapsed
+        collapsed: Array.from(collapsed)
     }
 }
 

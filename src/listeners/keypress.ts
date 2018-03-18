@@ -11,7 +11,7 @@ export function keyPress() {
             Msg.KeyCodes.Down,
         ]);
 
-        window.addEventListener('keyup', function(evt) {
+        window.addEventListener('keydown', function(evt) {
             if (window.document.activeElement !== window.document.body) {
                 return;
             }
@@ -25,6 +25,7 @@ export function keyPress() {
             }
 
             evt.preventDefault();
+            evt.stopPropagation();
 
             const msg: Msg.KeyUp = {
                 type: Msg.Names.KeyUp,
