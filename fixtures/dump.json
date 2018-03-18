@@ -1,66 +1,40 @@
-{
-  "label": "root",
-  "data": {
-    "template_file": "/var/www/root.phtml",
-    "block": "root"
-  },
-  "nodes": [
-    {
-      "label": "head-styles",
-      "data": {
-        "template_file": "/var/www/head-styles.phtml",
-        "block": "head.styles"
+[
+  {
+    "name": "main.wrapper",
+    "children": [
+      {
+        "name": "nav.item-renderer",
+        "children": [],
+        "path": [0, "children", 0],
+        "id": "0.children.0"
       },
-      "nodes": []
-    },
-    {
-      "label": "head-scripts",
-      "data": {
-        "template_file": "/var/www/head-scripts.phtml",
-        "block": "head.scripts"
-      },
-      "nodes": []
-    },
-    {
-      "label": "main",
-      "data": {
-        "template_file": "/var/www/main-body.phtml",
-        "block": "main"
-      },
-      "nodes": [
-        {
-          "label": "breadcrumbs",
-          "data": {
-            "template_file": "/var/www/breadcrumbs.phtml",
-            "block": "main.breadcrumbs"
-          }
-        },
-        {
-          "label": "messages",
-          "data": {
-            "template_file": "/var/www/messages.phtml",
-            "block": "main.messages"
-          }
-        },
-        {
-          "label": "main-content",
-          "nodes": [
-            {"label": "main-banner", "data": {"block": "main-banner", "template": "/var/www/emlte"}},
-            {"label": "main-caousel", "data": {"block": "main-caousel", "template": "/var/www/emlte"}},
-            {"label": "main-footer", "data": {"block": "main-footer", "template": "/var/www/emlte"}},
-            {"label": "main-newsletter", "data": {"block": "main-newsletter", "template": "/var/www/emlte"}}
-          ]
-        }
-      ]
-    },
-    {
-      "label": "analytics",
-      "data": {
-        "block": "goog.anayaltics",
-        "args": {
-          "name": "shane"
-        }
+      {
+        "name": "nav.item-renderer",
+        "children": [],
+        "path": [0, "children", 1],
+        "id": "0.children.1"
       }
-    }
-  ]
-}
+    ],
+    "path": [0],
+    "id": "0"
+  },
+  {
+    "name": "wrapper.site-header",
+    "children": [
+      {
+        "name": "wrapper.site-header.controls",
+        "children": [],
+        "path": [1, "children", 0],
+        "id": "1.children.0"
+      }
+    ],
+    "path": [1],
+    "id": "1"
+  },
+  {
+    "name": "widget-static-block",
+    "children": [],
+    "path": [2],
+    "id": "2"
+  }
+]

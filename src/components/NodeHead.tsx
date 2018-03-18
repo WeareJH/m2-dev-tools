@@ -12,7 +12,7 @@ export interface NodeInfoProps {
     hasChildren: boolean,
     searchTerm: string,
     toggle(id: NodeId): void,
-    select(id: NodeId, path: NodePath): void,
+    select(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
     addHover(id: NodeId): void,
     removeHover(id: NodeId): void
 }
@@ -30,7 +30,7 @@ export function NodeHead(props: NodeInfoProps) {
              className={classes}
              onMouseLeave={() => removeHover(node.id)}
              onMouseEnter={() => addHover(node.id)}
-             onClick={(e) => select(node.id, node.path)}>
+             onClick={(e) => select(node.id, node.path, {head: true, tail: false})}>
             <p className="node__line">
                 {hasChildren && (
                     <button

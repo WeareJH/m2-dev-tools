@@ -20,10 +20,10 @@ export interface ActionBarProps {
 }
 
 export function ActionBar(props: ActionBarProps) {
-    const hasSelection = props.selected.id !== null;
+    const hasSelection = props.selected.node.id !== null;
     const selectionOverlay = props.selectionOverlay;
     const data = (props.root && hasSelection)
-        ? pullData(props.root.children, props.selected.path)
+        ? pullData(props.root.children, props.selected.node.path)
         : {};
     return (
         <div className="action-bar">

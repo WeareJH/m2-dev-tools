@@ -3,6 +3,7 @@ import {NodeId, NodeItem, NodePath} from "../types";
 import {NodeHead} from "./NodeHead";
 import {NodeEnd} from "./NodeEnd";
 import {App} from "./App";
+import * as dlv from 'dlv';
 
 export interface NodeProps {
     key?: string|number,
@@ -12,7 +13,7 @@ export interface NodeProps {
     collapsed: Set<string>,
     searchTerm: string,
     selected: App['state']['selected'],
-    select(id: NodeId, path: NodePath): void,
+    select(id: NodeId, path: NodePath, head: boolean): void,
     addHover(id: NodeId): void,
     toggle(id: NodeId): void,
     removeHover(id: NodeId): void
@@ -23,7 +24,7 @@ export function Node(props: NodeProps) {
     const {children} = node;
     const hasNodes = children && (children.length > 0);
     const isCollapsed = props.collapsed.has(node.id);
-    const isSelected = props.selected.id === node.id;
+    const headIsSelected = props.selected.head && dlv(props, 'selected.node.id') === node.id;
     const body = (hasNodes && !isCollapsed) && (
         <div className="nodes">
             {children.map(n => {
@@ -56,9 +57,10 @@ export function Node(props: NodeProps) {
         isCollapsed={isCollapsed}
         toggle={props.toggle}
         searchTerm={searchTerm}
-        isSelected={isSelected}
+        isSelected={headIsSelected}
         select={props.select}
     />;
+    const tailIsSelected = props.selected.tail && dlv(props, 'selected.node.id') === node.id;
     const tail = (!isCollapsed) && (
         <NodeEnd
             node={node}
@@ -67,7 +69,7 @@ export function Node(props: NodeProps) {
             addHover={addHover}
             removeHover={removeHover}
             isHovered={isHovered}
-            isSelected={isSelected}
+            isSelected={tailIsSelected}
             select={props.select}
         />
     );

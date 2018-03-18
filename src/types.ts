@@ -9,6 +9,14 @@ export interface NodeItem {
     path: NodePath | null;
     id: NodeId;
 }
+export type NodeItems = {[id: string]: NodeItemShort}
+export interface NodeItemShort {
+    path: NodePath,
+    id: NodeId,
+    children: string[],
+    parent: NodeId
+    index: number,
+}
 
 interface INodeData {
     name: string;
