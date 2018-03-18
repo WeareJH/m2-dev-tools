@@ -27,7 +27,7 @@ export function SelectionOverlay(props: SelectionOverlayProps) {
                     )
                 )}
             </div>
-            <pre><code>codex here</code></pre>
+            <pre><code>{JSON.stringify(item.data, null, 2)}</code></pre>
         </div>
     )
 }
