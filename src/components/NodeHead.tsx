@@ -43,10 +43,10 @@ export function NodeHead(props: NodeInfoProps) {
                     >
                         <svg
                             className="arrow"
-                            height="6"
+                            height="7"
                             fill={isSelected ? 'white' : 'black'}
                             viewBox="0 0 50 50"
-                            transform={`${isCollapsed ? '' : 'rotate(-180)'}`}
+                            transform={`${isCollapsed ? 'rotate(-90)' : ''}`}
                             id="canvas">
                             <polygon points="0,0 50,0 25.0,43.3"></polygon>
                         </svg>
