@@ -1,4 +1,4 @@
-import {NodeItem, NodeItems, NodeItemShort, NodePath} from "./types";
+import {NodeId, NodeItem, NodeItems, NodeItemShort, NodePath} from "./types";
 
 export function collectIds(nodes: NodeItem[]) {
     const names = [];
@@ -12,12 +12,12 @@ export function collectIds(nodes: NodeItem[]) {
     }
 }
 
-export function pullData(nodes: NodeItem[], path: NodePath): NodeItem['data'] {
+export function pullData(nodes: NodeItem[], id: NodeId): NodeItem['data'] {
     let match;
     nodes.forEach(par);
     return match ? match.data : {};
     function par(node) {
-        if (node.name === name) {
+        if (node.id === id) {
             match = node;
             return;
         }

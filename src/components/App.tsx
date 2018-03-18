@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Node} from "./Node";
+
 declare var require;
 import {collectIds, flattenNodes, flattenObjectByProp} from "../utils";
 import {NodeId, NodeItem, NodeItems, NodeItemShort, NodePath} from "../types";
@@ -13,7 +14,9 @@ import {keyPresses} from "./keypresses";
 export interface AppProps {
     incoming$: Subject<Msg.PanelIncomingMessages>,
     outgoing$: Subject<Msg.PanelOutgoingMessages>,
+
     hover(name: string): void
+
     removeHover(name: string): void
 }
 
@@ -26,15 +29,15 @@ export class App extends React.Component<AppProps, any> {
         hovered: Set<string>,
         collapsed: Set<string>,
         selected: {
-            node: NodeItemShort|null,
+            node: NodeItemShort | null,
             head: boolean,
             tail: boolean,
-        },
+        } | null,
         root: NodeItem,
         searchTerm: string,
         inspecting: boolean
         selectionOverlay: boolean,
-        flatNodes: NodeItems|null
+        flatNodes: NodeItems | null
     } = {
         inspecting: false,
         hovered: new Set<NodeId>([]),
@@ -68,9 +71,9 @@ export class App extends React.Component<AppProps, any> {
                             hovered: new Set<string>([]),
                             collapsed: new Set<string>([]),
                             selected: {
-                                id: null,
-                                path: null,
+                                node: null,
                                 head: false,
+                                tail: false,
                             },
                             inspecting: false,
                             flatNodes: flattenNodes(nodes),
@@ -82,7 +85,10 @@ export class App extends React.Component<AppProps, any> {
                 .filter(x => x.type === Msg.Names.KeyUp)
                 .groupBy(x => x.payload)
                 .mergeMap(obs => {
-                    return keyPresses[obs.key as number](obs, {state$: Observable.of(this.state), getState: () => this.state});
+                    return keyPresses[obs.key as number](obs, {
+                        state$: Observable.of(this.state),
+                        getState: () => this.state
+                    });
                 })
                 .do(x => {
                     this.setState(x);
@@ -98,7 +104,7 @@ export class App extends React.Component<AppProps, any> {
         }
     }
 
-    selectByName = (id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}) => {
+    selectById = (id: NodeId, path: NodePath, pos: { head: boolean, tail: boolean }) => {
         this.setState((prev: App['state']) => {
             const subject = prev.flatNodes[id];
             return {
@@ -112,8 +118,46 @@ export class App extends React.Component<AppProps, any> {
 
     render() {
         return (
-            <div className="app" ref={(ref) => {this.ref = ref;}}>
-              <div className="node-tree">
+            <div className="app" ref={(ref) => {
+                this.ref = ref;
+            }}>
+                <ActionBar
+                    hovered={this.state.hovered}
+                    collapsed={this.state.collapsed}
+                    selected={this.state.selected}
+                    root={this.state.root}
+                    searchTerm={this.state.searchTerm}
+                    inspecting={this.state.inspecting}
+                    selectionOverlay={this.state.selectionOverlay}
+                    clearSelected={() => this.setState({selected: {id: null, path: null}})}
+                    expandAll={() => this.setState({collapsed: new Set([])})}
+                    collapseAll={() => {
+                        this.setState(() => ({
+                            collapsed: new Set([...collectIds(this.state.root.children), '$$root'])
+                        }));
+                    }}
+                    toggleInspecting={() => {
+                        this.setState((prev) => {
+                            return {
+                                inspecting: !prev.inspecting
+                            }
+                        }, () => {
+                            const msg: Msg.Inspect = {
+                                type: Msg.Names.Inspect,
+                                payload: this.state.inspecting
+                            };
+                            this.props.outgoing$.next(msg);
+                        });
+                    }}
+                    toggleSelectionOverlay={(checked: boolean) => {
+                        this.setState({selectionOverlay: checked});
+                    }}
+                    setSearchTerm={(searchTerm: string) => {
+                        // console.log(searchTerm);
+                        this.setState({searchTerm});
+                    }}
+                />
+                <div className="node-tree">
                     <Node
                         node={this.state.root}
                         depth={1}
@@ -121,7 +165,7 @@ export class App extends React.Component<AppProps, any> {
                         collapsed={this.state.collapsed}
                         searchTerm={this.state.searchTerm}
                         selected={this.state.selected}
-                        select={this.selectByName}
+                        select={this.selectById}
                         addHover={(id: NodeId) => {
                             this.props.hover(id);
                             this.setState(prev => ({

@@ -1,21 +1,38 @@
 import {App} from "../components/App";
 import {NodeItems} from "../types";
 
-export function down(selection: App['state']['selected'], data: NodeItems, collapsed: App['state']['collapsed']) {
-    const {node, head} = selection;
+type Selected = App['state']['selected'];
+
+export function down(selection: Selected, data: NodeItems, collapsed: App['state']['collapsed']): Selected {
+    const {node, head, tail} = selection;
     if (!node) {
-        return;
+        return {
+            node: data['$$root'],
+            head: true,
+            tail: false
+        }
     }
     const current = data[node.id];
     const parent = data[current.parent];
     const nextSibling = getNextSibling(node.id, data);
     const isCollapsed = collapsed.has(node.id);
     const hasChildren = current.children && current.children.length > 0;
+    const isRoot = node.id === '$$root';
+
+    if (tail && !nextSibling) {
+        return {
+            node: current,
+            head, tail
+        }
+    }
 
     if (head && hasChildren && !isCollapsed) {
-        const firstChild = node.path.concat('children', 0).join('.');
+        const firstChildId = isRoot
+            ? '0'
+            : node.path.concat('children', 0).join('.');
+
         return {
-            node: data[firstChild],
+            node: data[firstChildId],
             head: true,
             tail: false
         }

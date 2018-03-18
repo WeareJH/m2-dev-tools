@@ -2,6 +2,7 @@ import * as React from 'react';
 import {pullData} from "../utils";
 import {NodeItem} from "../types";
 import {App} from "./App";
+import * as dlv from "dlv";
 
 export interface ActionBarProps {
     hovered: App['state']['hovered'],
@@ -20,10 +21,10 @@ export interface ActionBarProps {
 }
 
 export function ActionBar(props: ActionBarProps) {
-    const hasSelection = props.selected.node.id !== null;
+    const hasSelection = dlv(props, 'selected.node.id');
     const selectionOverlay = props.selectionOverlay;
     const data = (props.root && hasSelection)
-        ? pullData(props.root.children, props.selected.node.path)
+        ? pullData(props.root.children, props.selected.node.id)
         : {};
     return (
         <div className="action-bar">

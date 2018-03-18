@@ -23,8 +23,8 @@ const data = {
     }
 };
 
-describe('down', function() {
-    it('skips children if collapsed', function() {
+describe('down', function () {
+    it('skips children if collapsed', function () {
         const collapsed = new Set(['0']);
         const selected = {
             node: data['0'],
@@ -39,7 +39,7 @@ describe('down', function() {
         const nextSelection = down(selected, data, collapsed);
         deepEqual(nextSelection, expected);
     });
-    it('descends to first child if not collapsed', function() {
+    it('descends to first child if not collapsed', function () {
         const collapsed = new Set([]);
         const selected = {
             node: data['0'],
@@ -54,7 +54,7 @@ describe('down', function() {
         const nextSelection = down(selected, data, collapsed);
         deepEqual(nextSelection, expected);
     });
-    it('can go down if no siblings', function() {
+    it('can go down if no siblings', function () {
         const collapsed = new Set([]);
         const selected = {
             node: data['0.children.1'],
@@ -63,6 +63,51 @@ describe('down', function() {
         };
         const expected = {
             node: data['0'],
+            head: false,
+            tail: true
+        };
+        const nextSelection = down(selected, data, collapsed);
+        deepEqual(nextSelection, expected);
+    });
+    it('can decend from $$root to first child', function () {
+        const collapsed = new Set([]);
+        const selected = {
+            node: data['$$root'],
+            head: true,
+            tail: false
+        };
+        const expected = {
+            node: data['0'],
+            head: true,
+            tail: false
+        };
+        const nextSelection = down(selected, data, collapsed);
+        deepEqual(nextSelection, expected);
+    });
+    it('can descend TO $$root from no selections', function () {
+        const collapsed = new Set([]);
+        const selected = {
+            node: null,
+            head: false,
+            tail: false
+        };
+        const expected = {
+            node: data['$$root'],
+            head: true,
+            tail: false
+        };
+        const nextSelection = down(selected, data, collapsed);
+        deepEqual(nextSelection, expected);
+    });
+    it('does not go past the final node tail', function () {
+        const collapsed = new Set([]);
+        const selected = {
+            node: data['1'],
+            head: false,
+            tail: true
+        };
+        const expected = {
+            node: data['1'],
             head: false,
             tail: true
         };

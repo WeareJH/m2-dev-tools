@@ -1,3 +1,9 @@
+watch:
+  default:
+    options:
+      block: true
+    'tests:src': '@npm mocha -r ts-node/register tests/**'
+
 tasks:
   build-all:
     description: |
@@ -28,6 +34,9 @@ tasks:
     adaptor: npm
     command: >
       parcel plain.html
+
+  test-watch:
+    cb watch 'tests:src -> ' --block
 
   lc:
     description: |
