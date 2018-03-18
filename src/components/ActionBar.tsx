@@ -14,11 +14,13 @@ export interface ActionBarProps {
     searchTerm: string,
     inspecting: boolean
     selectionOverlay: boolean
+    stripComments: boolean
     clearSelected(): void
     expandAll(): void
     collapseAll(): void
     toggleInspecting(): void
     toggleSelectionOverlay(checked: boolean): void
+    toggleStripComments(checked: boolean): void
     setSearchTerm(searchTerm: string): void
 }
 
@@ -46,11 +48,25 @@ export function ActionBar(props: ActionBarProps) {
                     onClick={props.collapseAll}
                 >Collapse all
                 </button>
+                {/*
                 <button
                     type="button"
                     className="controls__button"
                     onClick={props.toggleInspecting}
                 >{props.inspecting ? 'Stop inspecting' : 'Inspect page'}</button>
+                */}
+                <label htmlFor="strip-comments">
+                    <input
+                        type="checkbox"
+                        id="strip-comments"
+                        checked={props.stripComments}
+                        onChange={(e) => {
+                            const checked = e.target.checked;
+                            props.toggleStripComments(checked);
+                        }}
+                    />
+                    Strip Comments
+                </label>
                 <label htmlFor="check">
                     <input
                         type="checkbox"

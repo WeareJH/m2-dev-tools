@@ -40,6 +40,7 @@ export class App extends React.Component<AppProps, any> {
         searchTerm: string,
         inspecting: boolean
         selectionOverlay: boolean,
+        stripComments: boolean,
         flatNodes: NodeItems | null
     } = {
         inspecting: false,
@@ -56,6 +57,7 @@ export class App extends React.Component<AppProps, any> {
         },
         searchTerm: "",
         selectionOverlay: false,
+        stripComments: true,
         flatNodes: null
     };
 
@@ -101,6 +103,16 @@ export class App extends React.Component<AppProps, any> {
                 })
                 .do(x => {
                     this.setState(x);
+                }),
+            this.props.incoming$
+                .filter(x => x.type === Msg.Names.Ping)
+                .do(x => {
+                    if (this.state.stripComments) {
+                        const msg: Msg.StripComments = {
+                            type: Msg.Names.StripComments
+                        };
+                        this.props.outgoing$.next(msg);
+                    }
                 })
         ).subscribe();
 
@@ -151,6 +163,7 @@ export class App extends React.Component<AppProps, any> {
                     inspecting={this.state.inspecting}
                     flatNodes={this.state.flatNodes}
                     selectionOverlay={this.state.selectionOverlay}
+                    stripComments={this.state.stripComments}
                     clearSelected={() => this.setState({selected: {id: null, path: null}})}
                     expandAll={() => this.setState({collapsed: new Set([])})}
                     collapseAll={() => {
@@ -170,6 +183,9 @@ export class App extends React.Component<AppProps, any> {
                             };
                             this.props.outgoing$.next(msg);
                         });
+                    }}
+                    toggleStripComments={(checked: boolean) => {
+                        this.setState({stripComments: checked});
                     }}
                     toggleSelectionOverlay={(checked: boolean) => {
                         this.setState({selectionOverlay: checked});

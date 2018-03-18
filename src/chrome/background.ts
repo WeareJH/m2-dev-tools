@@ -22,9 +22,14 @@ chrome.extension.onConnect.addListener(function (port) {
     wall.emitTab(msg);
     wall.listen((message: Msg.BackgroundMessages) => {
         switch(message.type) {
+            case Msg.Names.StripComments: {
+                return wall.emitTab(message);
+            }
             case Msg.Names.Ping: {
                 const msg: Msg.Scrape = {type: Msg.Names.Scrape};
-                return wall.emitTab(msg)
+                wall.emitTab(msg);
+                wall.emitPanel(message);
+                break;
             }
             case Msg.Names.ParsedComments: {
                 return wall.emitPanel(message);

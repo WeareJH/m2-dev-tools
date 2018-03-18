@@ -45,17 +45,20 @@ export namespace Msg {
     export type PanelOutgoingMessages
         = Hover
         | RemoveHover
-        | Inspect;
+        | Inspect
+        | StripComments;
 
     export type PanelIncomingMessages
         = ParsedComments
-        | KeyUp;
+        | KeyUp
+        | Ping;
 
     export type BackgroundToContent
         = InjectOutgoingActions
         | Hover
         | Scrape
-        | Inspect;
+        | Inspect
+        | StripComments;
 
     export type BackgroundMessages
         = InjectOutgoingActions
