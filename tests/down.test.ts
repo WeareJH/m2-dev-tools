@@ -102,22 +102,7 @@ describe('down', function () {
     it('does not go past the final node tail', function () {
         const collapsed = new Set([]);
         const selected = {
-            node: data['1'],
-            head: false,
-            tail: true
-        };
-        const expected = {
-            node: data['1'],
-            head: false,
-            tail: true
-        };
-        const nextSelection = down(selected, data, collapsed);
-        deepEqual(nextSelection, expected);
-    });
-    it.only('can go from tail -> tail', function () {
-        const collapsed = new Set([]);
-        const selected = {
-            node: data['0'],
+            node: data['$$root'],
             head: false,
             tail: true
         };
@@ -127,6 +112,6 @@ describe('down', function () {
             tail: true
         };
         const nextSelection = down(selected, data, collapsed);
-        // deepEqual(nextSelection, expected);
+        deepEqual(nextSelection, expected);
     });
 });

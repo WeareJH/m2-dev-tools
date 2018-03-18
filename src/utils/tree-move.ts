@@ -67,13 +67,30 @@ export function up(selection: Selected, data: NodeItems, collapsed: App['state']
     const hasChildren = (current.children||[]).length > 0;
     const parent = data[current.parent];
     const prevSibling = getPrevSibling(node.id, data);
-    const isCollapsed = collapsed.has(node.id);
     if (tail) {
         const lastChild = current.children[current.children.length-1];
-        return {
-            node: data[lastChild],
-            head: true,
-            tail: false,
+        const lastChildIsCollapsed = collapsed.has(lastChild);
+        const lastChildHasChildren = (data[lastChild].children||[]).length > 0;
+
+        if (lastChildIsCollapsed) {
+            return {
+                node: data[lastChild],
+                head: true,
+                tail: false,
+            }
+        } else {
+            if (lastChildHasChildren) {
+                return {
+                    node: data[lastChild],
+                    head: false,
+                    tail: true,
+                }
+            }
+            return {
+                node: data[lastChild],
+                head: true,
+                tail: false,
+            }
         }
     }
     if (!prevSibling) {

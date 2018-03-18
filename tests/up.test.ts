@@ -112,6 +112,7 @@ describe('up', function () {
             tail: false
         };
         const nextSelection = up(selected, data, collapsed);
+        // console.log(nextSelection);
         deepEqual(nextSelection, expected);
     });
 });
