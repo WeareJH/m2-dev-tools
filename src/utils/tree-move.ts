@@ -118,6 +118,66 @@ export function up(selection: Selected, data: NodeItems, collapsed: App['state']
     }
 }
 
+export function left(selection: Selected, data: NodeItems, collapsed: App['state']['collapsed']): {selected: Selected, collapsed: string[]} {
+    const {node, head, tail} = selection;
+    if (!node || (node.id === '$$root')) {
+        if (head) {
+            return {
+                selected: {
+                    node: data['$$root'],
+                    head: true,
+                    tail: false
+                },
+                collapsed: ['$$root']
+            }
+        } else if (tail) {
+            return {
+                selected: {
+                    node: data['$$root'],
+                    head: true,
+                    tail: false
+                },
+                collapsed: []
+            }
+        }
+    }
+    const hasChildren = (node.children||[]).length > 0;
+    const isCollapsed = collapsed.has(node.id);
+    if (head) {
+        if (isCollapsed) {
+            return {
+                selected: {
+                    node: data[node.parent],
+                    head: true,
+                    tail: false
+                },
+                collapsed: Array.from(collapsed)
+            }
+        }
+        if (hasChildren) {
+            if (!isCollapsed) {
+                return {
+                    selected: selection,
+                    collapsed: [node.id]
+                }
+            }
+        } else {
+            return {
+                selected: {
+                    node: data[node.parent],
+                    head: true,
+                    tail: false
+                },
+                collapsed: []
+            }
+        }
+    }
+    return {
+        selected: selection,
+        collapsed
+    }
+}
+
 export function getPrevSibling(id: string, data: NodeItems) {
     const current = data[id];
     const parent = data[current.parent];
