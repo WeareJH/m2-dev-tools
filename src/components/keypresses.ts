@@ -2,7 +2,7 @@ import {Msg} from "../messages.types";
 import {Observable} from "../rx";
 import {App} from "./App";
 import * as dlv from "dlv";
-import {down} from "../utils/tree-move";
+import {down, up} from "../utils/tree-move";
 
 export const keyPresses = {
     [Msg.KeyCodes.Left]: (xs, inputs) => {
@@ -74,8 +74,14 @@ export const keyPresses = {
             return Observable.empty();
         });
     },
-    [Msg.KeyCodes.Up]: (xs, done) => {
-        return xs.do(x => console.log(x)).ignoreElements();
+    [Msg.KeyCodes.Up]: (xs, inputs) => {
+        return xs.mergeMap(() => {
+            const state: App['state'] = inputs.getState();
+            const nextSelected = up(state.selected, state.flatNodes, state.collapsed);
+            return Observable.of({
+                selected: nextSelected
+            });
+        });
     },
     [Msg.KeyCodes.Down]: (xs, inputs) => {
         return xs.mergeMap(() => {
