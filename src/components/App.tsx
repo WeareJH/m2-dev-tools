@@ -2,13 +2,12 @@ import * as React from 'react';
 import {Node} from "./Node";
 
 declare var require;
-import {collectIds, flattenNodes, flattenObjectByProp} from "../utils";
+import {collectIds, flattenNodes} from "../utils";
 import {NodeId, NodeItem, NodeItems, NodeItemShort, NodePath} from "../types";
 import {Observable} from "../rx";
 import {Subject, Subscription} from "../rx";
 import {Msg} from "../messages.types";
 import {ActionBar} from "./ActionBar";
-import * as dlv from "dlv";
 import {keyPresses} from "./keypresses";
 
 export interface AppProps {
@@ -71,20 +70,22 @@ export class App extends React.Component<AppProps, any> {
                             ...prev.root,
                             children: nodes,
                         };
+                        const flattened = flattenNodes(nodes);
+                        const collapsedIds = Object.keys(flattened).filter(x => x!=='$$root');
                         return {
                             hovered: {
                                 node: null,
                                 head: false,
                                 tail: false,
                             },
-                            collapsed: new Set<string>(nodes.map(x => x.id)),
+                            collapsed: new Set<string>(collapsedIds),
                             selected: {
                                 node: null,
                                 head: false,
                                 tail: false,
                             },
                             inspecting: false,
-                            flatNodes: flattenNodes(nodes),
+                            flatNodes: flattened,
                             root,
                         }
                     })
