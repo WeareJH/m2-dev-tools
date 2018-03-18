@@ -26,8 +26,12 @@ export class App extends React.Component<AppProps, any> {
     setState: (...args) => void;
     ref: any;
     state: {
-        hovered: Set<string>,
         collapsed: Set<string>,
+        hovered: {
+            node: NodeItemShort | null,
+            head: boolean,
+            tail: boolean,
+        } | null,
         selected: {
             node: NodeItemShort | null,
             head: boolean,
@@ -40,8 +44,8 @@ export class App extends React.Component<AppProps, any> {
         flatNodes: NodeItems | null
     } = {
         inspecting: false,
-        hovered: new Set<NodeId>([]),
         collapsed: new Set<NodeId>([]),
+        hovered: {node: null, head: false, tail: false},
         selected: {node: null, head: false, tail: false},
         root: {
             name: "$$root",
@@ -68,8 +72,12 @@ export class App extends React.Component<AppProps, any> {
                             children: nodes,
                         };
                         return {
-                            hovered: new Set<string>([]),
-                            collapsed: new Set<string>([]),
+                            hovered: {
+                                node: null,
+                                head: false,
+                                tail: false,
+                            },
+                            collapsed: new Set<string>(nodes.map(x => x.id)),
                             selected: {
                                 node: null,
                                 head: false,
@@ -109,6 +117,18 @@ export class App extends React.Component<AppProps, any> {
             const subject = prev.flatNodes[id];
             return {
                 selected: {
+                    node: subject,
+                    ...pos
+                }
+            }
+        });
+    }
+
+    hoverById = (id: NodeId, path: NodePath, pos: { head: boolean, tail: boolean }) => {
+        this.setState((prev: App['state']) => {
+            const subject = prev.flatNodes[id];
+            return {
+                hovered: {
                     node: subject,
                     ...pos
                 }
@@ -166,18 +186,7 @@ export class App extends React.Component<AppProps, any> {
                         searchTerm={this.state.searchTerm}
                         selected={this.state.selected}
                         select={this.selectById}
-                        addHover={(id: NodeId) => {
-                            this.props.hover(id);
-                            this.setState(prev => ({
-                                hovered: (prev.hovered.add(id), prev.hovered)
-                            }))
-                        }}
-                        removeHover={(id: NodeId) => {
-                            this.props.removeHover(id);
-                            this.setState(prev => ({
-                                hovered: (prev.hovered.delete(id), prev.hovered)
-                            }))
-                        }}
+                        addHover={this.hoverById}
                         toggle={(id: NodeId) => {
                             this.setState(prev => {
                                 if (prev.collapsed.has(id)) {

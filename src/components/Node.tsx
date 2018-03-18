@@ -9,12 +9,12 @@ export interface NodeProps {
     key?: string|number,
     node: NodeItem,
     depth: number,
-    hovered: Set<string>,
-    collapsed: Set<string>,
-    searchTerm: string,
+    hovered: App['state']['hovered'],
+    collapsed: App['state']['collapsed'],
+    searchTerm: App['state']['searchTerm'],
     selected: App['state']['selected'],
-    select(id: NodeId, path: NodePath, head: boolean): void,
-    addHover(id: NodeId): void,
+    select(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
+    addHover(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
     toggle(id: NodeId): void,
     removeHover(id: NodeId): void
 }
@@ -25,6 +25,7 @@ export function Node(props: NodeProps) {
     const hasNodes = children && (children.length > 0);
     const isCollapsed = props.collapsed.has(node.id);
     const headIsSelected = props.selected.head && dlv(props, 'selected.node.id') === node.id;
+    const headIsHovered = props.hovered.head && dlv(props, 'hovered.node.id') === node.id;
     const body = (hasNodes && !isCollapsed) && (
         <div className="nodes">
             {children.map(n => {
@@ -46,14 +47,13 @@ export function Node(props: NodeProps) {
         </div>
     );
     const indent = depth * 15;
-    const isHovered = hovered.has(node.id);
     const head = <NodeHead
         node={node}
         hasChildren={hasNodes}
         indent={indent}
         addHover={addHover}
         removeHover={removeHover}
-        isHovered={isHovered}
+        isHovered={headIsHovered}
         isCollapsed={isCollapsed}
         toggle={props.toggle}
         searchTerm={searchTerm}
@@ -61,6 +61,7 @@ export function Node(props: NodeProps) {
         select={props.select}
     />;
     const tailIsSelected = props.selected.tail && dlv(props, 'selected.node.id') === node.id;
+    const tailIsHovered = props.hovered.tail && dlv(props, 'hovered.node.id') === node.id;
     const tail = (!isCollapsed) && (
         <NodeEnd
             node={node}
@@ -68,7 +69,7 @@ export function Node(props: NodeProps) {
             indent={indent}
             addHover={addHover}
             removeHover={removeHover}
-            isHovered={isHovered}
+            isHovered={tailIsHovered}
             isSelected={tailIsSelected}
             select={props.select}
         />

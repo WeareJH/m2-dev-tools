@@ -10,22 +10,20 @@ export interface NodeEndProps {
     hasChildren: boolean
     isHovered: boolean
     select(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
-    addHover(id: NodeId): void,
+    addHover(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
     removeHover(id: NodeId): void
 }
 export function NodeEnd(props: NodeEndProps) {
-    const {node, hasChildren, indent, isHovered, addHover, removeHover} = props;
+    const {node, hasChildren, indent, addHover} = props;
     const classes = classnames({
         node_info: true,
-        'node_info--hovered': props.isHovered,
         'node_info--selected': props.isSelected
     });
     return hasChildren && (
         <div
             className={classes}
             style={{paddingLeft: String(indent) + 'px'}}
-            onMouseLeave={() => removeHover(node.id)}
-            onMouseEnter={() => addHover(node.id)}
+            onMouseEnter={() => addHover(node.id, node.path, {head: false, tail: true})}
             onClick={() => props.select(node.id, node.path, {head: false, tail: true})}>
             <span className="token lt">&lt;</span>
             <span className="token">/{node.name}</span>

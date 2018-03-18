@@ -13,12 +13,11 @@ export interface NodeInfoProps {
     searchTerm: string,
     toggle(id: NodeId): void,
     select(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
-    addHover(id: NodeId): void,
-    removeHover(id: NodeId): void
+    addHover(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
 }
 
 export function NodeHead(props: NodeInfoProps) {
-    const {node, indent, addHover, removeHover, hasChildren, isCollapsed, isSelected, select} = props;
+    const {node, indent, addHover, hasChildren, isCollapsed, isSelected, select} = props;
     const classes = classnames({
         node_info: true,
         'node_info--hovered': props.isHovered,
@@ -28,8 +27,7 @@ export function NodeHead(props: NodeInfoProps) {
     return (
         <div style={{paddingLeft: String(indent) + 'px'}}
              className={classes}
-             onMouseLeave={() => removeHover(node.id)}
-             onMouseEnter={() => addHover(node.id)}
+             onMouseEnter={() => addHover(node.id, node.path, {head: true, tail: false})}
              onClick={(e) => select(node.id, node.path, {head: true, tail: false})}>
             <p className="node__line">
                 {hasChildren && (
