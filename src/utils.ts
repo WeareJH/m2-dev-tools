@@ -12,10 +12,18 @@ export function collectIds(nodes: NodeItem[]) {
     }
 }
 
-export function pullData(nodes: NodeItem[], id: NodeId): NodeItem['data'] {
+export interface NodeMetaData {
+    data: NodeItem['data']
+    node: NodeItemShort,
+}
+
+export function pullData(nodes: NodeItem[], data: NodeItems | null, id: NodeId): NodeMetaData {
     let match;
     nodes.forEach(par);
-    return match ? match.data : {};
+    return {
+        data: match ? match.data : {},
+        node: data[match ? match.id : null],
+    };
     function par(node) {
         if (node.id === id) {
             match = node;
@@ -47,14 +55,15 @@ export function flattenNodes(nodes: NodeItem[]): NodeItems {
         id: '$$root',
         children: nodes.map(x => x.id),
         index: 0,
-        parent: null
+        parent: null,
+        namePath: []
     };
 
     const output: NodeItems = {'$$root': root};
 
-    return flattenChildren(nodes, '$$root'), output;
+    return flattenChildren(nodes, '$$root', []), output;
 
-    function flattenChildren(nodes: NodeItem[], parentId: string) {
+    function flattenChildren(nodes: NodeItem[], parentId: string, namePath: string[]) {
         nodes.forEach((node, index) => {
             const newNode: NodeItemShort = {
                 children: (node.children||[]).map(x => x.id),
@@ -62,10 +71,11 @@ export function flattenNodes(nodes: NodeItem[]): NodeItems {
                 path: node.path,
                 parent: parentId,
                 index,
+                namePath: namePath.concat(node.name)
             };
             output[node.id] = newNode;
             if (node.children && node.children.length) {
-                flattenChildren(node.children, node.id);
+                flattenChildren(node.children, node.id, namePath.concat(node.name));
             }
         });
     }

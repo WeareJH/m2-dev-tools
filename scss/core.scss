@@ -137,7 +137,7 @@ p {
 
 .info-window {
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 30px;
   left: 0;
   background: rgba(255, 255, 255, .95);
@@ -148,6 +148,7 @@ p {
   border-right: 0;
   padding: 10px 20px;
   overflow: auto;
+  max-height: 100vh;
 }
 .search-bar {
   margin-left: auto;

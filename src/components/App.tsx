@@ -148,6 +148,7 @@ export class App extends React.Component<AppProps, any> {
                     root={this.state.root}
                     searchTerm={this.state.searchTerm}
                     inspecting={this.state.inspecting}
+                    flatNodes={this.state.flatNodes}
                     selectionOverlay={this.state.selectionOverlay}
                     clearSelected={() => this.setState({selected: {id: null, path: null}})}
                     expandAll={() => this.setState({collapsed: new Set([])})}

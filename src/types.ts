@@ -16,6 +16,7 @@ export interface NodeItemShort {
     children: string[],
     parent: NodeId
     index: number,
+    namePath: string[]
 }
 
 interface INodeData {

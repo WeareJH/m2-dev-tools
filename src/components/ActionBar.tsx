@@ -8,6 +8,7 @@ export interface ActionBarProps {
     hovered: App['state']['hovered'],
     collapsed: App['state']['collapsed'],
     selected: App['state']['selected'],
+    flatNodes: App['state']['flatNodes'],
     root: NodeItem,
     searchTerm: string,
     inspecting: boolean
@@ -24,7 +25,7 @@ export function ActionBar(props: ActionBarProps) {
     const hasSelection = dlv(props, 'selected.node.id');
     const selectionOverlay = props.selectionOverlay;
     const data = (props.root && hasSelection)
-        ? pullData(props.root.children, props.selected.node.id)
+        ? pullData(props.root.children, props.flatNodes, props.selected.node.id)
         : {};
     return (
         <div className="action-bar">
