@@ -3,6 +3,7 @@ import {pullData} from "../utils";
 import {NodeItem} from "../types";
 import {App} from "./App";
 import * as dlv from "dlv";
+import {SelectionOverlay} from "./SelectionOverlay";
 
 export interface ActionBarProps {
     hovered: App['state']['hovered'],
@@ -22,24 +23,16 @@ export interface ActionBarProps {
 }
 
 export function ActionBar(props: ActionBarProps) {
-    const hasSelection = dlv(props, 'selected.node.id');
-    const selectionOverlay = props.selectionOverlay;
-    const data = (props.root && hasSelection)
-        ? pullData(props.root.children, props.flatNodes, props.selected.node.id)
-        : {};
+    const selected = dlv(props, 'selected');
+    const selectedId = selected.node ? selected.node.id : '';
+
     return (
         <div className="action-bar">
-            {hasSelection && selectionOverlay && (
-                <div className="info-window">
-                    <button
-                        type="button"
-                        onClick={props.clearSelected}
-                    >
-                        Close
-                    </button>
-                    <pre><code>{JSON.stringify(data, null, 2)}</code></pre>
-                </div>
-            )}
+            <SelectionOverlay
+                visible={selectedId && props.selectionOverlay}
+                toggleSelectionOverlay={props.toggleSelectionOverlay}
+                getItem={() => pullData(props.root.children, props.flatNodes, selectedId)}
+            />
             <div className="controls">
                 <button
                     type="button"
@@ -62,6 +55,7 @@ export function ActionBar(props: ActionBarProps) {
                     <input
                         type="checkbox"
                         id="check"
+                        checked={props.selectionOverlay}
                         onChange={(e) => {
                             const checked = e.target.checked;
                             props.toggleSelectionOverlay(checked);
