@@ -56,8 +56,12 @@ p {
 }
 
 .node-tree {
-  //width: auto;
-  //overflow-x: scroll;
+  overflow: auto;
+  max-height: calc(100vh - 120px);
+  max-width: 100vw;
+  @media (min-width: 600px) {
+    max-height: calc(100vh - 69px);
+  }
 }
 
 .node {
@@ -106,8 +110,44 @@ p {
 }
 
 .controls {
+  width: 100%;
+  @media (min-width: 600px) {
+    display: flex;
+    align-items: center;
+    > * {
+      width: 50%;
+    }
+  }
+}
+
+.controls__buttons {
   display: flex;
   align-items: center;
+  //outline: 1px solid red;
+  width: 100%;
+  margin-bottom: 10px;
+
+  @media (min-width: 600px) {
+    width: 50%;
+  }
+}
+
+.controls__checkboxes {
+  margin-bottom: 10px;
+  @media (min-width: 600px) {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.controls__checkbox {
+  margin-right: 10px;
+  padding: 10px 0;
+  display: inline-block;
+  @media (min-width: 600px) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
 
 .controls__button {
@@ -115,30 +155,37 @@ p {
 }
 
 .app {
-  padding-top: 40px;
-  padding-left: 10px;
-  padding-right: 10px;
+  @media (min-width: 600px) {
+    padding-top: 69px;
+  }
 }
 
 .action-bar {
-  display: flex;
-  position: fixed;
+  //display: flex;
+  //position: fixed;
+  position: relative;
   width: 100%;
   top: 0;
   left: 0;
   background: white;
-  height: 30px;
+  //height: 30px;
   //box-shadow: 0 0 2px black;
   border-bottom: 1px solid silver;
   z-index: 1;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 10px;
+
+  @media (min-width: 600px) {
+    height: 69px;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
 }
 
 .info-window {
   width: 100%;
-  position: fixed;
-  top: 30px;
+  position: absolute;
+  top: 100%;
   left: 0;
   background: rgba(255, 255, 255, .95);
   border: 1px solid silver;
@@ -181,6 +228,10 @@ p {
   margin-left: auto;
   display: flex;
   align-items: center;
+}
+
+.search-bar__input {
+  width: 100%;
 }
 
 .search-bar__label {
