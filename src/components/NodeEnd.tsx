@@ -8,7 +8,6 @@ export interface NodeEndProps {
     indent: number,
     isSelected: boolean,
     hasChildren: boolean
-    isHovered: boolean
     select(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
     addHover(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
     removeHover(id: NodeId): void

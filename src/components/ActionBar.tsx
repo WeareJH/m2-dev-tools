@@ -6,7 +6,6 @@ import * as dlv from "dlv";
 import {SelectionOverlay} from "./SelectionOverlay";
 
 export interface ActionBarProps {
-    hovered: App['state']['hovered'],
     collapsed: App['state']['collapsed'],
     selected: App['state']['selected'],
     flatNodes: App['state']['flatNodes'],

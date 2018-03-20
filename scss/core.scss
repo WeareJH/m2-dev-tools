@@ -74,8 +74,12 @@ p {
   align-items: center;
 }
 
-.node_info--hovered {
+.node_info:hover {
   background: #dadada;
+}
+
+.node_info--hovered {
+
 }
 .node_info--selected {
   background: #66256d;

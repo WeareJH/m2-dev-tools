@@ -26,11 +26,6 @@ export class App extends React.Component<AppProps, any> {
     ref: any;
     state: {
         collapsed: Set<string>,
-        hovered: {
-            node: NodeItemShort | null,
-            head: boolean,
-            tail: boolean,
-        } | null,
         selected: {
             node: NodeItemShort | null,
             head: boolean,
@@ -45,7 +40,6 @@ export class App extends React.Component<AppProps, any> {
     } = {
         inspecting: false,
         collapsed: new Set<NodeId>([]),
-        hovered: {node: null, head: false, tail: false},
         selected: {node: null, head: false, tail: false},
         root: {
             name: "$$root",
@@ -107,11 +101,6 @@ export class App extends React.Component<AppProps, any> {
             const flattened = flattenNodes(nodes);
             const collapsedIds = Object.keys(flattened).filter(x => x!=='$$root');
             return {
-                hovered: {
-                    node: null,
-                    head: false,
-                    tail: false,
-                },
                 collapsed: new Set<string>(collapsedIds),
                 selected: {
                     node: null,
@@ -144,21 +133,12 @@ export class App extends React.Component<AppProps, any> {
         });
     }
 
-    hoverById = (id: NodeId, path: NodePath, pos: { head: boolean, tail: boolean }) => {
+    hoverById = (id: NodeId) => {
         const msg: Msg.Hover = {
             type: Msg.Names.Hover,
             payload: id
         };
         this.props.outgoing$.next(msg);
-        this.setState((prev: App['state']) => {
-            const subject = prev.flatNodes[id];
-            return {
-                hovered: {
-                    node: subject,
-                    ...pos
-                }
-            }
-        });
     }
 
     render() {
@@ -167,7 +147,6 @@ export class App extends React.Component<AppProps, any> {
                 this.ref = ref;
             }}>
                 <ActionBar
-                    hovered={this.state.hovered}
                     collapsed={this.state.collapsed}
                     selected={this.state.selected}
                     root={this.state.root}
@@ -211,7 +190,6 @@ export class App extends React.Component<AppProps, any> {
                     <Node
                         node={this.state.root}
                         depth={1}
-                        hovered={this.state.hovered}
                         collapsed={this.state.collapsed}
                         searchTerm={this.state.searchTerm}
                         selected={this.state.selected}
