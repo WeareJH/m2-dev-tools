@@ -19,8 +19,7 @@ p {
 .token {
   color: #4c3f4c;
   &.lt,
-  &.gt
-  {
+  &.gt {
     //color: #67070f;
   }
 }
@@ -40,16 +39,20 @@ p {
   color: #909090;
   margin-left: 5px;
 }
+
 .token--value {
   //color: red
 }
+
 .token--key {
   //color: #777777;
 }
+
 .token--string {
   //color: #6b6ab0;
   color: #ee2053;
 }
+
 .token--search {
   //color: #6b6ab0;
   background: yellow;
@@ -68,6 +71,7 @@ p {
   cursor: pointer;
   white-space: nowrap;
 }
+
 .node__line {
   position: relative;
   display: flex;
@@ -76,11 +80,11 @@ p {
 
 .node_info:hover {
   background: #dadada;
+  &.node_info--selected {
+    background: #66256d;
+  }
 }
 
-.node_info--hovered {
-
-}
 .node_info--selected {
   background: #66256d;
   .token {
@@ -100,7 +104,6 @@ p {
   background: #1b222d;
   display: none;
 }
-
 
 .node__toggle {
   position: absolute;
@@ -201,14 +204,17 @@ p {
   overflow: auto;
   max-height: 100vh;
 }
+
 .info-window__controls {
   //outline: 1px solid red;
   margin-bottom: 10px;
 }
+
 .info-window__path {
   //outline: 1px solid blue;
   margin-bottom: 10px;
 }
+
 .info-window__segment {
   //outline: 1px solid green;
   margin-left: 5px;
@@ -228,6 +234,7 @@ p {
     }
   }
 }
+
 .search-bar {
   margin-left: auto;
   display: flex;
