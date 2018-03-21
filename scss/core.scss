@@ -1,3 +1,14 @@
+$brand-purple: #66256d;
+$brand-pink: #ee2053;
+$brand-yellow: #ffeb3b;
+
+$token: #4c3f4c;
+$token-attr: #909090;
+
+$line-hover: #dadada;
+$border: silver;
+$border-light: #D3D3D3;
+
 * {
   box-sizing: border-box;
 }
@@ -17,7 +28,7 @@ p {
 }
 
 .token {
-  color: #4c3f4c;
+  color: $token;
   &.lt,
   &.gt {
     //color: #67070f;
@@ -27,16 +38,14 @@ p {
 .token--icon {
   margin-left: 5px;
   position: relative;
-  //top: 2px;
 }
 
 .token--name {
-  //margin-right: 5px;
-  color: #66256d;
+  color: $brand-purple;
 }
 
 .token--attr {
-  color: #909090;
+  color: $token-attr;
   margin-left: 5px;
 }
 
@@ -49,13 +58,11 @@ p {
 }
 
 .token--string {
-  //color: #6b6ab0;
-  color: #ee2053;
+  color: $brand-pink;
 }
 
 .token--search {
-  //color: #6b6ab0;
-  background: yellow;
+  background: $brand-yellow;
 }
 
 .node-tree {
@@ -79,16 +86,16 @@ p {
 }
 
 .node_info:hover {
-  background: #dadada;
+  background: $line-hover;
   &.node_info--selected {
-    background: #66256d;
+    background: $brand-purple;
   }
 }
 
 .node_info--selected {
-  background: #66256d;
+  background: $brand-purple;
   .token {
-    color: #ffeb3b;
+    color: $brand-yellow;
   }
   .token--string {
     color: white;
@@ -177,7 +184,7 @@ p {
   background: white;
   //height: 30px;
   //box-shadow: 0 0 2px black;
-  border-bottom: 1px solid silver;
+  border-bottom: 1px solid $border;
   z-index: 1;
   padding: 10px;
 
@@ -195,7 +202,7 @@ p {
   top: 100%;
   left: 0;
   background: rgba(255, 255, 255, .95);
-  border: 1px solid silver;
+  border: 1px solid $border;
   border-top: 0;
   border-bottom-width: 5px;
   border-left: 0;
@@ -223,12 +230,12 @@ p {
   }
   &:after {
     content: ">";
-    color: lightgray;
+    color: $border-light;
     margin-left: 5px;
   }
   &:last-of-type {
     font-weight: bold;
-    color: #66256d;
+    color: $brand-purple;
     &:after {
       display: none;
     }

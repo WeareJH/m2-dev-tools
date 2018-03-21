@@ -85,10 +85,12 @@ export class App extends React.Component<AppProps, any> {
 
     sendStripComments = () => {
         if (this.state.stripComments) {
-            const msg: Msg.StripComments = {
-                type: Msg.Names.StripComments
-            };
-            this.props.outgoing$.next(msg);
+            // const msg: Msg.StripComments = {
+            //     type: Msg.Names.StripComments
+            // };
+            // this.props.outgoing$.next(msg);
+            const scrapeMessage: Msg.Scrape = {type: Msg.Names.Scrape};
+            this.props.outgoing$.next(scrapeMessage);
         }
     };
 

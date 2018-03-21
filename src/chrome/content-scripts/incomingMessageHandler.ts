@@ -2,6 +2,7 @@ import {Inputs} from "../inject";
 import {Msg} from "../../messages.types";
 import {Overlay} from "../Overlay";
 import {removeComments} from "./stripComments";
+import {parseComments} from "./parseComments";
 
 /**
  * This function returns a handler for message coming from the background script.
@@ -27,7 +28,8 @@ export function incomingMessageHandler(inputs: Inputs) {
                 break;
             }
             case Msg.Names.Scrape: {
-                inputs.wall.emit({type: Msg.Names.ParsedComments, payload: inputs.results});
+                const [results] = parseComments(document);
+                inputs.wall.emit({type: Msg.Names.ParsedComments, payload: results});
                 break;
             }
             case Msg.Names.Inspect: {

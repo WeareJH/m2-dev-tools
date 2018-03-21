@@ -8,7 +8,7 @@ import {incomingMessageHandler} from "./content-scripts/incomingMessageHandler";
 /**
  * Run over every page to collect comments
  */
-const [elemMap, ,results] = parseComments(document);
+const [elemMap, , results] = parseComments(document);
 
 /**
  * Common communication interface with typed messages
