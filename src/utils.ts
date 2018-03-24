@@ -89,7 +89,10 @@ export function getSearchNodes(searchTerm: string, flatNodes: App['state']['flat
         .map(x => flatNodes[x])
         .map(x => dlv(nodes, x.path))
         .filter((node: NodeItem) => {
-            return (node.data.template_file||"").indexOf(searchTerm) > -1;
+            const template_file = (node.data.template_file||"");
+            const name = (node.data.name||"");
+            return template_file.indexOf(searchTerm) > -1
+                || name.indexOf(searchTerm) > -1
         });
 
     return matches;
