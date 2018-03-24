@@ -173,7 +173,7 @@ export class App extends React.Component<AppProps, any> {
                     expandAll={() => this.setState({collapsed: new Set([])})}
                     collapseAll={() => {
                         this.setState(() => ({
-                            collapsed: new Set([...collectIds(this.state.root.children), '$$root'])
+                            collapsed: new Set([...collectIds(this.state.root.children)])
                         }));
                     }}
                     toggleInspecting={() => {
