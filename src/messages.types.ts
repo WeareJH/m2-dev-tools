@@ -46,6 +46,7 @@ export namespace Msg {
         = Hover
         | RemoveHover
         | Inspect
+        | Scrape
         | StripComments;
 
     export type PanelIncomingMessages

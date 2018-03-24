@@ -144,6 +144,7 @@ export class App extends React.Component<AppProps, any> {
     }
 
     render() {
+        const rootHasChildren = this.state.root.children.length > 0;
         return (
             <div className="app" ref={(ref) => {
                 this.ref = ref;
@@ -188,30 +189,37 @@ export class App extends React.Component<AppProps, any> {
                         this.setState({searchTerm});
                     }}
                 />
-                <div className="node-tree">
-                    <Node
-                        node={this.state.root}
-                        depth={1}
-                        collapsed={this.state.collapsed}
-                        searchTerm={this.state.searchTerm}
-                        selected={this.state.selected}
-                        select={this.selectById}
-                        addHover={this.hoverById}
-                        toggle={(id: NodeId) => {
-                            this.setState(prev => {
-                                if (prev.collapsed.has(id)) {
-                                    return {
-                                        collapsed: (prev.collapsed.delete(id), prev.collapsed)
+                {!rootHasChildren && (
+                    <div className="node-tree-pending">
+                        <p>Waiting for nodes...</p>
+                    </div>
+                )}
+                {rootHasChildren && (
+                    <div className="node-tree">
+                        <Node
+                            node={this.state.root}
+                            depth={1}
+                            collapsed={this.state.collapsed}
+                            searchTerm={this.state.searchTerm}
+                            selected={this.state.selected}
+                            select={this.selectById}
+                            addHover={this.hoverById}
+                            toggle={(id: NodeId) => {
+                                this.setState(prev => {
+                                    if (prev.collapsed.has(id)) {
+                                        return {
+                                            collapsed: (prev.collapsed.delete(id), prev.collapsed)
+                                        }
+                                    } else {
+                                        return {
+                                            collapsed: (prev.collapsed.add(id), prev.collapsed)
+                                        }
                                     }
-                                } else {
-                                    return {
-                                        collapsed: (prev.collapsed.add(id), prev.collapsed)
-                                    }
-                                }
-                            })
-                        }}
-                    />
-                </div>
+                                })
+                            }}
+                        />
+                    </div>
+                )}
             </div>
         )
     }

@@ -28,8 +28,12 @@ export function incomingMessageHandler(inputs: Inputs) {
                 break;
             }
             case Msg.Names.Scrape: {
-                const [results] = parseComments(document);
-                inputs.wall.emit({type: Msg.Names.ParsedComments, payload: results});
+                const [, , results] = parseComments(document);
+                const msg: Msg.ParsedComments = {
+                    type: Msg.Names.ParsedComments,
+                    payload: results
+                };
+                inputs.wall.emit(msg);
                 break;
             }
             case Msg.Names.Inspect: {
