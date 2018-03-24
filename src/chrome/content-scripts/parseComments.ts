@@ -22,8 +22,7 @@ export function parseComments(document: Document): [Map<any, any>, Map<any, any>
             : stack;
 
         paths.push(parent.length);
-        element.path = paths.slice();
-        element.id = element.path.join('.');
+        element.id = paths.slice().join('.');
 
         parent.push(element);
         lastElementAdded = element;

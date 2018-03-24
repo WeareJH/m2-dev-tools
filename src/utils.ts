@@ -1,4 +1,6 @@
 import {NodeId, NodeItem, NodeItems, NodeItemShort, NodePath} from "./types";
+import {App} from "./components/App";
+import * as dlv from "dlv";
 
 export function collectIds(nodes: NodeItem[]) {
     const names = [];
@@ -50,7 +52,7 @@ export function flattenObjectByProp(nodes, prop = 'id') {
 
 export function flattenNodes(nodes: NodeItem[]): NodeItems {
 
-    const root: NodeItemShort = {
+    const root = {
         path: [],
         id: '$$root',
         children: nodes.map(x => x.id),
@@ -61,22 +63,34 @@ export function flattenNodes(nodes: NodeItem[]): NodeItems {
 
     const output: NodeItems = {'$$root': root};
 
-    return flattenChildren(nodes, '$$root', []), output;
+    return flattenChildren(nodes, '$$root', [], []), output;
 
-    function flattenChildren(nodes: NodeItem[], parentId: string, namePath: string[]) {
+    function flattenChildren(nodes: NodeItem[], parentId: string, path: NodePath, namePath: string[]) {
         nodes.forEach((node, index) => {
-            const newNode: NodeItemShort = {
+            const nextPath = path.concat(index);
+            const newNode = {
+                ...node,
                 children: (node.children||[]).map(x => x.id),
-                id: node.id,
-                path: node.path,
                 parent: parentId,
                 index,
                 namePath: namePath.concat(node.name)
             };
             output[node.id] = newNode;
             if (node.children && node.children.length) {
-                flattenChildren(node.children, node.id, namePath.concat(node.name));
+                flattenChildren(node.children, node.id, nextPath.concat('children'), namePath.concat(node.name));
             }
         });
     }
+}
+
+export function getSearchNodes(searchTerm: string, flatNodes: App['state']['flatNodes'], nodes: NodeItem[]) {
+    const matches = Object.keys(flatNodes)
+        .filter(x => x!== '$$root')
+        .map(x => flatNodes[x])
+        .map(x => dlv(nodes, x.path))
+        .filter((node: NodeItem) => {
+            return (node.data.template_file||"").indexOf(searchTerm) > -1;
+        });
+
+    return matches;
 }

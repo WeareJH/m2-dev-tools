@@ -1,8 +1,9 @@
 import * as React from 'react';
 import {Node} from "./Node";
+import * as dlv from "dlv";
 
 declare var require;
-import {collectIds, flattenNodes} from "../utils";
+import {collectIds, flattenNodes, getSearchNode, getSearchNodes} from "../utils";
 import {NodeId, NodeItem, NodeItems, NodeItemShort, NodePath} from "../types";
 import {Observable} from "../rx";
 import {Subject, Subscription} from "../rx";
@@ -36,7 +37,10 @@ export class App extends React.Component<AppProps, any> {
         inspecting: boolean
         selectionOverlay: boolean,
         stripComments: boolean,
-        flatNodes: NodeItems | null
+        flatNodes: NodeItems | null,
+        baseNodes: NodeItem[],
+        baseFlatNodes: NodeItems | null,
+
     } = {
         inspecting: false,
         collapsed: new Set<NodeId>([]),
@@ -52,7 +56,9 @@ export class App extends React.Component<AppProps, any> {
         searchTerm: "",
         selectionOverlay: false,
         stripComments: true,
-        flatNodes: null
+        flatNodes: null,
+        baseNodes: [],
+        baseFlatNodes: null,
     };
 
     componentDidMount() {
@@ -62,7 +68,12 @@ export class App extends React.Component<AppProps, any> {
                 .filter(x => x.type === Msg.Names.ParsedComments)
                 .pluck('payload')
                 .do((nodes: NodeItem[]) => {
-                    this.resetNodes(nodes);
+                    this.setState({
+                        baseNodes: nodes,
+                        baseFlatNodes: flattenNodes(nodes)
+                    }, () => {
+                        this.resetNodes(nodes);
+                    });
                 }),
             this.props.incoming$
                 .filter(x => x.type === Msg.Names.KeyUp)
@@ -98,7 +109,7 @@ export class App extends React.Component<AppProps, any> {
                 children: nodes,
             };
             const flattened = flattenNodes(nodes);
-            const collapsedIds = Object.keys(flattened).filter(x => x!=='$$root');
+            const collapsedIds = Object.keys(flattened).filter(x => x!== '$$root');
             return {
                 collapsed: new Set<string>(collapsedIds),
                 selected: {
@@ -142,6 +153,9 @@ export class App extends React.Component<AppProps, any> {
 
     render() {
         const rootHasChildren = this.state.root.children.length > 0;
+        // const hasSearchTerm = this.state.searchTerm.length > 0;
+        const rootNode = this.state.root;
+
         return (
             <div className="app" ref={(ref) => {
                 this.ref = ref;
@@ -182,7 +196,11 @@ export class App extends React.Component<AppProps, any> {
                         this.setState({selectionOverlay: checked});
                     }}
                     setSearchTerm={(searchTerm: string) => {
-                        // console.log(searchTerm);
+                        if (searchTerm === '') {
+                            this.resetNodes(this.state.baseNodes);
+                        } else {
+                            this.resetNodes(getSearchNodes(searchTerm, this.state.baseFlatNodes, this.state.baseNodes));
+                        }
                         this.setState({searchTerm});
                     }}
                 />
@@ -194,7 +212,7 @@ export class App extends React.Component<AppProps, any> {
                 {rootHasChildren && (
                     <div className="node-tree">
                         <Node
-                            node={this.state.root}
+                            node={rootNode}
                             depth={1}
                             collapsed={this.state.collapsed}
                             searchTerm={this.state.searchTerm}
