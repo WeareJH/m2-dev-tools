@@ -152,8 +152,7 @@ export class App extends React.Component<AppProps, any> {
     }
 
     render() {
-        const rootHasChildren = this.state.root.children.length > 0;
-        // const hasSearchTerm = this.state.searchTerm.length > 0;
+        const rootHasChildren = this.state.baseNodes.length > 0;
         const rootNode = this.state.root;
 
         return (
@@ -161,6 +160,7 @@ export class App extends React.Component<AppProps, any> {
                 this.ref = ref;
             }}>
                 <ActionBar
+                    disabled={this.state.baseNodes.length === 0}
                     collapsed={this.state.collapsed}
                     selected={this.state.selected}
                     root={this.state.root}

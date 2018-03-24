@@ -11,6 +11,7 @@ export interface ActionBarProps {
     flatNodes: App['state']['flatNodes'],
     root: NodeItem,
     searchTerm: string,
+    disabled: boolean,
     inspecting: boolean
     selectionOverlay: boolean
     stripComments: boolean
@@ -29,6 +30,9 @@ export function ActionBar(props: ActionBarProps) {
 
     return (
         <div className="action-bar">
+            {props.disabled && (
+                <div className="action-bar__mask" />
+            )}
             <SelectionOverlay
                 visible={selectedId && props.selectionOverlay}
                 toggleSelectionOverlay={props.toggleSelectionOverlay}
@@ -85,7 +89,7 @@ export function ActionBar(props: ActionBarProps) {
             </div>
             <div className="search-bar">
                 <input
-                    type="text"
+                    type="search"
                     id="search"
                     placeholder="search for Block, Container, or Template names"
                     value={props.searchTerm}
