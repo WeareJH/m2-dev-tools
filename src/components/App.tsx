@@ -219,6 +219,9 @@ export class App extends React.Component<AppProps, any> {
                             selected={this.state.selected}
                             select={this.selectById}
                             addHover={this.hoverById}
+                            showOverlay={() => {
+                                this.setState({selectionOverlay: true});
+                            }}
                             toggle={(id: NodeId) => {
                                 this.setState(prev => {
                                     if (prev.collapsed.has(id)) {

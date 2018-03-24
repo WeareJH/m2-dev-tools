@@ -14,6 +14,7 @@ export interface NodeInfoProps {
     toggle(id: NodeId): void,
     select(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
     addHover(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
+    showOverlay(id: NodeId): void,
 }
 
 export function NodeHead(props: NodeInfoProps) {
@@ -32,6 +33,13 @@ export function NodeHead(props: NodeInfoProps) {
              className={classes}
              onMouseEnter={() => addHover(node.id, node.path, {head: true, tail: false})}
              onClick={(e) => select(node.id, node.path, {head: true, tail: false})}>
+            {isSelected && (
+                <button
+                    className="node__meatball"
+                    type="button"
+                    onClick={() => props.showOverlay(node.id)}
+                >?</button>
+            )}
             <p className="node__line">
                 {hasChildren && (
                     <button

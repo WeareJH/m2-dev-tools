@@ -16,6 +16,7 @@ export interface NodeProps {
     addHover(id: NodeId): void,
     toggle(id: NodeId): void,
     removeHover(id: NodeId): void
+    showOverlay(id: NodeId): void
 }
 
 export function Node(props: NodeProps) {
@@ -39,6 +40,7 @@ export function Node(props: NodeProps) {
                     searchTerm={searchTerm}
                     selected={props.selected}
                     select={props.select}
+                    showOverlay={props.showOverlay}
                 />
             })}
         </div>
@@ -55,6 +57,7 @@ export function Node(props: NodeProps) {
         searchTerm={searchTerm}
         isSelected={headIsSelected}
         select={props.select}
+        showOverlay={props.showOverlay}
     />;
     const tailIsSelected = props.selected.tail && dlv(props, 'selected.node.id') === node.id;
     const tail = (!isCollapsed) && (
@@ -66,6 +69,7 @@ export function Node(props: NodeProps) {
             removeHover={removeHover}
             isSelected={tailIsSelected}
             select={props.select}
+            showOverlay={props.showOverlay}
         />
     );
     return (

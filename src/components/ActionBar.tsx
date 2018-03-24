@@ -73,18 +73,6 @@ export function ActionBar(props: ActionBarProps) {
                         />
                         Strip Comments
                     </label>
-                    <label htmlFor="check" className="controls__checkbox">
-                        <input
-                            type="checkbox"
-                            id="check"
-                            checked={props.selectionOverlay}
-                            onChange={(e) => {
-                                const checked = e.target.checked;
-                                props.toggleSelectionOverlay(checked);
-                            }}
-                        />
-                        Selection Overlay
-                    </label>
                 </div>
             </div>
             <div className="search-bar">

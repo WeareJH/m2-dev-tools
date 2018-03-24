@@ -89,11 +89,30 @@ p {
   align-items: center;
 }
 
-.node_info:hover {
-  background: $line-hover;
-  &.node_info--selected {
-    background: $brand-purple;
+.node_info {
+  position: relative;
+  &:hover {
+    background: $line-hover;
+    &.node_info--selected {
+      background: $brand-purple;
+    }
   }
+}
+
+.node__meatball {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  color: white;
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  text-align: center;
+  background: lighten($brand-purple, 10%);
+  border-radius: 50%;
+  line-height: 14px;
+  font-size: .8em;
+  cursor: pointer;
 }
 
 .node_info--selected {

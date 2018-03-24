@@ -8,6 +8,7 @@ export interface NodeEndProps {
     indent: number,
     isSelected: boolean,
     hasChildren: boolean
+    showOverlay(id: NodeId): void,
     select(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
     addHover(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
     removeHover(id: NodeId): void
@@ -27,6 +28,13 @@ export function NodeEnd(props: NodeEndProps) {
             style={{paddingLeft: String(indent) + 'px'}}
             onMouseEnter={() => addHover(node.id, node.path, {head: false, tail: true})}
             onClick={() => props.select(node.id, node.path, {head: false, tail: true})}>
+            {props.isSelected && (
+                <button
+                    className="node__meatball"
+                    type="button"
+                    onClick={() => props.showOverlay(node.id)}
+                >?</button>
+            )}
             <span className="token lt">&lt;</span>
             <span className="token">/{node.name}</span>
             <span className="token gt">&gt;</span>
