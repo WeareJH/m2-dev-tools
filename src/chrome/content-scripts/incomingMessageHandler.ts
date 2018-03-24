@@ -24,19 +24,21 @@ export function incomingMessageHandler(inputs: Inputs) {
     return function(message: Msg.InjectIncomingActions) {
         switch (message.type) {
             case Msg.Names.StripComments: {
-                removeComments(document);
+                // removeComments(document);
                 break;
             }
             case Msg.Names.Scrape: {
                 const [, , results] = parseComments(document);
-                if (message.payload.stripComments) {
-                    removeComments(document);
-                }
+
                 const msg: Msg.ParsedComments = {
                     type: Msg.Names.ParsedComments,
                     payload: results
                 };
                 inputs.wall.emit(msg);
+
+                if (message.payload.stripComments) {
+                    removeComments(document);
+                }
                 break;
             }
             case Msg.Names.Inspect: {
