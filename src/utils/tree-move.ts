@@ -46,6 +46,13 @@ export function down(selection: Selected, data: NodeItems, collapsed: App['state
             tail: false
         }
     } else {
+        if (parent.id === '$$root') {
+            return {
+                node: current,
+                head,
+                tail,
+            }
+        }
         return {
             node: parent,
             head: false,
@@ -105,6 +112,13 @@ export function up(selection: Selected, data: NodeItems, collapsed: App['state']
                 };
             }
         }
+        if (parent.id === '$$root') {
+            return {
+                node: current,
+                head: true,
+                tail: false,
+            }
+        }
         return {
             node: parent,
             head: true,
@@ -114,6 +128,13 @@ export function up(selection: Selected, data: NodeItems, collapsed: App['state']
     const prevSiblingIsCollapsed = collapsed.has(prevSibling.id);
     const prevSiblingHasChildren = (prevSibling.children||[]).length > 0;
     if (prevSibling) {
+        if (prevSibling.id === '$$root') {
+            return {
+                node: current,
+                head: true,
+                tail: false,
+            }
+        }
         if (!prevSiblingIsCollapsed) {
             if (prevSiblingHasChildren) {
                 return {
@@ -163,6 +184,16 @@ export function left(selection: Selected, data: NodeItems, collapsed: App['state
     const isCollapsed = collapsed.has(node.id);
     if (head) {
         if (isCollapsed) {
+            if (node.parent == '$$root') {
+                return {
+                    selected: {
+                        node,
+                        head,
+                        tail,
+                    },
+                    collapsed: Array.from(collapsed)
+                };
+            }
             return {
                 selected: {
                     node: data[node.parent],

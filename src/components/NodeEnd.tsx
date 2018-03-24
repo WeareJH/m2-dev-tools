@@ -14,6 +14,9 @@ export interface NodeEndProps {
 }
 export function NodeEnd(props: NodeEndProps) {
     const {node, hasChildren, indent, addHover} = props;
+    if (node.id === '$$root') {
+        return null;
+    }
     const classes = classnames({
         node_info: true,
         'node_info--selected': props.isSelected

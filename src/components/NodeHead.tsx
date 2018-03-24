@@ -18,6 +18,9 @@ export interface NodeInfoProps {
 
 export function NodeHead(props: NodeInfoProps) {
     const {node, indent, addHover, hasChildren, isCollapsed, isSelected, select} = props;
+    if (node.id === '$$root') {
+        return null;
+    }
     const classes = classnames({
         node_info: true,
         'node_info--hovered': props.isHovered,

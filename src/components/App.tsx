@@ -3,7 +3,7 @@ import {Node} from "./Node";
 import * as dlv from "dlv";
 
 declare var require;
-import {collectIds, flattenNodes, getSearchNode, getSearchNodes} from "../utils";
+import {collectIds, flattenNodes, getSearchNodes} from "../utils";
 import {NodeId, NodeItem, NodeItems, NodeItemShort, NodePath} from "../types";
 import {Observable} from "../rx";
 import {Subject, Subscription} from "../rx";
