@@ -13,31 +13,35 @@ export interface NodeEndProps {
     addHover(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
     removeHover(id: NodeId): void
 }
-export function NodeEnd(props: NodeEndProps) {
-    const {node, hasChildren, indent, addHover} = props;
-    if (node.id === '$$root') {
-        return null;
+export class NodeEnd extends React.PureComponent<NodeEndProps> {
+    props: NodeEndProps;
+    render() {
+        const {props} = this;
+        const {node, hasChildren, indent, addHover} = props;
+        if (node.id === '$$root') {
+            return null;
+        }
+        const classes = classnames({
+            node_info: true,
+            'node_info--selected': props.isSelected
+        });
+        return hasChildren && (
+            <div
+                className={classes}
+                style={{paddingLeft: String(indent) + 'px'}}
+                onMouseEnter={() => addHover(node.id, node.path, {head: false, tail: true})}
+                onClick={() => props.select(node.id, node.path, {head: false, tail: true})}>
+                {props.isSelected && (
+                    <button
+                        className="node__meatball"
+                        type="button"
+                        onClick={() => props.showOverlay(node.id)}
+                    >?</button>
+                )}
+                <span className="token lt">&lt;</span>
+                <span className="token">/{node.name}</span>
+                <span className="token gt">&gt;</span>
+            </div>
+        )
     }
-    const classes = classnames({
-        node_info: true,
-        'node_info--selected': props.isSelected
-    });
-    return hasChildren && (
-        <div
-            className={classes}
-            style={{paddingLeft: String(indent) + 'px'}}
-            onMouseEnter={() => addHover(node.id, node.path, {head: false, tail: true})}
-            onClick={() => props.select(node.id, node.path, {head: false, tail: true})}>
-            {props.isSelected && (
-                <button
-                    className="node__meatball"
-                    type="button"
-                    onClick={() => props.showOverlay(node.id)}
-                >?</button>
-            )}
-            <span className="token lt">&lt;</span>
-            <span className="token">/{node.name}</span>
-            <span className="token gt">&gt;</span>
-        </div>
-    )
 }

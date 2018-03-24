@@ -49,6 +49,14 @@ p {
   margin-left: 5px;
 }
 
+.token--attr-name {
+  &:before {
+    margin-left: 5px;
+    content: attr(data-label);
+    color: $token-attr;
+  }
+}
+
 .token--value {
   //color: red
 }
@@ -87,6 +95,9 @@ p {
   position: relative;
   display: flex;
   align-items: center;
+  &:before {
+    content: attr(data-label);
+  }
 }
 
 .node_info {
@@ -258,6 +269,9 @@ p {
 .info-window__segment {
   //outline: 1px solid green;
   margin-left: 5px;
+  position: relative;
+  line-height: 24px;
+
   &:first-child {
     margin-left: 0;
   }
@@ -273,6 +287,14 @@ p {
       display: none;
     }
   }
+}
+
+.info-window__segment-type {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  font-size: 6px;
+  text-transform: uppercase;
 }
 
 .search-bar {

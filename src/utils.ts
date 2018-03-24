@@ -73,11 +73,11 @@ export function flattenNodes(nodes: NodeItem[]): NodeItems {
                 children: (node.children||[]).map(x => x.id),
                 parent: parentId,
                 index,
-                namePath: namePath.concat(node.name)
+                namePath: namePath.concat({name: node.name, type: node.data.type})
             };
             output[node.id] = newNode;
             if (node.children && node.children.length) {
-                flattenChildren(node.children, node.id, nextPath.concat('children'), namePath.concat(node.name));
+                flattenChildren(node.children, node.id, nextPath.concat('children'), namePath.concat({name: node.name, type: node.data.type}));
             }
         });
     }

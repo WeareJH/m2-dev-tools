@@ -11,6 +11,6 @@ const msg: Msg.ParsedComments = {
     payload: nodes
 };
 
-setTimeout(() => incoming$.next(msg), 2000);
+setTimeout(() => incoming$.next(msg), 1000);
 
 // incoming$.next(msg);

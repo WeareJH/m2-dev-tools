@@ -17,92 +17,82 @@ export interface NodeInfoProps {
     showOverlay(id: NodeId): void,
 }
 
-export function NodeHead(props: NodeInfoProps) {
-    const {node, indent, addHover, hasChildren, isCollapsed, isSelected, select} = props;
-    if (node.id === '$$root') {
-        return null;
-    }
-    const classes = classnames({
-        node_info: true,
-        'node_info--hovered': props.isHovered,
-        'node_info--selected': props.isSelected
-    });
-    const nodeName = node.data && node.data.type;
-    return (
-        <div style={{paddingLeft: String(indent) + 'px'}}
-             className={classes}
-             onMouseEnter={() => addHover(node.id, node.path, {head: true, tail: false})}
-             onClick={(e) => select(node.id, node.path, {head: true, tail: false})}>
-            {isSelected && (
-                <button
-                    className="node__meatball"
-                    type="button"
-                    onClick={() => props.showOverlay(node.id)}
-                >?</button>
-            )}
-            <p className="node__line">
-                {hasChildren && (
+export class NodeHead extends React.PureComponent<NodeInfoProps> {
+    props: NodeInfoProps;
+    public render() {
+        const {props} = this;
+        const {node, indent, addHover, hasChildren, isCollapsed, isSelected, select} = props;
+        if (node.id === '$$root') {
+            return null;
+        }
+        const classes = classnames({
+            node_info: true,
+            'node_info--hovered': props.isHovered,
+            'node_info--selected': props.isSelected
+        });
+        const nodeName = node.data && node.data.type;
+        return (
+            <div style={{paddingLeft: String(indent) + 'px'}}
+                 className={classes}
+                 onMouseEnter={() => addHover(node.id, node.path, {head: true, tail: false})}
+                 onClick={(e) => select(node.id, node.path, {head: true, tail: false})}
+            >
+                {isSelected && (
                     <button
-                        className="node__toggle"
+                        className="node__meatball"
                         type="button"
-                        onClick={(e) => {
-                            // don't let toggles propagate to node line
-                            e.preventDefault();
-                            e.stopPropagation();
-                            props.toggle(node.id)
-                        }}
-                    >
-                        <svg
-                            className="arrow"
-                            height="7"
-                            fill={isSelected ? 'white' : 'black'}
-                            viewBox="0 0 50 50"
-                            transform={`${isCollapsed ? 'rotate(-90)' : ''}`}
-                            id="canvas">
-                            <polygon points="0,0 50,0 25.0,43.3"></polygon>
-                        </svg>
-                    </button>
+                        onClick={() => props.showOverlay(node.id)}
+                    ><em>i</em></button>
                 )}
-                <span className="token lt">&lt;</span>
-                <span className="token token--name">{nodeName}</span>
-                <NodeAttr
-                    data={node.data}
-                    dataKey={'name'}
-                    attrName={'name'}
-                    searchTerm={props.searchTerm}
-                />
-                <NodeAttr
-                    data={(node.data as any)}
-                    dataKey={'template_file'}
-                    attrName={'template'}
-                    searchTerm={props.searchTerm}
-                />
-                {!hasChildren && (
-                    <span className="token gt">{' /'}</span>
-                )}
-                <span className="token gt">&gt;</span>
-                <span className="token token--icon">
-                    {node.hasRelatedElement && (
-                        <SyncIcon />
+                <p className="node__line">
+                    {hasChildren && (
+                        <button
+                            className="node__toggle"
+                            type="button"
+                            onClick={(e) => {
+                                // don't let toggles propagate to node line
+                                e.preventDefault();
+                                e.stopPropagation();
+                                props.toggle(node.id)
+                            }}
+                        >
+                            <svg
+                                className="arrow"
+                                height="7"
+                                fill={isSelected ? 'white' : 'black'}
+                                viewBox="0 0 50 50"
+                                transform={`${isCollapsed ? 'rotate(-90)' : ''}`}
+                                id="canvas">
+                                <polygon points="0,0 50,0 25.0,43.3"></polygon>
+                            </svg>
+                        </button>
                     )}
-                </span>
-            </p>
-            <div className="node__props">
-                {node.data && Object.keys(node.data).map(key => {
-                    const value = node.data[key];
-                    if (typeof value === 'string') {
-                        return (
-                            <p key={key}>
-                                <span className="token token--key">{key}:</span>
-                                {' '}
-                                <span className="token token--value">{node.data[key]}</span>
-                            </p>
-                        )
-                    }
-                })}
+                    <span className="token token--name">&lt;{nodeName}</span>
+                    <NodeAttr
+                        data={node.data}
+                        dataKey={'name'}
+                        attrName={'name'}
+                        searchTerm={props.searchTerm}
+                    />
+                    <NodeAttr
+                        data={(node.data as any)}
+                        dataKey={'template_file'}
+                        attrName={'template'}
+                        searchTerm={props.searchTerm}
+                    />
+                    {!hasChildren && (
+                        <span className="token gt">{' /'}</span>
+                    )}
+                    <span className="token gt">&gt;</span>
+                    <span className="token token--icon">
+                        {node.hasRelatedElement && (
+                            <SyncIcon />
+                        )}
+                    </span>
+                </p>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 function SyncIcon() {

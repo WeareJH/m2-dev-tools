@@ -72,7 +72,7 @@ export class App extends React.Component<AppProps, any> {
                         baseNodes: nodes,
                         baseFlatNodes: flattenNodes(nodes)
                     }, () => {
-                        this.resetNodes(nodes);
+                        this.resetNodes(nodes, {collapseAll: true, clearSelection: true});
                     });
                 }),
             this.props.incoming$
@@ -102,21 +102,25 @@ export class App extends React.Component<AppProps, any> {
         this.props.outgoing$.next(scrapeMessage);
     };
 
-    resetNodes(nodes: NodeItem[]) {
+    resetNodes(nodes: NodeItem[], opts?: {collapseAll: boolean, clearSelection: boolean}) {
         this.setState((prev: App['state']) => {
             const root = {
                 ...prev.root,
                 children: nodes,
             };
             const flattened = flattenNodes(nodes);
-            const collapsedIds = Object.keys(flattened).filter(x => x!== '$$root');
-            return {
-                collapsed: new Set<string>(collapsedIds),
-                selected: {
+            const collapsed = opts.collapseAll
+                ? new Set(Object.keys(flattened).filter(x => x !== '$$root'))
+                : prev.collapsed;
+            const selected = opts.clearSelection
+                ? {
                     node: null,
                     head: false,
                     tail: false,
-                },
+                } : prev.selected;
+            return {
+                collapsed: collapsed,
+                selected,
                 inspecting: false,
                 flatNodes: flattened,
                 root,
@@ -197,9 +201,12 @@ export class App extends React.Component<AppProps, any> {
                     }}
                     setSearchTerm={(searchTerm: string) => {
                         if (searchTerm === '') {
-                            this.resetNodes(this.state.baseNodes);
+                            this.resetNodes(this.state.baseNodes, {clearSelection: false, collapseAll: false});
                         } else {
-                            this.resetNodes(getSearchNodes(searchTerm, this.state.baseFlatNodes, this.state.baseNodes));
+                            this.resetNodes(
+                                getSearchNodes(searchTerm, this.state.baseFlatNodes, this.state.baseNodes),
+                                {clearSelection: false, collapseAll: false}
+                            );
                         }
                         this.setState({searchTerm});
                     }}

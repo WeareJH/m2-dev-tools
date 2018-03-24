@@ -7,22 +7,21 @@ export interface NodeAttrProps {
     searchTerm: string;
 }
 
-export function NodeAttr(props: NodeAttrProps) {
-    const {data, attrName, dataKey} = props;
-    if (!data) return null;
-    if (!data[dataKey]) return null;
-    const subjectValue = data[dataKey];
+export class NodeAttr extends React.PureComponent<NodeAttrProps> {
+    props: NodeAttrProps;
+    render() {
+        const {props} = this;
+        const {data, attrName, dataKey} = props;
+        if (!data) return null;
+        if (!data[dataKey]) return null;
+        const subjectValue = data[dataKey];
 
-    return (
-        <span>
-            {' '}
-            <span className="token token--attr">{attrName}</span>
-            <span className="token">:</span>
-            <span className="token token--string">
+        return (
+            <span data-label={`${attrName}:`} className="token--attr-name">
                 {wrapValue(subjectValue, props.searchTerm)}
             </span>
-        </span>
-    );
+        );
+    }
 }
 
 function wrapValue(value, term) {
