@@ -18,9 +18,6 @@ chrome.extension.onConnect.addListener(function (port) {
         }
     };
 
-    const msg: Msg.Scrape = {type: Msg.Names.Scrape};
-    wall.emitTab(msg);
-
     wall.listen((message: Msg.BackgroundMessages) => {
         switch(message.type) {
             case Msg.Names.StripComments: {

@@ -6,7 +6,7 @@ import {collectIds, flattenNodes} from "../utils";
 import {NodeId, NodeItem, NodeItems, NodeItemShort, NodePath} from "../types";
 import {Observable} from "../rx";
 import {Subject, Subscription} from "../rx";
-import {Msg} from "../messages.types";
+import {Msg, ScrapeConfiguration} from "../messages.types";
 import {ActionBar} from "./ActionBar";
 import {keyPresses} from "./keypresses";
 
@@ -56,7 +56,7 @@ export class App extends React.Component<AppProps, any> {
     };
 
     componentDidMount() {
-        this.sendStripComments();
+        this.sendScrape();
         this.sub = Observable.merge(
             this.props.incoming$
                 .filter(x => x.type === Msg.Names.ParsedComments)
@@ -78,20 +78,17 @@ export class App extends React.Component<AppProps, any> {
                 }),
             this.props.incoming$
                 .filter(x => x.type === Msg.Names.Ping)
-                .do(() => this.sendStripComments())
+                .do(() => this.sendScrape())
         ).subscribe();
 
     }
 
-    sendStripComments = () => {
-        if (this.state.stripComments) {
-            // const msg: Msg.StripComments = {
-            //     type: Msg.Names.StripComments
-            // };
-            // this.props.outgoing$.next(msg);
-            const scrapeMessage: Msg.Scrape = {type: Msg.Names.Scrape};
-            this.props.outgoing$.next(scrapeMessage);
-        }
+    sendScrape = () => {
+        const config: ScrapeConfiguration = {
+            stripComments: this.state.stripComments,
+        };
+        const scrapeMessage: Msg.Scrape = {type: Msg.Names.Scrape, payload: config};
+        this.props.outgoing$.next(scrapeMessage);
     };
 
     resetNodes(nodes: NodeItem[]) {

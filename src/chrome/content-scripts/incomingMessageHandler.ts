@@ -29,6 +29,9 @@ export function incomingMessageHandler(inputs: Inputs) {
             }
             case Msg.Names.Scrape: {
                 const [, , results] = parseComments(document);
+                if (message.payload.stripComments) {
+                    removeComments(document);
+                }
                 const msg: Msg.ParsedComments = {
                     type: Msg.Names.ParsedComments,
                     payload: results

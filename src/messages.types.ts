@@ -2,6 +2,10 @@ import {NodeItem} from "./types";
 
 export type A<T, P = any> = {type: T, payload?: P}
 
+export interface ScrapeConfiguration {
+    stripComments: boolean
+}
+
 export namespace Msg {
 
     export enum KeyCodes {
@@ -23,7 +27,7 @@ export namespace Msg {
     }
 
     export type StripComments = A<Names.StripComments>;
-    export type Scrape = A<Names.Scrape>;
+    export type Scrape = A<Names.Scrape, ScrapeConfiguration>;
     export type Inspect = A<Names.Inspect, boolean>;
     export type Hover = A<Names.Hover, string>;
     export type RemoveHover = A<Names.RemoveHover, string>;
