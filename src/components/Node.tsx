@@ -3,7 +3,7 @@ import {NodeId, NodeItem, NodePath} from "../types";
 import {NodeHead} from "./NodeHead";
 import {NodeEnd} from "./NodeEnd";
 import {App} from "./App";
-import * as dlv from 'dlv';
+const dlv = require('dlv');
 
 export interface NodeProps {
     key?: string|number,
@@ -15,7 +15,6 @@ export interface NodeProps {
     select(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
     addHover(id: NodeId): void,
     toggle(id: NodeId): void,
-    removeHover(id: NodeId): void
     showOverlay(id: NodeId): void
 }
 
@@ -23,7 +22,7 @@ export class Node extends React.PureComponent<NodeProps> {
     props: NodeProps;
     render() {
         const {props} = this;
-        const {node, depth, addHover, removeHover, searchTerm} = props;
+        const {node, depth, addHover, searchTerm} = props;
         const {children} = node;
         const hasNodes = children && (children.length > 0);
         const isCollapsed = props.collapsed.has(node.id);
@@ -37,7 +36,6 @@ export class Node extends React.PureComponent<NodeProps> {
                         depth={nextDepth}
                         key={n.id}
                         addHover={addHover}
-                        removeHover={removeHover}
                         toggle={props.toggle}
                         collapsed={props.collapsed}
                         searchTerm={searchTerm}
@@ -54,7 +52,6 @@ export class Node extends React.PureComponent<NodeProps> {
             hasChildren={hasNodes}
             indent={indent}
             addHover={addHover}
-            removeHover={removeHover}
             isCollapsed={isCollapsed}
             toggle={props.toggle}
             searchTerm={searchTerm}
@@ -69,7 +66,6 @@ export class Node extends React.PureComponent<NodeProps> {
                 hasChildren={hasNodes}
                 indent={indent}
                 addHover={addHover}
-                removeHover={removeHover}
                 isSelected={tailIsSelected}
                 select={props.select}
                 showOverlay={props.showOverlay}

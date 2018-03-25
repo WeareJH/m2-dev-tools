@@ -2,7 +2,7 @@ import * as React from 'react';
 import {pullData} from "../utils";
 import {NodeItem} from "../types";
 import {App} from "./App";
-import * as dlv from "dlv";
+const dlv = require('dlv');
 import {SelectionOverlay} from "./SelectionOverlay";
 
 export interface ActionBarProps {

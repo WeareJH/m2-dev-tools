@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Node} from "./Node";
-import * as dlv from "dlv";
 
 declare var require;
 import {collectIds, flattenNodes, getSearchNodes} from "../utils";
@@ -23,7 +22,6 @@ export interface AppProps {
 export class App extends React.Component<AppProps, any> {
     props: AppProps;
     sub: Subscription | null;
-    setState: (...args) => void;
     ref: any;
     state: {
         collapsed: Set<string>,

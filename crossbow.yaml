@@ -13,8 +13,7 @@ tasks:
       - chrome
       - inject
       - bg
-      - build-chrome
-      - tasks/manifest
+      - webpack
 
   start:
     description: |
@@ -22,12 +21,11 @@ tasks:
     tasks:
       - app-watch
 
-  build-chrome:
-    description: |
-      Build the chrome Shell
+  webpack:
     adaptor: npm
-    command: >
-      parcel build chrome.html --out-dir shells/chrome/dist --no-cache
+    env:
+      NODE_ENV: production
+    command: webpack
 
   app-watch:
     description: Run the extension in regular browser window
