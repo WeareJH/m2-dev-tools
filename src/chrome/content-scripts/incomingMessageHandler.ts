@@ -1,15 +1,16 @@
-import {Inputs} from "../inject";
 import {Msg} from "../../messages.types";
 import {Overlay} from "../Overlay";
 import {removeComments} from "./stripComments";
 import {parseComments} from "./parseComments";
+import {Inputs} from "../../types";
 
 /**
  * This function returns a handler for message coming from the background script.
  * @param {Inputs} inputs
+ * @param transform
  * @returns {(message: Msg.InjectIncomingActions) => void}
  */
-export function incomingMessageHandler(inputs: Inputs) {
+export function incomingMessageHandler(inputs: Inputs, transform = (msg) => msg) {
 
     let overlay;
     let inspect = false;
@@ -21,12 +22,30 @@ export function incomingMessageHandler(inputs: Inputs) {
         }
     }, true);
 
-    return function(message: Msg.InjectIncomingActions) {
+        // window.addEventListener('mouseover', function(evt) {
+        //     // if (!inspect) {
+        //     //     return;
+        //     // }
+        //     evt.preventDefault();
+        //     evt.stopPropagation();
+        //     evt.cancelBubble = true;
+        //     if (inputs.reverseElemMap.has(evt.target)) {
+        //         const data = inputs.reverseElemMap.get(evt.target);
+        //         const msg: Msg.DomHover = {
+        //             type: Msg.Names.DomHover,
+        //             payload: data.id
+        //         };
+        //         if (!overlay) {
+        //             overlay = new Overlay(window);
+        //         }
+        //         overlay.inspect(evt.target, data.type, data.name);
+        //         inputs.wall.emit(msg);
+        //     }
+        // }, true);
+
+    return function(input: Msg.InjectIncomingActions) {
+        const message = transform(input);
         switch (message.type) {
-            case Msg.Names.StripComments: {
-                // removeComments(document);
-                break;
-            }
             case Msg.Names.Scrape: {
                 const [, , results] = parseComments(document);
 

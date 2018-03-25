@@ -18,27 +18,26 @@
     "awesome-typescript-loader": "4.0.1",
     "browserify": "^16.1.1",
     "classnames": "^2.2.5",
+    "css-loader": "0.28.11",
     "dlv": "^1.1.1",
+    "extract-text-webpack-plugin": "3.0.2",
     "lodash.memoize": "4.1.2",
     "mitt": "^1.1.3",
-    "mocha": "^5.0.4",
-    "parcel-bundler": "1.6.2",
-    "parcel-plugin-bundle-manifest": "shakyShane/parcel-plugin-bundle-manifest",
-    "parcel-plugin-typescript": "0.7.0",
-    "parceljs": "^0.0.1",
     "preact": "8.2.7",
     "react": "^16.2.0",
-    "react-addons-perf": "15.4.2",
     "react-dom": "^16.2.0",
     "rxjs": "^5.5.6",
-    "ts-node": "^5.0.1",
-    "uglifyjs-webpack-plugin": "1.2.4",
-    "webpack": "4.2.0",
-    "webpack-dev-server": "3.1.1"
+    "sass-loader": "6.0.7",
+    "style-loader": "0.20.3"
   },
   "devDependencies": {
-    "node-sass": "4.7.2",
+    "mocha": "^5.0.4",
+    "node-sass": "4.8.3",
+    "ts-node": "^5.0.1",
     "typescript": "2.7.2",
-    "webpack-cli": "2.0.13"
+    "uglifyjs-webpack-plugin": "1.2.4",
+    "webpack": "3",
+    "webpack-cli": "2.0.13",
+    "webpack-dev-server": "2"
   }
 }

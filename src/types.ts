@@ -32,3 +32,15 @@ interface IArgs {
     type: string;
     module_name: string;
 }
+
+/**
+ * Side effecting items to pass to functions
+ */
+export interface Inputs {
+    document: Document,
+    results: NodeItem[],
+    wall: {listen: any, emit: any}
+    elemMap: any,
+    reverseElemMap: any
+}
+

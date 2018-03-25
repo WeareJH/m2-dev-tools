@@ -1,4 +1,4 @@
-import {NodeItem} from "./types";
+import {NodeId, NodeItem} from "./types";
 
 export type A<T, P = any> = {type: T, payload?: P}
 
@@ -24,6 +24,7 @@ export namespace Msg {
         ParsedComments = 'ParsedComments',
         Ping = 'Ping',
         KeyUp = 'KeyUp',
+        DomHover = 'DomHover',
     }
 
     export type StripComments = A<Names.StripComments>;
@@ -32,6 +33,7 @@ export namespace Msg {
     export type Hover = A<Names.Hover, string>;
     export type RemoveHover = A<Names.RemoveHover, string>;
     export type KeyUp = A<Names.KeyUp, KeyCodes>;
+    export type DomHover = A<Names.DomHover, NodeId>;
 
     export type InjectIncomingActions
         = StripComments
@@ -44,7 +46,8 @@ export namespace Msg {
 
     export type InjectOutgoingActions
         = ParsedComments
-        | Ping;
+        | Ping
+        | DomHover;
 
     export type PanelOutgoingMessages
         = Hover
@@ -56,7 +59,8 @@ export namespace Msg {
     export type PanelIncomingMessages
         = ParsedComments
         | KeyUp
-        | Ping;
+        | Ping
+        | DomHover;
 
     export type BackgroundToContent
         = InjectOutgoingActions

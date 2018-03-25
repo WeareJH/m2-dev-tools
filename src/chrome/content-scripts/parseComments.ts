@@ -61,7 +61,7 @@ export function parseComments(document: Document): [Map<any, any>, Map<any, any>
                 if (siblings[1].nodeType === Node.ELEMENT_NODE) {
                     elem.hasRelatedElement = true;
                     elemMap.set(elem.id, {element: siblings[1], data});
-                    reverseElemMap.set(siblings[1], data);
+                    reverseElemMap.set(siblings[1], elem);
                 }
             }
         }

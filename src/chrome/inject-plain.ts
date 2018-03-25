@@ -1,6 +1,6 @@
 declare var chrome;
 
-import {Inputs, NodeItem} from "../types";
+import {Inputs} from "../types";
 import {Msg} from "../messages.types";
 import {parseComments} from "./content-scripts/parseComments";
 import {incomingMessageHandler} from "./content-scripts/incomingMessageHandler";
@@ -15,10 +15,12 @@ const [elemMap, reverseElemMap, results] = parseComments(document);
  */
 const wall = {
     listen(listener: (message: Msg.InjectIncomingActions) => void) {
-        chrome.extension.onMessage.addListener(listener);
+        // chrome.extension.onMessage.addListener(listener);
+        window.addEventListener("message", listener as any, false);
     },
     emit(message: Msg.InjectOutgoingActions) {
-        chrome.extension.sendMessage(message);
+        window.postMessage(message, window.location.origin);
+        // chrome.extension.sendMessage(message);
     }
 };
 
@@ -34,7 +36,7 @@ const inputs: Inputs = {
  * Only add listeners if results were found
  */
 if (results && results.length) {
-    wall.listen(incomingMessageHandler(inputs));
+    wall.listen(incomingMessageHandler(inputs, (event) => event.data));
 }
 
 /**

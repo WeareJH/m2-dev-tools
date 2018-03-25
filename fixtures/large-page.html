@@ -5,7 +5,7 @@
         <!-- m2(require.js) {"name":"require.js","type":"block","block_type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","template":"Magento_Theme::page\/js\/require_js.phtml","template_file":"\/var\/www\/vendor\/magento\/module-theme\/view\/frontend\/templates\/page\/js\/require_js.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","module_name":""}} -->
 <script>
     var require = {
-        "baseUrl": "https://jml.m2/static/version1521037897/frontend/Jml/default/en_GB"
+        "baseUrl": "https://acme.m2/static/version1521037897/frontend/acme/default/en_GB"
     };
 </script>
 
@@ -15,8 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="format-detection" content="telephone=no"/>
 <title>Home page</title>
-<link  rel="icon" type="image/x-icon" href="https://jml.m2/static/version1521037897/frontend/Jml/default/en_GB/Magento_Theme/favicon.ico" />
-<link  rel="shortcut icon" type="image/x-icon" href="https://jml.m2/static/version1521037897/frontend/Jml/default/en_GB/Magento_Theme/favicon.ico" />
+        <link rel="stylesheet" href="core.css">
         <!-- m2(head.additional) {"name":"head.additional","type":"block","block_type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","template":"Magento_Theme::html\/container.phtml","template_file":"\/var\/www\/vendor\/magento\/module-theme\/view\/frontend\/templates\/html\/container.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","module_name":""}} -->
 <!-- m2(pcapredict.tag.script_default) {"name":"pcapredict.tag.script_default","type":"block","block_type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","template":"PCAPredict_Tag::default.phtml","template_file":"\/var\/www\/vendor\/pcapredict\/tag\/view\/base\/templates\/default.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","module_name":""}} -->
 
@@ -28,7 +27,7 @@
 
 <!-- /m2(nosto.embed) -->
 <!-- /m2(head.additional) -->    </head>
-    <body data-container="body" data-mage-init='{"loaderAjax": {}, "loader": { "icon": "https://jml.m2/static/version1521037897/frontend/Jml/default/en_GB/images/loader-2.gif"}}' class="cms-home cms-index-index page-layout-1column">
+    <body data-container="body" data-mage-init='{"loaderAjax": {}, "loader": { "icon": "https://acme.m2/static/version1521037897/frontend/acme/default/en_GB/images/loader-2.gif"}}' class="cms-home cms-index-index page-layout-1column">
         <!-- m2(root) {"name":"root","type":"container"} -->
 <!-- m2(after.body.start) {"name":"after.body.start","type":"container"} -->
 <!-- m2(googleoptimizer.experiment.script) {"name":"googleoptimizer.experiment.script","type":"block","block_type":"Magento\\GoogleOptimizer\\Block\\Code\\Page\\Interceptor","template":null,"template_file":false,"args":{"type":"Magento\\GoogleOptimizer\\Block\\Code\\Page\\Interceptor","module_name":"Magento_GoogleOptimizer"}} -->
@@ -73,7 +72,7 @@
             "mage/cookies": {
                 "expires": null,
                 "path": "/",
-                "domain": ".jml.m2",
+                "domain": ".acme.m2",
                 "secure": false,
                 "lifetime": "3600"
             }
@@ -118,7 +117,7 @@
 
 <!-- /m2(magento_versionscms_hierarchy_head) -->
 <!-- /m2(after.body.start) --><!-- m2(page.wrapper) {"name":"page.wrapper","type":"container"} -->
-<div class="page-wrapper"><!-- m2(customerservice.header) {"name":"customerservice.header","type":"block","block_type":"Jml\\CustomerService\\Block\\User\\Header\\Interceptor","template":"Jml_CustomerService::user\/header.phtml","template_file":"\/var\/www\/app\/code\/Jml\/CustomerService\/view\/frontend\/templates\/user\/header.phtml","args":{"type":"Jml\\CustomerService\\Block\\User\\Header\\Interceptor","module_name":"Jml_CustomerService"}} -->
+<div class="page-wrapper"><!-- m2(customerservice.header) {"name":"customerservice.header","type":"block","block_type":"acme\\CustomerService\\Block\\User\\Header\\Interceptor","template":"acme_CustomerService::user\/header.phtml","template_file":"\/var\/www\/app\/code\/acme\/CustomerService\/view\/frontend\/templates\/user\/header.phtml","args":{"type":"acme\\CustomerService\\Block\\User\\Header\\Interceptor","module_name":"acme_CustomerService"}} -->
 
 <!-- /m2(customerservice.header) --><!-- m2(global.notices) {"name":"global.notices","type":"container"} -->
 
@@ -128,7 +127,7 @@
 
 <!-- /m2(bml.center.logo) --></div>
 <!-- /m2(top.container) -->
-<!-- /m2(page.top) --><!-- m2(jml.header) {"name":"jml.header","type":"block","block_type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","template":"Magento_Theme::page\/html\/header.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Magento_Theme\/templates\/page\/html\/header.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","module_name":""}} -->
+<!-- /m2(page.top) --><!-- m2(acme.header) {"name":"acme.header","type":"block","block_type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","template":"Magento_Theme::page\/html\/header.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Magento_Theme\/templates\/page\/html\/header.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","module_name":""}} -->
 <header class="site-header">
     <div class="link-skip"><a href="#maincontent">Skip to Main Content</a></div>
     <div class="container site-header__container">
@@ -136,20 +135,20 @@
         <ul class="header-controls">
             <li class="header-controls__item header-controls__dropdown switcher currency switcher-currency"
                 id="switcher-currency">
-                <!-- m2(currency) {"name":"currency","type":"block","block_type":"Magento\\Directory\\Block\\Currency\\Interceptor","template":"Magento_Directory::currency.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Magento_Directory\/templates\/currency.phtml","args":{"type":"Magento\\Directory\\Block\\Currency\\Interceptor","module_name":"Magento_Directory","currencies":{"GBP":"British Pound Sterling"}}} -->
+                <!-- m2(currency) {"name":"currency","type":"block","block_type":"Magento\\Directory\\Block\\Currency\\Interceptor","template":"Magento_Directory::currency.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Magento_Directory\/templates\/currency.phtml","args":{"type":"Magento\\Directory\\Block\\Currency\\Interceptor","module_name":"Magento_Directory","currencies":{"GBP":"British Pound Sterling"}}} -->
 
 <!-- /m2(currency) -->            </li>
-            <!-- m2(top.links) {"name":"top.links","type":"block","block_type":"Magento\\Customer\\Block\\Account\\Navigation\\Interceptor","template":"Magento_Theme::page\/html\/header\/links.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Magento_Theme\/templates\/page\/html\/header\/links.phtml","args":{"default_link_template":"Magento_Theme::page\/html\/header\/links\/default.phtml","type":"Magento\\Customer\\Block\\Account\\Navigation\\Interceptor","module_name":"Magento_Customer"}} -->
+            <!-- m2(top.links) {"name":"top.links","type":"block","block_type":"Magento\\Customer\\Block\\Account\\Navigation\\Interceptor","template":"Magento_Theme::page\/html\/header\/links.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Magento_Theme\/templates\/page\/html\/header\/links.phtml","args":{"default_link_template":"Magento_Theme::page\/html\/header\/links\/default.phtml","type":"Magento\\Customer\\Block\\Account\\Navigation\\Interceptor","module_name":"Magento_Customer"}} -->
 
-        <!-- m2(my-account-link) {"name":"my-account-link","type":"block","block_type":"Magento\\Customer\\Block\\Account\\Link\\Interceptor","template":"Magento_Theme::page\/html\/header\/links\/default.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Magento_Theme\/templates\/page\/html\/header\/links\/default.phtml","args":{"label":"My Account","sortOrder":"110","type":"Magento\\Customer\\Block\\Account\\Link\\Interceptor","class":" header-controls__link","module_name":"Magento_Customer"}} -->
+        <!-- m2(my-account-link) {"name":"my-account-link","type":"block","block_type":"Magento\\Customer\\Block\\Account\\Link\\Interceptor","template":"Magento_Theme::page\/html\/header\/links\/default.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Magento_Theme\/templates\/page\/html\/header\/links\/default.phtml","args":{"label":"My Account","sortOrder":"110","type":"Magento\\Customer\\Block\\Account\\Link\\Interceptor","class":" header-controls__link","module_name":"Magento_Customer"}} -->
 <li class="header-controls__item">
-    <a href="https://jml.m2/index.php/customer/account/" class=" header-controls__link">
+    <a href="https://acme.m2/index.php/customer/account/" class=" header-controls__link">
         My Account    </a>
 </li>
 <!-- /m2(my-account-link) -->
-        <!-- m2(multiple-wish-list-link) {"name":"multiple-wish-list-link","type":"block","block_type":"Magento\\MultipleWishlist\\Block\\Link\\Interceptor","template":"Magento_Wishlist::link.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Magento_Wishlist\/templates\/link.phtml","args":{"sortOrder":"60","type":"Magento\\MultipleWishlist\\Block\\Link\\Interceptor","class":" header-controls__link","module_name":"Magento_MultipleWishlist"}} -->
+        <!-- m2(multiple-wish-list-link) {"name":"multiple-wish-list-link","type":"block","block_type":"Magento\\MultipleWishlist\\Block\\Link\\Interceptor","template":"Magento_Wishlist::link.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Magento_Wishlist\/templates\/link.phtml","args":{"sortOrder":"60","type":"Magento\\MultipleWishlist\\Block\\Link\\Interceptor","class":" header-controls__link","module_name":"Magento_MultipleWishlist"}} -->
 <li class="link wishlist header-controls__item" data-bind="scope: 'wishlist'">
-    <a href="https://jml.m2/index.php/wishlist/" class=" header-controls__link">My Wish List        <!-- ko if: wishlist().counter -->
+    <a href="https://acme.m2/index.php/wishlist/" class=" header-controls__link">My Wish List        <!-- ko if: wishlist().counter -->
         <span data-bind="text: wishlist().counter" class="counter qty"></span>
         <!-- /ko -->
     </a>
@@ -170,23 +169,23 @@
 </script>
 
 <!-- /m2(multiple-wish-list-link) -->
-        <!-- m2(invitation_link_top) {"name":"invitation_link_top","type":"block","block_type":"Magento\\Invitation\\Block\\Link\\Interceptor","template":"Magento_Theme::page\/html\/header\/links\/default.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Magento_Theme\/templates\/page\/html\/header\/links\/default.phtml","args":{"label":"Send Invitations","id":"invitation-send-link","sortOrder":"50","type":"Magento\\Invitation\\Block\\Link\\Interceptor","class":" header-controls__link","module_name":"Magento_Invitation"}} -->
+        <!-- m2(invitation_link_top) {"name":"invitation_link_top","type":"block","block_type":"Magento\\Invitation\\Block\\Link\\Interceptor","template":"Magento_Theme::page\/html\/header\/links\/default.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Magento_Theme\/templates\/page\/html\/header\/links\/default.phtml","args":{"label":"Send Invitations","id":"invitation-send-link","sortOrder":"50","type":"Magento\\Invitation\\Block\\Link\\Interceptor","class":" header-controls__link","module_name":"Magento_Invitation"}} -->
 
 <!-- /m2(invitation_link_top) -->
-        <!-- m2(authorization-link) {"name":"authorization-link","type":"block","block_type":"Magento\\Customer\\Block\\Account\\AuthorizationLink\\Interceptor","template":"Magento_Customer::account\/link\/authorization.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Magento_Customer\/templates\/account\/link\/authorization.phtml","args":{"type":"Magento\\Customer\\Block\\Account\\AuthorizationLink\\Interceptor","class":" header-controls__link","module_name":"Magento_Customer"}} -->
+        <!-- m2(authorization-link) {"name":"authorization-link","type":"block","block_type":"Magento\\Customer\\Block\\Account\\AuthorizationLink\\Interceptor","template":"Magento_Customer::account\/link\/authorization.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Magento_Customer\/templates\/account\/link\/authorization.phtml","args":{"type":"Magento\\Customer\\Block\\Account\\AuthorizationLink\\Interceptor","class":" header-controls__link","module_name":"Magento_Customer"}} -->
 <li class="authorization-link header-controls__item" data-label="or">
-    <a href="https://jml.m2/index.php/customer/account/login/referer/aHR0cHM6Ly9qbWwubTIvaW5kZXgucGhwLw%2C%2C/" class=" header-controls__link">
+    <a href="https://acme.m2/index.php/customer/account/login/referer/aHR0cHM6Ly9qbWwubTIvaW5kZXgucGhwLw%2C%2C/" class=" header-controls__link">
         Sign In    </a>
 </li>
 
 <!-- /m2(authorization-link) -->
-        <!-- m2(register-link) {"name":"register-link","type":"block","block_type":"Magento\\Customer\\Block\\Account\\RegisterLink\\Interceptor","template":"Magento_Theme::page\/html\/header\/links\/default.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Magento_Theme\/templates\/page\/html\/header\/links\/default.phtml","args":{"label":"Create an Account","type":"Magento\\Customer\\Block\\Account\\RegisterLink\\Interceptor","class":" header-controls__link","module_name":"Magento_Customer"}} -->
+        <!-- m2(register-link) {"name":"register-link","type":"block","block_type":"Magento\\Customer\\Block\\Account\\RegisterLink\\Interceptor","template":"Magento_Theme::page\/html\/header\/links\/default.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Magento_Theme\/templates\/page\/html\/header\/links\/default.phtml","args":{"label":"Create an Account","type":"Magento\\Customer\\Block\\Account\\RegisterLink\\Interceptor","class":" header-controls__link","module_name":"Magento_Customer"}} -->
 <li class="header-controls__item">
-    <a href="https://jml.m2/index.php/customer/account/create/" class=" header-controls__link">
+    <a href="https://acme.m2/index.php/customer/account/create/" class=" header-controls__link">
         Create an Account    </a>
 </li>
 <!-- /m2(register-link) -->
-        <!-- m2(brands-link) {"name":"brands-link","type":"block","block_type":"Amasty\\ShopbyBrand\\Block\\Link\\Interceptor","template":"Magento_Theme::page\/html\/header\/links\/default.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Magento_Theme\/templates\/page\/html\/header\/links\/default.phtml","args":{"label":"Brands","type":"Amasty\\ShopbyBrand\\Block\\Link\\Interceptor","class":" header-controls__link","module_name":"Amasty_ShopbyBrand"}} -->
+        <!-- m2(brands-link) {"name":"brands-link","type":"block","block_type":"Amasty\\ShopbyBrand\\Block\\Link\\Interceptor","template":"Magento_Theme::page\/html\/header\/links\/default.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Magento_Theme\/templates\/page\/html\/header\/links\/default.phtml","args":{"label":"Brands","type":"Amasty\\ShopbyBrand\\Block\\Link\\Interceptor","class":" header-controls__link","module_name":"Amasty_ShopbyBrand"}} -->
 
 <!-- /m2(brands-link) -->
 <!-- /m2(top.links) -->            <script type="text/x-magento-init">
@@ -204,14 +203,14 @@
             </script>
         </ul>
         <div class="site-brand">
-            <a href="https://jml.m2/index.php/" class="site-brand__img site-brand__img--white">
-                <img src='https://jml.m2/static/version1521037897/frontend/Jml/default/en_GB/svg/logo-white-full.svg' alt="Demo">
+            <a href="https://acme.m2/index.php/" class="site-brand__img site-brand__img--white">
+                <img src='https://acme.m2/static/version1521037897/frontend/acme/default/en_GB/svg/logo-white-full.svg' alt="Demo">
             </a>
-            <a href="https://jml.m2/index.php/" class="site-brand__img site-brand__img--bluesmall">
-                <img src='https://jml.m2/static/version1521037897/frontend/Jml/default/en_GB/svg/logo-blue.svg' alt="Demo">
+            <a href="https://acme.m2/index.php/" class="site-brand__img site-brand__img--bluesmall">
+                <img src='https://acme.m2/static/version1521037897/frontend/acme/default/en_GB/svg/logo-blue.svg' alt="Demo">
             </a>
-            <a href="https://jml.m2/index.php/" class="site-brand__img site-brand__img--blue">
-                <img src='https://jml.m2/static/version1521037897/frontend/Jml/default/en_GB/svg/logo-blue-full.svg' alt="Demo">
+            <a href="https://acme.m2/index.php/" class="site-brand__img site-brand__img--blue">
+                <img src='https://acme.m2/static/version1521037897/frontend/acme/default/en_GB/svg/logo-blue-full.svg' alt="Demo">
             </a>
         </div>
 
@@ -219,7 +218,7 @@
             <div class="block block-title block-search__title"><strong>Search</strong></div>
             <div class="block block-content block-search__content">
                 <form class="form minisearch" id="search_mini_form"
-                      action="https://jml.m2/index.php/catalogsearch/result/" method="get">
+                      action="https://acme.m2/index.php/catalogsearch/result/" method="get">
                     <div class="field search minisearch__field">
                         <label class="label minisearch__label" for="search" data-role="minisearch-label">
                             <span>Search</span>
@@ -228,7 +227,7 @@
                             <input id="search"
                                    data-mage-init='{"quickSearch":{
                                 "formSelector":"#search_mini_form",
-                                "url":"https://jml.m2/index.php/search/ajax/suggest/",
+                                "url":"https://acme.m2/index.php/search/ajax/suggest/",
                                 "destinationSelector":"#search_autocomplete"}
                            }'
                                    type="text"
@@ -243,7 +242,7 @@
                                    autocomplete="off" />
                             <div id="search_autocomplete" class="search-autocomplete minisearch__autocomplete"></div>
                             <div class="nested minisearch__nested">
-                                <a class="action advanced" href="https://jml.m2/index.php/catalogsearch/advanced/"
+                                <a class="action advanced" href="https://acme.m2/index.php/catalogsearch/advanced/"
                                    data-action="advanced-search">
                                     Advanced Search </a>
                             </div>
@@ -263,9 +262,9 @@
         </div>
 
         <div class="tv-banner">
-            <!-- m2(jml.header.tv_banner) {"name":"jml.header.tv_banner","type":"block","block_type":"Magento\\Cms\\Block\\Block\\Interceptor","args":{"block_id":"jml_tv_banner","type":"Magento\\Cms\\Block\\Block\\Interceptor","module_name":"Magento_Cms"}} -->
+            <!-- m2(acme.header.tv_banner) {"name":"acme.header.tv_banner","type":"block","block_type":"Magento\\Cms\\Block\\Block\\Interceptor","args":{"block_id":"acme_tv_banner","type":"Magento\\Cms\\Block\\Block\\Interceptor","module_name":"Magento_Cms"}} -->
 
-<!-- /m2(jml.header.tv_banner) -->        </div>
+<!-- /m2(acme.header.tv_banner) -->        </div>
 
         <div data-block="minicart" class="minicart minicart-wrapper">
             <a class="minicart__button action showcart" href=""
@@ -390,7 +389,7 @@
                         }
                     },
                     "*": {
-                        "Magento_Ui/js/block-loader": "https://jml.m2/static/version1521037897/frontend/Jml/default/en_GB/images/loader-1.gif"
+                        "Magento_Ui/js/block-loader": "https://acme.m2/static/version1521037897/frontend/acme/default/en_GB/images/loader-1.gif"
                     }
                 }
             </script>
@@ -398,13 +397,13 @@
     </div>
 </header>
 
-<!-- /m2(jml.header) --><!-- m2(jml.nav) {"name":"jml.nav","type":"block","block_type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","template":"Magento_Theme::page\/html\/nav.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Magento_Theme\/templates\/page\/html\/nav.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","module_name":""}} -->
+<!-- /m2(acme.header) --><!-- m2(acme.nav) {"name":"acme.nav","type":"block","block_type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","template":"Magento_Theme::page\/html\/nav.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Magento_Theme\/templates\/page\/html\/nav.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","module_name":""}} -->
 <nav class="site-nav site-nav--main">
     <div class="container site-nav__container">
-        <!-- m2(jml.nav.menu) {"name":"jml.nav.menu","type":"block","block_type":"Snowdog\\Menu\\Block\\Menu\\Interceptor","template":"Snowdog_Menu::menu.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Snowdog_Menu\/templates\/menu.phtml","args":{"menu":"main","module_name":"Snowdog_Menu","type":"Snowdog\\Menu\\Block\\Menu\\Interceptor"}} -->
+        <!-- m2(acme.nav.menu) {"name":"acme.nav.menu","type":"block","block_type":"Snowdog\\Menu\\Block\\Menu\\Interceptor","template":"Snowdog_Menu::menu.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Snowdog_Menu\/templates\/menu.phtml","args":{"menu":"main","module_name":"Snowdog_Menu","type":"Snowdog\\Menu\\Block\\Menu\\Interceptor"}} -->
         <ul class="site-nav__wrapper site-nav__wrapper--top">
                                 <li class="  site-nav__item site-nav__item--home site-nav__item--svg">
-                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\CustomUrl\\Interceptor","template":"menu\/node_type\/custom_url.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Snowdog_Menu\/templates\/menu\/node_type\/custom_url.phtml","args":{"id":"1","title":"home","level":"0","is_root":true,"is_parent":false,"is_view_all_link":false,"content":null,"node_classes":" site-nav__item site-nav__item--home site-nav__item--svg","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
+                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\CustomUrl\\Interceptor","template":"menu\/node_type\/custom_url.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Snowdog_Menu\/templates\/menu\/node_type\/custom_url.phtml","args":{"id":"1","title":"home","level":"0","is_root":true,"is_parent":false,"is_view_all_link":false,"content":null,"node_classes":" site-nav__item site-nav__item--home site-nav__item--svg","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
 <a href="" class="site-nav__item__label site-nav__item__label--top" target="__blank" rel="noopener">
             <svg class="svg-icon"></svg>
         </a>
@@ -423,79 +422,79 @@
                 </div>
             </li>
                                 <li class=" site-nav__item site-nav__item--has-children">
-                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"2","title":"Kitchen","level":"0","is_root":true,"is_parent":true,"is_view_all_link":false,"content":"3","node_classes":"site-nav__item site-nav__item--has-children","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
-<a href="https://jml.m2/index.php/kitchen.html" class="site-nav__item__label site-nav__item__label--top">
+                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"2","title":"Kitchen","level":"0","is_root":true,"is_parent":true,"is_view_all_link":false,"content":"3","node_classes":"site-nav__item site-nav__item--has-children","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
+<a href="https://acme.m2/index.php/kitchen.html" class="site-nav__item__label site-nav__item__label--top">
     Kitchen</a>
 
 <!-- /m2(unknown.block) -->                <div class="site-nav__item-contents">
                     <div class="container site-nav__item-contents__container">
                         <div class="site-nav site-nav--subcategories">
                             <div class="site-nav__container site-nav__container--subcategories">
-                                <!-- m2(jml.nav.menu) {"name":"jml.nav.menu","type":"block","block_type":"Snowdog\\Menu\\Block\\Menu\\Interceptor","template":"Snowdog_Menu::menu\/sub_menu.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Snowdog_Menu\/templates\/menu\/sub_menu.phtml","args":{"menu":"main","module_name":"Snowdog_Menu","type":"Snowdog\\Menu\\Block\\Menu\\Interceptor","submenu_nodes":{"0":"Snowdog\\Menu\\Model\\Menu\\Node","1":"Snowdog\\Menu\\Model\\Menu\\Node","2":"Snowdog\\Menu\\Model\\Menu\\Node","3":"Snowdog\\Menu\\Model\\Menu\\Node","4":"Snowdog\\Menu\\Model\\Menu\\Node","5":"Snowdog\\Menu\\Model\\Menu\\Node","6":"Snowdog\\Menu\\Model\\Menu\\Node","7":"Snowdog\\Menu\\Model\\Menu\\Node","8":"Snowdog\\Menu\\Model\\Menu\\Node"},"parent_node":"Snowdog\\Menu\\Model\\Menu\\Node","level":1}} -->
+                                <!-- m2(acme.nav.menu) {"name":"acme.nav.menu","type":"block","block_type":"Snowdog\\Menu\\Block\\Menu\\Interceptor","template":"Snowdog_Menu::menu\/sub_menu.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Snowdog_Menu\/templates\/menu\/sub_menu.phtml","args":{"menu":"main","module_name":"Snowdog_Menu","type":"Snowdog\\Menu\\Block\\Menu\\Interceptor","submenu_nodes":{"0":"Snowdog\\Menu\\Model\\Menu\\Node","1":"Snowdog\\Menu\\Model\\Menu\\Node","2":"Snowdog\\Menu\\Model\\Menu\\Node","3":"Snowdog\\Menu\\Model\\Menu\\Node","4":"Snowdog\\Menu\\Model\\Menu\\Node","5":"Snowdog\\Menu\\Model\\Menu\\Node","6":"Snowdog\\Menu\\Model\\Menu\\Node","7":"Snowdog\\Menu\\Model\\Menu\\Node","8":"Snowdog\\Menu\\Model\\Menu\\Node"},"parent_node":"Snowdog\\Menu\\Model\\Menu\\Node","level":1}} -->
         <ul class="site-nav__wrapper site-nav__wrapper--subcategories">
                                 <li class="site-nav__item site-nav__item--parent">
-                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"2","title":"Kitchen","level":"0","is_root":true,"is_parent":true,"is_view_all_link":true,"content":"3","node_classes":"site-nav__item site-nav__item--has-children","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
-<a href="https://jml.m2/index.php/kitchen.html" class="site-nav__item__label">
+                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"2","title":"Kitchen","level":"0","is_root":true,"is_parent":true,"is_view_all_link":true,"content":"3","node_classes":"site-nav__item site-nav__item--has-children","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
+<a href="https://acme.m2/index.php/kitchen.html" class="site-nav__item__label">
     Kitchen</a>
 
 <!-- /m2(unknown.block) -->            </li>
                                         <li class="site-nav__item site-nav__item--subcategory">
-                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"3","title":"Cooker &amp; Ovens","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"4","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
-<a href="https://jml.m2/index.php/kitchen/cookers-ovens.html" class="site-nav__item__label site-nav__item__label--subcategory">
+                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"3","title":"Cooker &amp; Ovens","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"4","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
+<a href="https://acme.m2/index.php/kitchen/cookers-ovens.html" class="site-nav__item__label site-nav__item__label--subcategory">
     Cooker & Ovens</a>
 
 <!-- /m2(unknown.block) -->                            </li>
                                 <li class="site-nav__item site-nav__item--subcategory">
-                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"4","title":"Bakeware","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"5","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
-<a href="https://jml.m2/index.php/kitchen/bakeware.html" class="site-nav__item__label site-nav__item__label--subcategory">
+                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"4","title":"Bakeware","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"5","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
+<a href="https://acme.m2/index.php/kitchen/bakeware.html" class="site-nav__item__label site-nav__item__label--subcategory">
     Bakeware</a>
 
 <!-- /m2(unknown.block) -->                            </li>
                                 <li class="site-nav__item site-nav__item--subcategory">
-                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"5","title":"Cooking Appliances","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"6","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
-<a href="https://jml.m2/index.php/kitchen/cooking-appliances.html" class="site-nav__item__label site-nav__item__label--subcategory">
+                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"5","title":"Cooking Appliances","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"6","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
+<a href="https://acme.m2/index.php/kitchen/cooking-appliances.html" class="site-nav__item__label site-nav__item__label--subcategory">
     Cooking Appliances</a>
 
 <!-- /m2(unknown.block) -->                            </li>
                                 <li class="site-nav__item site-nav__item--subcategory">
-                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"6","title":"Food Preparation","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"7","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
-<a href="https://jml.m2/index.php/kitchen/food-preparation.html" class="site-nav__item__label site-nav__item__label--subcategory">
+                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"6","title":"Food Preparation","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"7","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
+<a href="https://acme.m2/index.php/kitchen/food-preparation.html" class="site-nav__item__label site-nav__item__label--subcategory">
     Food Preparation</a>
 
 <!-- /m2(unknown.block) -->                            </li>
                                 <li class="site-nav__item site-nav__item--subcategory">
-                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"7","title":"Food Processors, Mixers &amp; Blenders","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"8","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
-<a href="https://jml.m2/index.php/kitchen/food-processors-mixers-blenders.html" class="site-nav__item__label site-nav__item__label--subcategory">
+                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"7","title":"Food Processors, Mixers &amp; Blenders","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"8","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
+<a href="https://acme.m2/index.php/kitchen/food-processors-mixers-blenders.html" class="site-nav__item__label site-nav__item__label--subcategory">
     Food Processors, Mixers & Blenders</a>
 
 <!-- /m2(unknown.block) -->                            </li>
                                 <li class="site-nav__item site-nav__item--subcategory">
-                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"8","title":"Pots &amp; Pans","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"9","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
-<a href="https://jml.m2/index.php/kitchen/pots-pans.html" class="site-nav__item__label site-nav__item__label--subcategory">
+                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"8","title":"Pots &amp; Pans","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"9","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
+<a href="https://acme.m2/index.php/kitchen/pots-pans.html" class="site-nav__item__label site-nav__item__label--subcategory">
     Pots & Pans</a>
 
 <!-- /m2(unknown.block) -->                            </li>
                                 <li class="site-nav__item site-nav__item--subcategory">
-                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"9","title":"Kitchen Knives","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"10","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
-<a href="https://jml.m2/index.php/kitchen/kitchen-knives.html" class="site-nav__item__label site-nav__item__label--subcategory">
+                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"9","title":"Kitchen Knives","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"10","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
+<a href="https://acme.m2/index.php/kitchen/kitchen-knives.html" class="site-nav__item__label site-nav__item__label--subcategory">
     Kitchen Knives</a>
 
 <!-- /m2(unknown.block) -->                            </li>
                                 <li class="site-nav__item site-nav__item--subcategory">
-                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"10","title":"Kitchen Accessories","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"11","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
-<a href="https://jml.m2/index.php/kitchen/kitchen-accessories.html" class="site-nav__item__label site-nav__item__label--subcategory">
+                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"10","title":"Kitchen Accessories","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"11","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
+<a href="https://acme.m2/index.php/kitchen/kitchen-accessories.html" class="site-nav__item__label site-nav__item__label--subcategory">
     Kitchen Accessories</a>
 
 <!-- /m2(unknown.block) -->                            </li>
                                 <li class="site-nav__item site-nav__item--subcategory">
-                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"11","title":"Kitchen Storage","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"12","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
-<a href="https://jml.m2/index.php/kitchen/kitchen-storage.html" class="site-nav__item__label site-nav__item__label--subcategory">
+                <!-- m2(unknown.block) {"name":"unknown.block","type":"block","block_type":"Snowdog\\Menu\\Block\\NodeType\\Category\\Interceptor","template":"menu\/node_type\/category.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Snowdog_Menu\/templates\/menu\/node_type\/category.phtml","args":{"id":"11","title":"Kitchen Storage","level":"1","is_root":false,"is_parent":false,"is_view_all_link":false,"content":"12","node_classes":"site-nav__item site-nav__item--subcategory","menu_class":"site-nav__wrapper site-nav__wrapper--top","menu_code":"main","target":"_self","module_name":"Snowdog_Menu"}} -->
+<a href="https://acme.m2/index.php/kitchen/kitchen-storage.html" class="site-nav__item__label site-nav__item__label--subcategory">
     Kitchen Storage</a>
 
 <!-- /m2(unknown.block) -->                            </li>
             </ul>
 
-<!-- /m2(jml.nav.menu) -->                            </div>
+<!-- /m2(acme.nav.menu) -->                            </div>
                         </div>
                         <div class="nav-promo">
                             <!-- m2(block_1) {"name":"block_1","type":"block","block_type":"Magento\\Cms\\Block\\Block\\Interceptor","args":{"type":"Magento\\Cms\\Block\\Block\\Interceptor","block_id":"nav-promo-block-3","module_name":"Magento_Cms"}} -->
@@ -511,7 +510,7 @@
             </li>
             </ul>
 
-<!-- /m2(jml.nav.menu) -->        <div class="site-nav__mobile-items">
+<!-- /m2(acme.nav.menu) -->        <div class="site-nav__mobile-items">
             <ul class="site-nav__wrapper">
                 <li class="site-nav__item">
                     <a href="#" class="site-nav__item__label">Login/Register</a>
@@ -531,13 +530,13 @@
     </div>
 </nav>
 
-<!-- /m2(jml.nav) --><!-- m2(breadcrumbs) {"name":"breadcrumbs","type":"block","block_type":"Magento\\Theme\\Block\\Html\\Breadcrumbs\\Interceptor","template":"html\/breadcrumbs.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Magento_Theme\/templates\/html\/breadcrumbs.phtml","args":{"type":"Magento\\Theme\\Block\\Html\\Breadcrumbs\\Interceptor","module_name":"Magento_Theme"}} -->
+<!-- /m2(acme.nav) --><!-- m2(breadcrumbs) {"name":"breadcrumbs","type":"block","block_type":"Magento\\Theme\\Block\\Html\\Breadcrumbs\\Interceptor","template":"html\/breadcrumbs.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Magento_Theme\/templates\/html\/breadcrumbs.phtml","args":{"type":"Magento\\Theme\\Block\\Html\\Breadcrumbs\\Interceptor","module_name":"Magento_Theme"}} -->
 
 <!-- /m2(breadcrumbs) --><!-- m2(page.promo) {"name":"page.promo","type":"container"} -->
 
 <!-- /m2(page.promo) --><!-- m2(main.content) {"name":"main.content","type":"container"} -->
 <main id="maincontent" class="page-main"><!-- m2(columns.top) {"name":"columns.top","type":"container"} -->
-<!-- m2(page.main.title) {"name":"page.main.title","type":"block","block_type":"Magento\\Theme\\Block\\Html\\Title\\Interceptor","template":"Magento_Theme::html\/title.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Magento_Theme\/templates\/html\/title.phtml","args":{"type":"Magento\\Theme\\Block\\Html\\Title\\Interceptor","module_name":"Magento_Theme"}} -->
+<!-- m2(page.main.title) {"name":"page.main.title","type":"block","block_type":"Magento\\Theme\\Block\\Html\\Title\\Interceptor","template":"Magento_Theme::html\/title.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Magento_Theme\/templates\/html\/title.phtml","args":{"type":"Magento\\Theme\\Block\\Html\\Title\\Interceptor","module_name":"Magento_Theme"}} -->
 <div class="page-title page-title--">
     <h1 class="page-title__heading"
                 >
@@ -549,7 +548,7 @@
 <div data-placeholder="messages"></div>
 
 <!-- /m2(ajax.message.placeholder) --><!-- m2(page.messages.container) {"name":"page.messages.container","type":"container"} -->
-<div class="site-messages__container container"><!-- m2(messages) {"name":"messages","type":"block","block_type":"Magento\\Framework\\View\\Element\\Messages\\Interceptor","template":"Magento_Theme::messages.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Magento_Theme\/templates\/messages.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Messages\\Interceptor","module_name":""}} -->
+<div class="site-messages__container container"><!-- m2(messages) {"name":"messages","type":"block","block_type":"Magento\\Framework\\View\\Element\\Messages\\Interceptor","template":"Magento_Theme::messages.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Magento_Theme\/templates\/messages.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Messages\\Interceptor","module_name":""}} -->
 <div data-bind="scope: 'messages'">
     <!-- ko if: cookieMessages && cookieMessages.length > 0 -->
     <div role="alert" data-bind="foreach: { data: cookieMessages, as: 'message' }" class="site-messages__messages">
@@ -610,7 +609,7 @@
             "#authenticationPopup": {
                 "Magento_Ui/js/core/app": {"components":{"authenticationPopup":{"component":"Magento_Customer\/js\/view\/authentication-popup","children":{"messages":{"component":"Magento_Ui\/js\/view\/messages","displayArea":"messages"},"captcha":{"component":"Magento_Captcha\/js\/view\/checkout\/loginCaptcha","displayArea":"additional-login-form-fields","formId":"user_login","configSource":"checkout"},"amazon-button":{"component":"Amazon_Login\/js\/view\/login-button-wrapper","sortOrder":"0","displayArea":"additional-login-form-fields","config":{"tooltip":"Securely login to our website using your existing Amazon details."}}}}}}            },
             "*": {
-                "Magento_Ui/js/block-loader": "https\u003A\u002F\u002Fjml.m2\u002Fstatic\u002Fversion1521037897\u002Ffrontend\u002FJml\u002Fdefault\u002Fen_GB\u002Fimages\u002Floader\u002D1.gif"
+                "Magento_Ui/js/block-loader": "https\u003A\u002F\u002Facme.m2\u002Fstatic\u002Fversion1521037897\u002Ffrontend\u002Facme\u002Fdefault\u002Fen_GB\u002Fimages\u002Floader\u002D1.gif"
             }
         }
     </script>
@@ -618,11 +617,11 @@
 
 <!-- /m2(authentication-popup) --><!-- m2(customer.section.config) {"name":"customer.section.config","type":"block","block_type":"Magento\\Customer\\Block\\SectionConfig\\Interceptor","template":"Magento_Customer::js\/section-config.phtml","template_file":"\/var\/www\/vendor\/magento\/module-customer\/view\/frontend\/templates\/js\/section-config.phtml","args":{"type":"Magento\\Customer\\Block\\SectionConfig\\Interceptor","module_name":"Magento_Customer"}} -->
 <script type="text/x-magento-init">
-{"*":{"Magento_Customer\/js\/section-config":{"sections":{"stores\/store\/switch":"*","directory\/currency\/switch":"*","*":["messages","personal-data"],"customer\/account\/logout":["recently_viewed_product","recently_compared_product"],"customer\/account\/loginpost":"*","customer\/account\/createpost":"*","customer\/account\/editpost":"*","customer\/ajax\/login":["checkout-data","cart","customer-tagging"],"catalog\/product_compare\/add":["compare-products"],"catalog\/product_compare\/remove":["compare-products"],"catalog\/product_compare\/clear":["compare-products"],"customerservice\/user\/loginpost":"*","customerservice\/user\/logout":"*","customerservice\/user\/singlesignon":"*","sales\/guest\/reorder":["cart"],"sales\/order\/reorder":["cart"],"checkout\/cart\/add":["cart","cart-tagging"],"checkout\/cart\/delete":["cart","cart-tagging"],"checkout\/cart\/updatepost":["cart","cart-tagging"],"checkout\/cart\/updateitemoptions":["cart","cart-tagging"],"checkout\/cart\/couponpost":["cart","cart-tagging"],"checkout\/cart\/estimatepost":["cart","cart-tagging"],"checkout\/cart\/estimateupdatepost":["cart","cart-tagging"],"checkout\/onepage\/saveorder":["cart","checkout-data","last-ordered-items","cart-tagging","checkout-fields"],"checkout\/sidebar\/removeitem":["cart","cart-tagging"],"checkout\/sidebar\/updateitemqty":["cart","cart-tagging"],"rest\/*\/v1\/carts\/*\/payment-information":["cart","checkout-data","last-ordered-items","instant-purchase","cart-tagging"],"rest\/*\/v1\/guest-carts\/*\/payment-information":["cart","checkout-data","cart-tagging"],"rest\/*\/v1\/guest-carts\/*\/selected-payment-method":["cart","checkout-data","cart-tagging"],"rest\/*\/v1\/carts\/*\/selected-payment-method":["cart","checkout-data","instant-purchase","cart-tagging"],"wishlist\/index\/add":["wishlist"],"wishlist\/index\/remove":["wishlist"],"wishlist\/index\/updateitemoptions":["wishlist"],"wishlist\/index\/update":["wishlist"],"wishlist\/index\/cart":["wishlist","cart"],"wishlist\/index\/fromcart":["wishlist","cart"],"wishlist\/index\/allcart":["wishlist","cart"],"wishlist\/shared\/allcart":["wishlist","cart"],"wishlist\/shared\/cart":["cart"],"review\/product\/post":["review"],"customer\/address\/*":["instant-purchase"],"customer\/account\/*":["instant-purchase"],"vault\/cards\/deleteaction":["instant-purchase"],"wishlist\/index\/copyitem":["wishlist"],"wishlist\/index\/copyitems":["wishlist"],"wishlist\/index\/deletewishlist":["wishlist","multiplewishlist"],"wishlist\/index\/createwishlist":["multiplewishlist"],"wishlist\/index\/moveitem":["wishlist"],"wishlist\/index\/moveitems":["wishlist"],"wishlist\/search\/addtocart":["cart","wishlist"],"multishipping\/checkout\/overviewpost":["cart"],"giftregistry\/index\/cart":["cart"],"giftregistry\/view\/addtocart":["cart"],"authorizenet\/directpost_payment\/place":["cart","checkout-data"],"customer_order\/cart\/updatefaileditemoptions":["cart"],"checkout\/cart\/updatefaileditemoptions":["cart"],"customer_order\/cart\/advancedadd":["cart"],"checkout\/cart\/advancedadd":["cart"],"checkout\/cart\/removeallfailed":["cart"],"customer_order\/cart\/addfaileditems":["cart"],"checkout\/cart\/addfaileditems":["cart"],"customer_order\/sku\/uploadfile":["cart"],"paypal\/express\/placeorder":["cart","checkout-data"],"paypal\/payflowexpress\/placeorder":["cart","checkout-data"],"braintree\/paypal\/placeorder":["cart","checkout-data"]},"clientSideSections":["checkout-data","cart-data"],"baseUrls":["https:\/\/jml.m2\/index.php\/"]}}}</script>
+{"*":{"Magento_Customer\/js\/section-config":{"sections":{"stores\/store\/switch":"*","directory\/currency\/switch":"*","*":["messages","personal-data"],"customer\/account\/logout":["recently_viewed_product","recently_compared_product"],"customer\/account\/loginpost":"*","customer\/account\/createpost":"*","customer\/account\/editpost":"*","customer\/ajax\/login":["checkout-data","cart","customer-tagging"],"catalog\/product_compare\/add":["compare-products"],"catalog\/product_compare\/remove":["compare-products"],"catalog\/product_compare\/clear":["compare-products"],"customerservice\/user\/loginpost":"*","customerservice\/user\/logout":"*","customerservice\/user\/singlesignon":"*","sales\/guest\/reorder":["cart"],"sales\/order\/reorder":["cart"],"checkout\/cart\/add":["cart","cart-tagging"],"checkout\/cart\/delete":["cart","cart-tagging"],"checkout\/cart\/updatepost":["cart","cart-tagging"],"checkout\/cart\/updateitemoptions":["cart","cart-tagging"],"checkout\/cart\/couponpost":["cart","cart-tagging"],"checkout\/cart\/estimatepost":["cart","cart-tagging"],"checkout\/cart\/estimateupdatepost":["cart","cart-tagging"],"checkout\/onepage\/saveorder":["cart","checkout-data","last-ordered-items","cart-tagging","checkout-fields"],"checkout\/sidebar\/removeitem":["cart","cart-tagging"],"checkout\/sidebar\/updateitemqty":["cart","cart-tagging"],"rest\/*\/v1\/carts\/*\/payment-information":["cart","checkout-data","last-ordered-items","instant-purchase","cart-tagging"],"rest\/*\/v1\/guest-carts\/*\/payment-information":["cart","checkout-data","cart-tagging"],"rest\/*\/v1\/guest-carts\/*\/selected-payment-method":["cart","checkout-data","cart-tagging"],"rest\/*\/v1\/carts\/*\/selected-payment-method":["cart","checkout-data","instant-purchase","cart-tagging"],"wishlist\/index\/add":["wishlist"],"wishlist\/index\/remove":["wishlist"],"wishlist\/index\/updateitemoptions":["wishlist"],"wishlist\/index\/update":["wishlist"],"wishlist\/index\/cart":["wishlist","cart"],"wishlist\/index\/fromcart":["wishlist","cart"],"wishlist\/index\/allcart":["wishlist","cart"],"wishlist\/shared\/allcart":["wishlist","cart"],"wishlist\/shared\/cart":["cart"],"review\/product\/post":["review"],"customer\/address\/*":["instant-purchase"],"customer\/account\/*":["instant-purchase"],"vault\/cards\/deleteaction":["instant-purchase"],"wishlist\/index\/copyitem":["wishlist"],"wishlist\/index\/copyitems":["wishlist"],"wishlist\/index\/deletewishlist":["wishlist","multiplewishlist"],"wishlist\/index\/createwishlist":["multiplewishlist"],"wishlist\/index\/moveitem":["wishlist"],"wishlist\/index\/moveitems":["wishlist"],"wishlist\/search\/addtocart":["cart","wishlist"],"multishipping\/checkout\/overviewpost":["cart"],"giftregistry\/index\/cart":["cart"],"giftregistry\/view\/addtocart":["cart"],"authorizenet\/directpost_payment\/place":["cart","checkout-data"],"customer_order\/cart\/updatefaileditemoptions":["cart"],"checkout\/cart\/updatefaileditemoptions":["cart"],"customer_order\/cart\/advancedadd":["cart"],"checkout\/cart\/advancedadd":["cart"],"checkout\/cart\/removeallfailed":["cart"],"customer_order\/cart\/addfaileditems":["cart"],"checkout\/cart\/addfaileditems":["cart"],"customer_order\/sku\/uploadfile":["cart"],"paypal\/express\/placeorder":["cart","checkout-data"],"paypal\/payflowexpress\/placeorder":["cart","checkout-data"],"braintree\/paypal\/placeorder":["cart","checkout-data"]},"clientSideSections":["checkout-data","cart-data"],"baseUrls":["https:\/\/acme.m2\/index.php\/"]}}}</script>
 
 <!-- /m2(customer.section.config) --><!-- m2(customer.customer.data) {"name":"customer.customer.data","type":"block","block_type":"Magento\\Customer\\Block\\CustomerData\\Interceptor","template":"Magento_Customer::js\/customer-data.phtml","template_file":"\/var\/www\/vendor\/magento\/module-customer\/view\/frontend\/templates\/js\/customer-data.phtml","args":{"type":"Magento\\Customer\\Block\\CustomerData\\Interceptor","module_name":"Magento_Customer"}} -->
 <script type="text/x-magento-init">
-{"*":{"Magento_Customer\/js\/customer-data":{"sectionLoadUrl":"https:\/\/jml.m2\/index.php\/customer\/section\/load\/","expirableSectionLifetime":60,"expirableSectionNames":["cart"],"cookieLifeTime":"3600","updateSessionUrl":"https:\/\/jml.m2\/index.php\/customer\/account\/updateSession\/"}}}</script>
+{"*":{"Magento_Customer\/js\/customer-data":{"sectionLoadUrl":"https:\/\/acme.m2\/index.php\/customer\/section\/load\/","expirableSectionLifetime":60,"expirableSectionNames":["cart"],"cookieLifeTime":"3600","updateSessionUrl":"https:\/\/acme.m2\/index.php\/customer\/account\/updateSession\/"}}}</script>
 
 <!-- /m2(customer.customer.data) --><!-- m2(customer.data.invalidation.rules) {"name":"customer.data.invalidation.rules","type":"block","block_type":"Magento\\Customer\\Block\\CustomerScopeData\\Interceptor","template":"Magento_Customer::js\/customer-data\/invalidation-rules.phtml","template_file":"\/var\/www\/vendor\/magento\/module-customer\/view\/frontend\/templates\/js\/customer-data\/invalidation-rules.phtml","args":{"type":"Magento\\Customer\\Block\\CustomerScopeData\\Interceptor","module_name":"Magento_Customer"}} -->
 <script type="text/x-magento-init">
@@ -634,19 +633,19 @@
 <script type="text/x-magento-init">
     {
         "body": {
-            "pageCache": {"url":"https:\/\/jml.m2\/index.php\/page_cache\/block\/render\/","handles":["default","cms_index_index","cms_page_view","cms_index_index_id_home"],"originalRequest":{"route":"cms","controller":"index","action":"index","uri":"\/index.php\/"},"versionCookieName":"private_content_version"}        }
+            "pageCache": {"url":"https:\/\/acme.m2\/index.php\/page_cache\/block\/render\/","handles":["default","cms_index_index","cms_page_view","cms_index_index_id_home"],"originalRequest":{"route":"cms","controller":"index","action":"index","uri":"\/index.php\/"},"versionCookieName":"private_content_version"}        }
     }
 </script>
 
 <!-- /m2(pageCache) --><!-- m2(banner.data) {"name":"banner.data","type":"block","block_type":"Magento\\Banner\\Block\\Ajax\\Data\\Interceptor","template":"Magento_Banner::js\/banner.phtml","template_file":"\/var\/www\/vendor\/magento\/module-banner\/view\/frontend\/templates\/js\/banner.phtml","args":{"type":"Magento\\Banner\\Block\\Ajax\\Data\\Interceptor","module_name":"Magento_Banner"}} -->
 <script type="text/x-magento-init">
-{"*":{"Magento_Banner\/js\/model\/banner":{"sectionLoadUrl":"https:\/\/jml.m2\/index.php\/banner\/ajax\/load\/","cacheTtl":30000}}}</script>
+{"*":{"Magento_Banner\/js\/model\/banner":{"sectionLoadUrl":"https:\/\/acme.m2\/index.php\/banner\/ajax\/load\/","cacheTtl":30000}}}</script>
 
 <!-- /m2(banner.data) --><!-- m2(promo.container.wrapper) {"name":"promo.container.wrapper","type":"container"} -->
-<div class="promo-wrapper"><!-- m2(promo.hero.carousel) {"name":"promo.hero.carousel","type":"block","block_type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","template":"Jml_Content::promo\/hero\/carousel.phtml","template_file":"\/var\/www\/app\/code\/Jml\/Content\/view\/frontend\/templates\/promo\/hero\/carousel.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","module_name":""}} -->
+<div class="promo-wrapper"><!-- m2(promo.hero.carousel) {"name":"promo.hero.carousel","type":"block","block_type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","template":"acme_Content::promo\/hero\/carousel.phtml","template_file":"\/var\/www\/app\/code\/acme\/Content\/view\/frontend\/templates\/promo\/hero\/carousel.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","module_name":""}} -->
 <div class="promo-container">
     <!-- m2(promo.hero.container) {"name":"promo.hero.container","type":"container"} -->
-<!-- m2(fb842418595024cb1464ba27cfe47224) {"name":"fb842418595024cb1464ba27cfe47224","type":"block","block_type":"Jml\\Content\\Block\\Promo\\Hero\\Interceptor","template":"Jml_Content::promo\/hero.phtml","template_file":"\/var\/www\/app\/code\/Jml\/Content\/view\/frontend\/templates\/promo\/hero.phtml","args":{"type":"Jml\\Content\\Block\\Promo\\Hero\\Interceptor","should_show_button":"1","background_image":"https:\/\/jml.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfbW9iaWxlX2hzc19uZXcuanBnIn19\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","tablet_background_image":"https:\/\/jml.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfdGFibGV0X2hzc19uZXcuanBnIn19\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","desktop_background_image":"https:\/\/jml.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfZGVza3RvcF9oc3NfbmV3LmpwZyJ9fQ,,\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","content":"&lt;h2 class=&quot;promo__title&quot;&gt;Indoor Warm-Air Clothes Dryer with Added&lt;\/h2&gt;\n    &lt;div class=&quot;promo__price&quot;&gt;\n        &lt;span class=&quot;price&quot;&gt;\u00a399.99&lt;\/span&gt;\n    &lt;\/div&gt;\n    &lt;p class=&quot;promo__text&quot;&gt;Free UK Delivery&lt;\/p&gt;","module_name":"Jml_Content"}} -->
+<!-- m2(fb842418595024cb1464ba27cfe47224) {"name":"fb842418595024cb1464ba27cfe47224","type":"block","block_type":"acme\\Content\\Block\\Promo\\Hero\\Interceptor","template":"acme_Content::promo\/hero.phtml","template_file":"\/var\/www\/app\/code\/acme\/Content\/view\/frontend\/templates\/promo\/hero.phtml","args":{"type":"acme\\Content\\Block\\Promo\\Hero\\Interceptor","should_show_button":"1","background_image":"https:\/\/acme.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfbW9iaWxlX2hzc19uZXcuanBnIn19\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","tablet_background_image":"https:\/\/acme.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfdGFibGV0X2hzc19uZXcuanBnIn19\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","desktop_background_image":"https:\/\/acme.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfZGVza3RvcF9oc3NfbmV3LmpwZyJ9fQ,,\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","content":"&lt;h2 class=&quot;promo__title&quot;&gt;Indoor Warm-Air Clothes Dryer with Added&lt;\/h2&gt;\n    &lt;div class=&quot;promo__price&quot;&gt;\n        &lt;span class=&quot;price&quot;&gt;\u00a399.99&lt;\/span&gt;\n    &lt;\/div&gt;\n    &lt;p class=&quot;promo__text&quot;&gt;Free UK Delivery&lt;\/p&gt;","module_name":"acme_Content"}} -->
 <div class="promo promo--hero">
     <a href="" class="promo__link">
         <picture class="promo__background">
@@ -669,7 +668,7 @@
 
             </a>
 </div>
-<!-- /m2(fb842418595024cb1464ba27cfe47224) --><!-- m2(493efadf4b4d2abd44e91a75a039c577) {"name":"493efadf4b4d2abd44e91a75a039c577","type":"block","block_type":"Jml\\Content\\Block\\Promo\\Hero\\Interceptor","template":"Jml_Content::promo\/hero.phtml","template_file":"\/var\/www\/app\/code\/Jml\/Content\/view\/frontend\/templates\/promo\/hero.phtml","args":{"type":"Jml\\Content\\Block\\Promo\\Hero\\Interceptor","should_show_button":"1","background_image":"https:\/\/jml.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfbW9iaWxlX2ZsZXhfY29yZV84LmpwZyJ9fQ,,\/key\/2a923099731b845934bebecfc2c270b1df9f0a36e847687ca1676885ce3ec691\/","tablet_background_image":"https:\/\/jml.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfdGFibGV0X2ZsZXhfY29yZV84LmpwZyJ9fQ,,\/key\/2a923099731b845934bebecfc2c270b1df9f0a36e847687ca1676885ce3ec691\/","desktop_background_image":"https:\/\/jml.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfZGVza3RvcF9mbGV4X2NvcmVfOC5qcGcifX0,\/key\/2a923099731b845934bebecfc2c270b1df9f0a36e847687ca1676885ce3ec691\/","content":"&lt;h2 class=&quot;promo__title&quot;&gt;Indoor Warm-Air Clothes Dryer with Added&lt;\/h2&gt;\n    &lt;div class=&quot;promo__price&quot;&gt;\n        &lt;span class=&quot;price&quot;&gt;\u00a399.99&lt;\/span&gt;\n    &lt;\/div&gt;\n    &lt;p class=&quot;promo__text&quot;&gt;Free UK Delivery&lt;\/p&gt;","module_name":"Jml_Content"}} -->
+<!-- /m2(fb842418595024cb1464ba27cfe47224) --><!-- m2(493efadf4b4d2abd44e91a75a039c577) {"name":"493efadf4b4d2abd44e91a75a039c577","type":"block","block_type":"acme\\Content\\Block\\Promo\\Hero\\Interceptor","template":"acme_Content::promo\/hero.phtml","template_file":"\/var\/www\/app\/code\/acme\/Content\/view\/frontend\/templates\/promo\/hero.phtml","args":{"type":"acme\\Content\\Block\\Promo\\Hero\\Interceptor","should_show_button":"1","background_image":"https:\/\/acme.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfbW9iaWxlX2ZsZXhfY29yZV84LmpwZyJ9fQ,,\/key\/2a923099731b845934bebecfc2c270b1df9f0a36e847687ca1676885ce3ec691\/","tablet_background_image":"https:\/\/acme.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfdGFibGV0X2ZsZXhfY29yZV84LmpwZyJ9fQ,,\/key\/2a923099731b845934bebecfc2c270b1df9f0a36e847687ca1676885ce3ec691\/","desktop_background_image":"https:\/\/acme.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfZGVza3RvcF9mbGV4X2NvcmVfOC5qcGcifX0,\/key\/2a923099731b845934bebecfc2c270b1df9f0a36e847687ca1676885ce3ec691\/","content":"&lt;h2 class=&quot;promo__title&quot;&gt;Indoor Warm-Air Clothes Dryer with Added&lt;\/h2&gt;\n    &lt;div class=&quot;promo__price&quot;&gt;\n        &lt;span class=&quot;price&quot;&gt;\u00a399.99&lt;\/span&gt;\n    &lt;\/div&gt;\n    &lt;p class=&quot;promo__text&quot;&gt;Free UK Delivery&lt;\/p&gt;","module_name":"acme_Content"}} -->
 <div class="promo promo--hero">
     <a href="" class="promo__link">
         <picture class="promo__background">
@@ -695,7 +694,7 @@
 <!-- /m2(493efadf4b4d2abd44e91a75a039c577) -->
 <!-- /m2(promo.hero.container) --></div>
 <!-- /m2(promo.hero.carousel) --><!-- m2(promo.container) {"name":"promo.container","type":"container"} -->
-<div class="promo-container__sub"><!-- m2(f29f22a745860ebbea26195cc4dcf6bb) {"name":"f29f22a745860ebbea26195cc4dcf6bb","type":"block","block_type":"Jml\\Content\\Block\\Promo\\Interceptor","template":"Jml_Content::promo.phtml","template_file":"\/var\/www\/app\/code\/Jml\/Content\/view\/frontend\/templates\/promo.phtml","args":{"type":"Jml\\Content\\Block\\Promo\\Interceptor","background_image":"https:\/\/jml.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvbmV3X2hwX3NtYWxsX2FpcmNvb2tlci5qcGcifX0,\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","content":"&lt;h2 class=&quot;promo__title&quot;&gt;&lt;strong&gt;Halowave Aircooker&lt;\/strong&gt; deluxe&lt;\/h2&gt;\n&lt;div class=&quot;promo__price&quot;&gt;\n    &lt;span class=&quot;price&quot;&gt;\u00a349.99&lt;\/span&gt;\n&lt;\/div&gt;","module_name":"Jml_Content"}} -->
+<div class="promo-container__sub"><!-- m2(f29f22a745860ebbea26195cc4dcf6bb) {"name":"f29f22a745860ebbea26195cc4dcf6bb","type":"block","block_type":"acme\\Content\\Block\\Promo\\Interceptor","template":"acme_Content::promo.phtml","template_file":"\/var\/www\/app\/code\/acme\/Content\/view\/frontend\/templates\/promo.phtml","args":{"type":"acme\\Content\\Block\\Promo\\Interceptor","background_image":"https:\/\/acme.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvbmV3X2hwX3NtYWxsX2FpcmNvb2tlci5qcGcifX0,\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","content":"&lt;h2 class=&quot;promo__title&quot;&gt;&lt;strong&gt;Halowave Aircooker&lt;\/strong&gt; deluxe&lt;\/h2&gt;\n&lt;div class=&quot;promo__price&quot;&gt;\n    &lt;span class=&quot;price&quot;&gt;\u00a349.99&lt;\/span&gt;\n&lt;\/div&gt;","module_name":"acme_Content"}} -->
 <div class="promo">
     <a href="" class="promo__link">
         <picture class="promo__background">
@@ -713,7 +712,7 @@
 
             </a>
 </div>
-<!-- /m2(f29f22a745860ebbea26195cc4dcf6bb) --><!-- m2(75db213447ae89c089154c69061c37b3) {"name":"75db213447ae89c089154c69061c37b3","type":"block","block_type":"Jml\\Content\\Block\\Promo\\Interceptor","template":"Jml_Content::promo.phtml","template_file":"\/var\/www\/app\/code\/Jml\/Content\/view\/frontend\/templates\/promo.phtml","args":{"type":"Jml\\Content\\Block\\Promo\\Interceptor","background_image":"https:\/\/jml.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfc21hbGxfcF9wXzQ1LmpwZyJ9fQ,,\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","content":"&lt;h2 class=&quot;promo__title&quot;&gt;&lt;\/h2&gt;\n&lt;p class=&quot;promo__text&quot;&gt;&lt;\/p&gt;","module_name":"Jml_Content"}} -->
+<!-- /m2(f29f22a745860ebbea26195cc4dcf6bb) --><!-- m2(75db213447ae89c089154c69061c37b3) {"name":"75db213447ae89c089154c69061c37b3","type":"block","block_type":"acme\\Content\\Block\\Promo\\Interceptor","template":"acme_Content::promo.phtml","template_file":"\/var\/www\/app\/code\/acme\/Content\/view\/frontend\/templates\/promo.phtml","args":{"type":"acme\\Content\\Block\\Promo\\Interceptor","background_image":"https:\/\/acme.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfc21hbGxfcF9wXzQ1LmpwZyJ9fQ,,\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","content":"&lt;h2 class=&quot;promo__title&quot;&gt;&lt;\/h2&gt;\n&lt;p class=&quot;promo__text&quot;&gt;&lt;\/p&gt;","module_name":"acme_Content"}} -->
 <div class="promo">
     <a href="" class="promo__link">
         <picture class="promo__background">
@@ -729,7 +728,7 @@
 
             </a>
 </div>
-<!-- /m2(75db213447ae89c089154c69061c37b3) --><!-- m2(bb83469b364859fe18ce7c22aec0dbbe) {"name":"bb83469b364859fe18ce7c22aec0dbbe","type":"block","block_type":"Jml\\Content\\Block\\Promo\\Interceptor","template":"Jml_Content::promo.phtml","template_file":"\/var\/www\/app\/code\/Jml\/Content\/view\/frontend\/templates\/promo.phtml","args":{"type":"Jml\\Content\\Block\\Promo\\Interceptor","background_image":"https:\/\/jml.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfc21hbGxfZnJlZV9mbGlnaHRfbmV3LmpwZyJ9fQ,,\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","content":"&lt;h2 class=&quot;promo__title&quot;&gt;&lt;strong&gt;Phoenix Gold&lt;\/strong&gt; Freeflight&lt;\/h2&gt;\n&lt;div class=&quot;promo__price&quot;&gt;\n    &lt;span class=&quot;price&quot;&gt;\u00a349.99&lt;\/span&gt;\n&lt;\/div&gt;","ribbon_text":"Brand New","module_name":"Jml_Content"}} -->
+<!-- /m2(75db213447ae89c089154c69061c37b3) --><!-- m2(bb83469b364859fe18ce7c22aec0dbbe) {"name":"bb83469b364859fe18ce7c22aec0dbbe","type":"block","block_type":"acme\\Content\\Block\\Promo\\Interceptor","template":"acme_Content::promo.phtml","template_file":"\/var\/www\/app\/code\/acme\/Content\/view\/frontend\/templates\/promo.phtml","args":{"type":"acme\\Content\\Block\\Promo\\Interceptor","background_image":"https:\/\/acme.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfc21hbGxfZnJlZV9mbGlnaHRfbmV3LmpwZyJ9fQ,,\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","content":"&lt;h2 class=&quot;promo__title&quot;&gt;&lt;strong&gt;Phoenix Gold&lt;\/strong&gt; Freeflight&lt;\/h2&gt;\n&lt;div class=&quot;promo__price&quot;&gt;\n    &lt;span class=&quot;price&quot;&gt;\u00a349.99&lt;\/span&gt;\n&lt;\/div&gt;","ribbon_text":"Brand New","module_name":"acme_Content"}} -->
 <div class="promo">
     <a href="" class="promo__link">
         <picture class="promo__background">
@@ -750,7 +749,7 @@
             </div>
             </a>
 </div>
-<!-- /m2(bb83469b364859fe18ce7c22aec0dbbe) --><!-- m2(c53204a7c9ef78a1ee4fdd5de21870d4) {"name":"c53204a7c9ef78a1ee4fdd5de21870d4","type":"block","block_type":"Jml\\Content\\Block\\Promo\\Interceptor","template":"Jml_Content::promo.phtml","template_file":"\/var\/www\/app\/code\/Jml\/Content\/view\/frontend\/templates\/promo.phtml","args":{"type":"Jml\\Content\\Block\\Promo\\Interceptor","background_image":"https:\/\/jml.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfc21hbGxfaGFuZHlfaGVhdGVyX25ldy5qcGcifX0,\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","content":"&lt;h2 class=&quot;promo__title&quot;&gt;&lt;strong&gt;Handy&lt;\/strong&gt; Heater&lt;\/h2&gt;\n&lt;div class=&quot;promo__price&quot;&gt;\n    &lt;span class=&quot;price&quot;&gt;\u00a339.99&lt;\/span&gt;\n&lt;\/div&gt;","ribbon_text":"On TV Now","module_name":"Jml_Content"}} -->
+<!-- /m2(bb83469b364859fe18ce7c22aec0dbbe) --><!-- m2(c53204a7c9ef78a1ee4fdd5de21870d4) {"name":"c53204a7c9ef78a1ee4fdd5de21870d4","type":"block","block_type":"acme\\Content\\Block\\Promo\\Interceptor","template":"acme_Content::promo.phtml","template_file":"\/var\/www\/app\/code\/acme\/Content\/view\/frontend\/templates\/promo.phtml","args":{"type":"acme\\Content\\Block\\Promo\\Interceptor","background_image":"https:\/\/acme.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvaHBfc21hbGxfaGFuZHlfaGVhdGVyX25ldy5qcGcifX0,\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","content":"&lt;h2 class=&quot;promo__title&quot;&gt;&lt;strong&gt;Handy&lt;\/strong&gt; Heater&lt;\/h2&gt;\n&lt;div class=&quot;promo__price&quot;&gt;\n    &lt;span class=&quot;price&quot;&gt;\u00a339.99&lt;\/span&gt;\n&lt;\/div&gt;","ribbon_text":"On TV Now","module_name":"acme_Content"}} -->
 <div class="promo">
     <a href="" class="promo__link">
         <picture class="promo__background">
@@ -771,7 +770,7 @@
             </div>
             </a>
 </div>
-<!-- /m2(c53204a7c9ef78a1ee4fdd5de21870d4) --><!-- m2(f35fa14708899e9249b322afa2584b0f) {"name":"f35fa14708899e9249b322afa2584b0f","type":"block","block_type":"Jml\\Content\\Block\\Promo\\Interceptor","template":"Jml_Content::promo.phtml","template_file":"\/var\/www\/app\/code\/Jml\/Content\/view\/frontend\/templates\/promo.phtml","args":{"type":"Jml\\Content\\Block\\Promo\\Interceptor","background_image":"https:\/\/jml.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvcXVpYmJsZS5qcGcifX0,\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","content":"&lt;h2 class=&quot;promo__title&quot;&gt;&lt;\/h2&gt;\n&lt;p class=&quot;promo__text&quot;&gt;&lt;\/p&gt;","module_name":"Jml_Content"}} -->
+<!-- /m2(c53204a7c9ef78a1ee4fdd5de21870d4) --><!-- m2(f35fa14708899e9249b322afa2584b0f) {"name":"f35fa14708899e9249b322afa2584b0f","type":"block","block_type":"acme\\Content\\Block\\Promo\\Interceptor","template":"acme_Content::promo.phtml","template_file":"\/var\/www\/app\/code\/acme\/Content\/view\/frontend\/templates\/promo.phtml","args":{"type":"acme\\Content\\Block\\Promo\\Interceptor","background_image":"https:\/\/acme.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvcXVpYmJsZS5qcGcifX0,\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","content":"&lt;h2 class=&quot;promo__title&quot;&gt;&lt;\/h2&gt;\n&lt;p class=&quot;promo__text&quot;&gt;&lt;\/p&gt;","module_name":"acme_Content"}} -->
 <div class="promo">
     <a href="" class="promo__link">
         <picture class="promo__background">
@@ -787,7 +786,7 @@
 
             </a>
 </div>
-<!-- /m2(f35fa14708899e9249b322afa2584b0f) --><!-- m2(75ab1f2464820637edd609e8c0563832) {"name":"75ab1f2464820637edd609e8c0563832","type":"block","block_type":"Jml\\Content\\Block\\Promo\\Interceptor","template":"Jml_Content::promo.phtml","template_file":"\/var\/www\/app\/code\/Jml\/Content\/view\/frontend\/templates\/promo.phtml","args":{"type":"Jml\\Content\\Block\\Promo\\Interceptor","background_image":"https:\/\/jml.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvbmV3X2hwX3NtYWxsX2V2ZXJicml0ZS5qcGcifX0,\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","content":"&lt;h2 class=&quot;promo__title&quot;&gt;&lt;strong&gt;Ever&lt;\/strong&gt; Brite&lt;\/h2&gt;\n&lt;div class=&quot;promo__price&quot;&gt;\n    &lt;span class=&quot;price--old&quot;&gt;\u00a359.97&lt;\/span&gt;\n    &lt;span class=&quot;price&quot;&gt;\u00a339.98&lt;\/span&gt;\n&lt;\/div&gt;","module_name":"Jml_Content"}} -->
+<!-- /m2(f35fa14708899e9249b322afa2584b0f) --><!-- m2(75ab1f2464820637edd609e8c0563832) {"name":"75ab1f2464820637edd609e8c0563832","type":"block","block_type":"acme\\Content\\Block\\Promo\\Interceptor","template":"acme_Content::promo.phtml","template_file":"\/var\/www\/app\/code\/acme\/Content\/view\/frontend\/templates\/promo.phtml","args":{"type":"acme\\Content\\Block\\Promo\\Interceptor","background_image":"https:\/\/acme.m2\/index.php\/admin\/cms\/wysiwyg\/directive\/___directive\/e3ttZWRpYSB1cmw9Ind5c2l3eWcvSG9tZXBhZ2UvbmV3X2hwX3NtYWxsX2V2ZXJicml0ZS5qcGcifX0,\/key\/09753d70d3c877f41bc4a350761dd619f7dd4945b95abb2eb496417535b2657a\/","content":"&lt;h2 class=&quot;promo__title&quot;&gt;&lt;strong&gt;Ever&lt;\/strong&gt; Brite&lt;\/h2&gt;\n&lt;div class=&quot;promo__price&quot;&gt;\n    &lt;span class=&quot;price--old&quot;&gt;\u00a359.97&lt;\/span&gt;\n    &lt;span class=&quot;price&quot;&gt;\u00a339.98&lt;\/span&gt;\n&lt;\/div&gt;","module_name":"acme_Content"}} -->
 <div class="promo">
     <a href="" class="promo__link">
         <picture class="promo__background">
@@ -837,13 +836,13 @@
 <div class="page-bottom"><!-- m2(page.bottom) {"name":"page.bottom","type":"container"} -->
 
 <!-- /m2(page.bottom) --></div>
-<!-- /m2(page.bottom.container) --><!-- m2(jml.footer) {"name":"jml.footer","type":"block","block_type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","template":"Magento_Theme::page\/html\/footer.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Magento_Theme\/templates\/page\/html\/footer.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","module_name":""}} -->
+<!-- /m2(page.bottom.container) --><!-- m2(acme.footer) {"name":"acme.footer","type":"block","block_type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","template":"Magento_Theme::page\/html\/footer.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Magento_Theme\/templates\/page\/html\/footer.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","module_name":""}} -->
 
 <footer class="site-footer">
     <div class="wrapper wrapper--footer">
         <div class="container container--footer">
             <nav class="footer__section footer__section--nav">
-                <h3 class="footer__title">About JML</h3>
+                <h3 class="footer__title">About acme</h3>
                 <ul class="footer__nav footer__contents">
                     <li class="footer__nav__item"><a href="#" class="footer__nav__link">Contact Us</a></li>
                     <li class="footer__nav__item"><a href="#" class="footer__nav__link">About Us</a></li>
@@ -923,9 +922,9 @@
                 </ul>
                 <div class="tv-banner tv-banner--footer">
                     <img src="//placehold.it/104x45" alt="" class="tv-banner__img tv-banner__img--sky"
-                         title="Watch JML on Sky channel 651">
+                         title="Watch acme on Sky channel 651">
                     <img src="//placehold.it/187x34" alt="" class="tv-banner__img tv-banner__img--freesat"
-                         title="Watch JML on Freesat channel 808">
+                         title="Watch acme on Freesat channel 808">
                 </div>
             </div>
         </div>
@@ -938,8 +937,8 @@
                     <a href="#" class="footer-legal__link">Privacy Policy</a>
                 </div>
                 <div class="footer-legal__logos">
-                    <img src="https://jml.m2/static/version1521037897/frontend/Jml/default/en_GB/img/eralogo.png" alt="ERA Approved">
-                    <img src="https://jml.m2/static/version1521037897/frontend/Jml/default/en_GB/img/cardlogos.png" alt="Mastercard/Visa/Paypal">
+                    <img src="https://acme.m2/static/version1521037897/frontend/acme/default/en_GB/img/eralogo.png" alt="ERA Approved">
+                    <img src="https://acme.m2/static/version1521037897/frontend/acme/default/en_GB/img/cardlogos.png" alt="Mastercard/Visa/Paypal">
                 </div>
             </div>
         </div>
@@ -953,7 +952,7 @@
     </script>
 </footer>
 
-<!-- /m2(jml.footer) --><!-- m2(before.body.end) {"name":"before.body.end","type":"container"} -->
+<!-- /m2(acme.footer) --><!-- m2(before.body.end) {"name":"before.body.end","type":"container"} -->
 <!-- m2(personal_data) {"name":"personal_data","type":"block","block_type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","template":"Klevu_Search::personal.phtml","template_file":"\/var\/www\/vendor\/klevu\/module-productsearch\/view\/frontend\/templates\/personal.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","jsLayout":{"components":{"personalData":{"component":"Klevu_Search\/js\/view\/personal-data"}}},"module_name":""}} -->
 <span data-bind="scope: 'personalData'" style="display:none;">
     <!-- ko if: personalData().klevuSessionId -->
@@ -969,7 +968,7 @@
 <script type="text/x-magento-init">
 {"*": {"Magento_Ui/js/core/app": {"components":{"personalData":{"component":"Klevu_Search\/js\/view\/personal-data"}}}}}
 </script>
-<!-- /m2(personal_data) --><!-- m2(frontend-storage-manager) {"name":"frontend-storage-manager","type":"block","block_type":"Magento\\Catalog\\Block\\FrontendStorageManager\\Interceptor","template":"Magento_Catalog::frontend_storage_manager.phtml","template_file":"\/var\/www\/vendor\/magento\/module-catalog\/view\/frontend\/templates\/frontend_storage_manager.phtml","args":{"configuration":{"recently_viewed_product":{"requestConfig":{"syncUrl":"https:\/\/jml.m2\/index.php\/catalog\/product\/frontend_action_synchronize\/"}},"recently_compared_product":{"requestConfig":{"syncUrl":"https:\/\/jml.m2\/index.php\/catalog\/product\/frontend_action_synchronize\/"}},"product_data_storage":{"updateRequestConfig":{"url":"https:\/\/jml.m2\/index.php\/rest\/default\/V1\/products-render-info"}}},"type":"Magento\\Catalog\\Block\\FrontendStorageManager\\Interceptor","module_name":"Magento_Catalog"}} -->
+<!-- /m2(personal_data) --><!-- m2(frontend-storage-manager) {"name":"frontend-storage-manager","type":"block","block_type":"Magento\\Catalog\\Block\\FrontendStorageManager\\Interceptor","template":"Magento_Catalog::frontend_storage_manager.phtml","template_file":"\/var\/www\/vendor\/magento\/module-catalog\/view\/frontend\/templates\/frontend_storage_manager.phtml","args":{"configuration":{"recently_viewed_product":{"requestConfig":{"syncUrl":"https:\/\/acme.m2\/index.php\/catalog\/product\/frontend_action_synchronize\/"}},"recently_compared_product":{"requestConfig":{"syncUrl":"https:\/\/acme.m2\/index.php\/catalog\/product\/frontend_action_synchronize\/"}},"product_data_storage":{"updateRequestConfig":{"url":"https:\/\/acme.m2\/index.php\/rest\/default\/V1\/products-render-info"}}},"type":"Magento\\Catalog\\Block\\FrontendStorageManager\\Interceptor","module_name":"Magento_Catalog"}} -->
 <script type="text/x-magento-init">
         {
             "*": {
@@ -979,7 +978,7 @@
                             "component": "Magento_Catalog/js/storage-manager",
                             "appendTo": "",
                             "storagesConfiguration" :
-                                         {"recently_viewed_product":{"requestConfig":{"syncUrl":"https:\/\/jml.m2\/index.php\/catalog\/product\/frontend_action_synchronize\/"},"lifetime":"1000","allowToSendRequest":"0"},"recently_compared_product":{"requestConfig":{"syncUrl":"https:\/\/jml.m2\/index.php\/catalog\/product\/frontend_action_synchronize\/"},"lifetime":"1000","allowToSendRequest":"0"},"product_data_storage":{"updateRequestConfig":{"url":"https:\/\/jml.m2\/index.php\/rest\/default\/V1\/products-render-info"},"allowToSendRequest":"0"}}                        }
+                                         {"recently_viewed_product":{"requestConfig":{"syncUrl":"https:\/\/acme.m2\/index.php\/catalog\/product\/frontend_action_synchronize\/"},"lifetime":"1000","allowToSendRequest":"0"},"recently_compared_product":{"requestConfig":{"syncUrl":"https:\/\/acme.m2\/index.php\/catalog\/product\/frontend_action_synchronize\/"},"lifetime":"1000","allowToSendRequest":"0"},"product_data_storage":{"updateRequestConfig":{"url":"https:\/\/acme.m2\/index.php\/rest\/default\/V1\/products-render-info"},"allowToSendRequest":"0"}}                        }
                     }
                 }
             }
@@ -988,7 +987,7 @@
 
 <!-- /m2(frontend-storage-manager) --><!-- m2(absolute_footer) {"name":"absolute_footer","type":"block","block_type":"Magento\\Theme\\Block\\Html\\Footer\\Interceptor","template":"Magento_Theme::html\/absolute_footer.phtml","template_file":"\/var\/www\/vendor\/magento\/module-theme\/view\/frontend\/templates\/html\/absolute_footer.phtml","args":{"cache_lifetime":false,"cache_tags":{"0":"store","1":"cms_b"},"type":"Magento\\Theme\\Block\\Html\\Footer\\Interceptor","module_name":"Magento_Theme"}} -->
 
-<!-- /m2(absolute_footer) --><!-- m2(livechat) {"name":"livechat","type":"block","block_type":"Jml\\LiveChat\\Block\\LiveChat\\Interceptor","template":"Jml_LiveChat::livechat.phtml","template_file":"\/var\/www\/app\/code\/Jml\/LiveChat\/view\/frontend\/templates\/livechat.phtml","args":{"type":"Jml\\LiveChat\\Block\\LiveChat\\Interceptor","module_name":"Jml_LiveChat"}} -->
+<!-- /m2(absolute_footer) --><!-- m2(livechat) {"name":"livechat","type":"block","block_type":"acme\\LiveChat\\Block\\LiveChat\\Interceptor","template":"acme_LiveChat::livechat.phtml","template_file":"\/var\/www\/app\/code\/acme\/LiveChat\/view\/frontend\/templates\/livechat.phtml","args":{"type":"acme\\LiveChat\\Block\\LiveChat\\Interceptor","module_name":"acme_LiveChat"}} -->
 
 <!-- /m2(livechat) --><!-- m2(klevu.addtocart.index) {"name":"klevu.addtocart.index","type":"block","block_type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","template":"Klevu_Addtocart::klevu\/addtocart\/index.phtml","template_file":"\/var\/www\/vendor\/klevu\/module-addtocart\/view\/frontend\/templates\/klevu\/addtocart\/index.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","module_name":""}} -->
 
@@ -1015,14 +1014,14 @@
         "Dotdigitalgroup_Email/js/emailCapture":{
             "isEnabled":"",
             "type":"newsletter",
-            "url":"https://jml.m2/index.php/connector/ajax/emailcapture/"
+            "url":"https://acme.m2/index.php/connector/ajax/emailcapture/"
         }
     }
 }
 </script>
 <!-- /m2(emailCapture) --><!-- m2(banner_impression) {"name":"banner_impression","type":"block","block_type":"Magento\\GoogleTagManager\\Block\\ListJson\\Interceptor","template":"Magento_GoogleTagManager::promotion.phtml","template_file":"\/var\/www\/vendor\/magento\/module-google-tag-manager\/view\/frontend\/templates\/promotion.phtml","args":{"variable_name":"staticPromotions","type":"Magento\\GoogleTagManager\\Block\\ListJson\\Interceptor","module_name":"Magento_GoogleTagManager"}} -->
 
-<!-- /m2(banner_impression) --><!-- m2(jml.js.include) {"name":"jml.js.include","type":"block","block_type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","template":"Magento_Theme::js\/home.phtml","template_file":"\/var\/www\/app\/design\/frontend\/Jml\/default\/Magento_Theme\/templates\/js\/home.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","module_name":""}} -->
+<!-- /m2(banner_impression) --><!-- m2(acme.js.include) {"name":"acme.js.include","type":"block","block_type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","template":"Magento_Theme::js\/home.phtml","template_file":"\/var\/www\/app\/design\/frontend\/acme\/default\/Magento_Theme\/templates\/js\/home.phtml","args":{"type":"Magento\\Framework\\View\\Element\\Template\\Interceptor","module_name":""}} -->
 <script type="text/x-magento-init">
     {
         "*": {
@@ -1031,8 +1030,9 @@
     }
 </script>
 
-<!-- /m2(jml.js.include) -->
+<!-- /m2(acme.js.include) -->
 <!-- /m2(before.body.end) --></div>
 <!-- /m2(page.wrapper) -->
 <!-- /m2(root) -->    </body>
+<script src="/inject.js"></script>
 </html>
