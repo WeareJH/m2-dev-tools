@@ -19,7 +19,7 @@ body {
   line-height: 1.8em;
   background: white;
   margin: 0;
-  overflow: scroll;
+  overflow: auto;
 }
 
 p {
@@ -55,7 +55,7 @@ p {
     content: attr(data-label);
     color: $token-attr;
     .node_info--selected & {
-      color: $brand-yellow;
+      color: #cccccc;
     }
   }
 }
@@ -106,10 +106,10 @@ p {
   }
   .node_info--selected & {
     &:before {
-      color: $brand-yellow;
+      color: #cccccc;
     }
     &:after {
-      color: $brand-yellow;
+      color: #cccccc;
     }
   }
 }
@@ -158,10 +158,10 @@ p {
 .node_info--selected {
   background: $brand-purple;
   .token {
-    color: $brand-yellow;
+    color: #cccccc;
   }
   .token--string {
-    color: white;
+    color: #cccccc;
   }
   .token--search {
     color: black;

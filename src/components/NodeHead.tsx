@@ -4,7 +4,6 @@ import {NodeAttr} from "./NodeAttr";
 import * as  classnames from 'classnames';
 import {NodeToggle} from "./NodeToggle";
 import {NodeInfoButton} from "./NodeInfoButton";
-import * as memoize from "lodash.memoize";
 
 export interface NodeInfoProps {
     node: NodeItem,
@@ -22,22 +21,6 @@ export interface NodeInfoProps {
 
 export class NodeHead extends React.PureComponent<NodeInfoProps> {
     props: NodeInfoProps;
-    getAttr: any
-    constructor(props) {
-        super(props);
-        this.getAttr = memoize(attr => this.getAttrNode(attr))
-    }
-    getAttrNode(key) {
-        return (
-            <NodeAttr
-                key={key}
-                data={this.props.node.data}
-                dataKey={key}
-                attrName={key}
-                searchTerm={this.props.searchTerm}
-            />
-        )
-    }
     addHover = () => {
         this.props.addHover(this.props.node.id, this.props.node.path, {head: true, tail: false});
     };
@@ -86,7 +69,13 @@ export class NodeHead extends React.PureComponent<NodeInfoProps> {
                         />
                     )}
                     {renderAttrs.map(attr => {
-                        return this.getAttr(attr);
+                        return <NodeAttr
+                            key={attr}
+                            data={this.props.node.data}
+                            dataKey={attr}
+                            attrName={attr}
+                            searchTerm={this.props.searchTerm}
+                        />
                     })}
                 </p>
             </div>
