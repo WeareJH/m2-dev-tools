@@ -13,7 +13,6 @@ export interface NodeEndProps {
     showOverlay(id: NodeId): void,
     select(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
     addHover(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
-    removeHover(id: NodeId): void
 }
 export class NodeEnd extends React.PureComponent<NodeEndProps> {
     props: NodeEndProps;

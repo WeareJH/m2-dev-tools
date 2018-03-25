@@ -8,7 +8,6 @@ import {NodeInfoButton} from "./NodeInfoButton";
 export interface NodeInfoProps {
     node: NodeItem,
     indent: number,
-    isHovered: boolean,
     isCollapsed: boolean,
     isSelected: boolean,
     hasChildren: boolean,
@@ -35,7 +34,6 @@ export class NodeHead extends React.PureComponent<NodeInfoProps> {
         }
         const classes = classnames({
             node_info: true,
-            'node_info--hovered': props.isHovered,
             'node_info--selected': props.isSelected
         });
         const nodeName = node.data && node.data.type;

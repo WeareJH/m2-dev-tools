@@ -1,7 +1,7 @@
 import {Msg} from "../messages.types";
 import {Observable} from "../rx";
 import {App} from "./App";
-import * as dlv from "dlv";
+const dlv = require('dlv');
 import {down, left, up} from "../utils/tree-move";
 
 export const keyPresses = {

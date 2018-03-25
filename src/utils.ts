@@ -1,6 +1,6 @@
 import {NodeId, NodeItem, NodeItems, NodeItemShort, NodePath} from "./types";
 import {App} from "./components/App";
-import * as dlv from "dlv";
+const dlv = require("dlv");
 
 export function collectIds(nodes: NodeItem[]) {
     const names = [];
@@ -65,7 +65,7 @@ export function flattenNodes(nodes: NodeItem[]): NodeItems {
 
     return flattenChildren(nodes, '$$root', [], []), output;
 
-    function flattenChildren(nodes: NodeItem[], parentId: string, path: NodePath, namePath: string[]) {
+    function flattenChildren(nodes: NodeItem[], parentId: string, path: NodePath, namePath: {name: string, type: string}[]) {
         nodes.forEach((node, index) => {
             const nextPath = path.concat(index);
             const newNode = {
