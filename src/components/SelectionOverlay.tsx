@@ -26,8 +26,7 @@ export class SelectionOverlay extends React.PureComponent<SelectionOverlayProps>
                 </div>
                 <div className="info-window__path">
                     {item.node && item.node.namePath.map((x) => (
-                        <span className="info-window__segment" key={x.name}>
-                            <span className="info-window__segment-type">{x.type}</span>
+                        <span className="info-window__segment" key={x.name} data-label={x.type}>
                             {x.name}
                         </span>
                     ))}

@@ -205,7 +205,7 @@ export class App extends React.Component<AppProps, any> {
                         } else {
                             this.resetNodes(
                                 getSearchNodes(searchTerm, this.state.baseFlatNodes, this.state.baseNodes),
-                                {clearSelection: false, collapseAll: false}
+                                {clearSelection: false, collapseAll: true}
                             );
                         }
                         this.setState({searchTerm});
