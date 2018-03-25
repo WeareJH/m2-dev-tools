@@ -99,6 +99,11 @@ p {
   &:after {
     content: ">";
   }
+  &.node__line--sync {
+    &:after {
+      content: "> ⇄";
+    }
+  }
   .node_info--selected & {
     &:before {
       color: $brand-yellow;

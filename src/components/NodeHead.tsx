@@ -60,6 +60,10 @@ export class NodeHead extends React.PureComponent<NodeInfoProps> {
             'name',
             'template_file'
         ];
+        const lineClasses = classnames({
+            node__line: true,
+            'node__line--sync': node.hasRelatedElement
+        })
         return (
             <div style={{paddingLeft: String(indent) + 'px'}}
                  className={classes}
@@ -72,7 +76,7 @@ export class NodeHead extends React.PureComponent<NodeInfoProps> {
                         id={node.id}
                     />
                 )}
-                <p className="node__line" data-label={`<${nodeName}`}>
+                <p className={lineClasses} data-label={`<${nodeName}`}>
                     {hasChildren && (
                         <NodeToggle
                             toggle={props.toggle}
@@ -88,16 +92,4 @@ export class NodeHead extends React.PureComponent<NodeInfoProps> {
             </div>
         )
     }
-}
-
-function SyncIcon() {
-    return (
-        <svg height="10px" version="1.1" viewBox="0 0 16 16">
-            <g fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">
-                <g fill="#777777" id="Group" transform="translate(-192.000000, -192.000000)">
-                    <path d="M201,205.917042 C203.512502,205.49553 205.495527,203.512505 205.917042,201 L203,201 L203,199 L205.917042,199 C205.495527,196.487495 203.512502,194.50447 201,194.082958 L201,197 L199,197 L199,194.082958 C196.487498,194.50447 194.504473,196.487495 194.082958,199 L197,199 L197,201 L194.082958,201 C194.504473,203.512505 196.487498,205.49553 199,205.917042 L199,203 L201,203 Z M200,208 C195.581722,208 192,204.418278 192,200 C192,195.581722 195.581722,192 200,192 C204.418278,192 208,195.581722 208,200 C208,204.418278 204.418278,208 200,208 Z M200,208"/>
-                </g>
-            </g>
-        </svg>
-    )
 }
