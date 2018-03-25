@@ -29,7 +29,7 @@ export class Node extends React.PureComponent<NodeProps> {
         const isCollapsed = props.collapsed.has(node.id);
         const headIsSelected = props.selected.head && dlv(props, 'selected.node.id') === node.id;
         const body = (hasNodes && !isCollapsed) && (
-            <div className="nodes">
+            <>
                 {children.map(n => {
                     const nextDepth = depth + 1;
                     return <Node
@@ -46,7 +46,7 @@ export class Node extends React.PureComponent<NodeProps> {
                         showOverlay={props.showOverlay}
                     />
                 })}
-            </div>
+            </>
         );
         const indent = depth * 15;
         const head = <NodeHead
@@ -76,11 +76,11 @@ export class Node extends React.PureComponent<NodeProps> {
             />
         );
         return (
-            <div className="node">
+            <>
                 {head}
                 {body}
                 {tail}
-            </div>
+            </>
         );
     }
 }

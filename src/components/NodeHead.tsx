@@ -2,6 +2,9 @@ import * as React from 'react';
 import {NodeId, NodeItem, NodePath} from "../types";
 import {NodeAttr} from "./NodeAttr";
 import * as  classnames from 'classnames';
+import {NodeToggle} from "./NodeToggle";
+import {NodeInfoButton} from "./NodeInfoButton";
+import * as memoize from "lodash.memoize";
 
 export interface NodeInfoProps {
     node: NodeItem,
@@ -19,9 +22,31 @@ export interface NodeInfoProps {
 
 export class NodeHead extends React.PureComponent<NodeInfoProps> {
     props: NodeInfoProps;
+    getAttr: any
+    constructor(props) {
+        super(props);
+        this.getAttr = memoize(attr => this.getAttrNode(attr))
+    }
+    getAttrNode(key) {
+        return (
+            <NodeAttr
+                key={key}
+                data={this.props.node.data}
+                dataKey={key}
+                attrName={key}
+                searchTerm={this.props.searchTerm}
+            />
+        )
+    }
+    addHover = () => {
+        this.props.addHover(this.props.node.id, this.props.node.path, {head: true, tail: false});
+    };
+    select = () => {
+        this.props.select(this.props.node.id, this.props.node.path, {head: true, tail: false});
+    };
     public render() {
         const {props} = this;
-        const {node, indent, addHover, hasChildren, isCollapsed, isSelected, select} = props;
+        const {node, indent, hasChildren, isCollapsed, isSelected} = props;
         if (node.id === '$$root') {
             return null;
         }
@@ -31,64 +56,34 @@ export class NodeHead extends React.PureComponent<NodeInfoProps> {
             'node_info--selected': props.isSelected
         });
         const nodeName = node.data && node.data.type;
+        const renderAttrs = [
+            'name',
+            'template_file'
+        ];
         return (
             <div style={{paddingLeft: String(indent) + 'px'}}
                  className={classes}
-                 onMouseEnter={() => addHover(node.id, node.path, {head: true, tail: false})}
-                 onClick={(e) => select(node.id, node.path, {head: true, tail: false})}
+                 onMouseEnter={this.addHover}
+                 onClick={this.select}
             >
                 {isSelected && (
-                    <button
-                        className="node__meatball"
-                        type="button"
-                        onClick={() => props.showOverlay(node.id)}
-                    ><em>i</em></button>
+                    <NodeInfoButton
+                        showOverlay={this.props.showOverlay}
+                        id={node.id}
+                    />
                 )}
-                <p className="node__line">
+                <p className="node__line" data-label={`<${nodeName}`}>
                     {hasChildren && (
-                        <button
-                            className="node__toggle"
-                            type="button"
-                            onClick={(e) => {
-                                // don't let toggles propagate to node line
-                                e.preventDefault();
-                                e.stopPropagation();
-                                props.toggle(node.id)
-                            }}
-                        >
-                            <svg
-                                className="arrow"
-                                height="7"
-                                fill={isSelected ? 'white' : 'black'}
-                                viewBox="0 0 50 50"
-                                transform={`${isCollapsed ? 'rotate(-90)' : ''}`}
-                                id="canvas">
-                                <polygon points="0,0 50,0 25.0,43.3"></polygon>
-                            </svg>
-                        </button>
+                        <NodeToggle
+                            toggle={props.toggle}
+                            id={node.id}
+                            isSelected={isSelected}
+                            isCollapsed={isCollapsed}
+                        />
                     )}
-                    <span className="token token--name">&lt;{nodeName}</span>
-                    <NodeAttr
-                        data={node.data}
-                        dataKey={'name'}
-                        attrName={'name'}
-                        searchTerm={props.searchTerm}
-                    />
-                    <NodeAttr
-                        data={(node.data as any)}
-                        dataKey={'template_file'}
-                        attrName={'template'}
-                        searchTerm={props.searchTerm}
-                    />
-                    {!hasChildren && (
-                        <span className="token gt">{' /'}</span>
-                    )}
-                    <span className="token gt">&gt;</span>
-                    <span className="token token--icon">
-                        {node.hasRelatedElement && (
-                            <SyncIcon />
-                        )}
-                    </span>
+                    {renderAttrs.map(attr => {
+                        return this.getAttr(attr);
+                    })}
                 </p>
             </div>
         )

@@ -54,6 +54,9 @@ p {
     margin-left: 5px;
     content: attr(data-label);
     color: $token-attr;
+    .node_info--selected & {
+      color: $brand-yellow;
+    }
   }
 }
 
@@ -86,11 +89,6 @@ p {
   padding: 10px;
 }
 
-.node {
-  cursor: pointer;
-  white-space: nowrap;
-}
-
 .node__line {
   position: relative;
   display: flex;
@@ -98,15 +96,38 @@ p {
   &:before {
     content: attr(data-label);
   }
+  &:after {
+    content: ">";
+  }
+  .node_info--selected & {
+    &:before {
+      color: $brand-yellow;
+    }
+    &:after {
+      color: $brand-yellow;
+    }
+  }
 }
 
 .node_info {
   position: relative;
+  cursor: pointer;
+  white-space: nowrap;
   &:hover {
     background: $line-hover;
     &.node_info--selected {
       background: $brand-purple;
     }
+  }
+}
+
+.node_info--tail {
+  &:before { content: "</" }
+  &:after { content: ">" }
+  &.node_info--selected {
+    color: $brand-yellow;
+    &:before { color: $brand-yellow }
+    &:after { color: $brand-yellow }
   }
 }
 
@@ -124,6 +145,9 @@ p {
   line-height: 14px;
   font-size: .8em;
   cursor: pointer;
+  &:before {
+    content: "i"
+  }
 }
 
 .node_info--selected {

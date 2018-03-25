@@ -1,3 +1,5 @@
+import {NodeInfoButton} from "./NodeInfoButton";
+
 declare var require;
 import * as React from 'react';
 import {NodeId, NodeItem, NodePath} from "../types";
@@ -15,6 +17,12 @@ export interface NodeEndProps {
 }
 export class NodeEnd extends React.PureComponent<NodeEndProps> {
     props: NodeEndProps;
+    addHover = () => {
+        this.props.addHover(this.props.node.id, this.props.node.path, {head: true, tail: false});
+    };
+    select = () => {
+        this.props.select(this.props.node.id, this.props.node.path, {head: false, tail: true});
+    };
     render() {
         const {props} = this;
         const {node, hasChildren, indent, addHover} = props;
@@ -23,24 +31,23 @@ export class NodeEnd extends React.PureComponent<NodeEndProps> {
         }
         const classes = classnames({
             node_info: true,
+            'node_info--tail': true,
             'node_info--selected': props.isSelected
         });
         return hasChildren && (
             <div
                 className={classes}
                 style={{paddingLeft: String(indent) + 'px'}}
-                onMouseEnter={() => addHover(node.id, node.path, {head: false, tail: true})}
-                onClick={() => props.select(node.id, node.path, {head: false, tail: true})}>
+                onMouseEnter={this.addHover}
+                onClick={this.select}
+            >
                 {props.isSelected && (
-                    <button
-                        className="node__meatball"
-                        type="button"
-                        onClick={() => props.showOverlay(node.id)}
-                    >?</button>
+                    <NodeInfoButton
+                        showOverlay={this.props.showOverlay}
+                        id={node.id}
+                    />
                 )}
-                <span className="token lt">&lt;</span>
-                <span className="token">/{node.name}</span>
-                <span className="token gt">&gt;</span>
+                {node.name}
             </div>
         )
     }
