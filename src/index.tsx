@@ -11,16 +11,6 @@ export function createApp(wall) {
         <App
             incoming$={incoming$}
             outgoing$={outgoing$}
-            hover={(name: string) => {
-                const msg: Msg.Hover = {
-                    type: Msg.Names.Hover,
-                    payload: name
-                };
-                outgoing$.next(msg);
-            }}
-            removeHover={() => {
-                outgoing$.next({type: Msg.Names.RemoveHover});
-            }}
         />
     ), document.querySelector('#app'));
 }

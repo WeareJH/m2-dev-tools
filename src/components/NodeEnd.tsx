@@ -3,6 +3,7 @@ import {NodeInfoButton} from "./NodeInfoButton";
 declare var require;
 import * as React from 'react';
 import {NodeId, NodeItem, NodePath} from "../types";
+import {ROOT_ID} from "../utils";
 const classnames = require('classnames');
 
 export interface NodeEndProps {
@@ -25,7 +26,7 @@ export class NodeEnd extends React.PureComponent<NodeEndProps> {
     render() {
         const {props} = this;
         const {node, hasChildren, indent, addHover} = props;
-        if (node.id === '$$root') {
+        if (node.id === ROOT_ID) {
             return null;
         }
         const classes = classnames({

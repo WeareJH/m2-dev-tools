@@ -1,6 +1,6 @@
-import {Msg} from "./messages.types";
-import {Subject} from "./rx";
-import {keyPress} from "./listeners/keypress";
+import {Msg} from "../messages.types";
+import {Subject} from "../rx";
+import {keyPress} from "../listeners/keypress";
 
 declare var chrome;
 //Created a port with background page for continuous message communication
@@ -9,7 +9,7 @@ export interface ChromeWall {
     incoming$: Subject<Msg.PanelIncomingMessages>
     outgoing$: Subject<Msg.PanelOutgoingMessages>
 }
-export function createWall(): ChromeWall {
+export function createChromeWall(): ChromeWall {
 
     const incoming$ = new Subject<Msg.PanelIncomingMessages>();
     const outgoing$ = new Subject<Msg.PanelOutgoingMessages>();

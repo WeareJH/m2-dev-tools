@@ -1,5 +1,6 @@
 export type NodeId = string;
 export type NodePath = (string|number)[];
+
 export interface NodeItem {
     name: string
     json?: string
@@ -9,6 +10,7 @@ export interface NodeItem {
     path: NodePath | null;
     id: NodeId;
 }
+
 export type NodeItems = {[id: string]: NodeItemShort}
 export interface NodeItemShort {
     path: NodePath,

@@ -4,19 +4,20 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const extractSass = new ExtractTextPlugin({
-    filename: "[name].css",
+    filename: "panel.css",
     disable: process.env.NODE_ENV === "development"
 });
 
 module.exports = {
     entry: env({
         dev: {
-            panel: './src/plain.tsx',
+            iframe: './src/envs/iframe.tsx',
+            plain: './src/envs/plain.tsx',
             inject: './src/chrome/inject-plain.ts',
             background: './src/chrome/background.ts',
         },
         production: {
-            panel: "./src/chrome.tsx",
+            panel: "./src/envs/chrome.tsx",
             inject: './src/chrome/inject.ts',
             background: './src/chrome/background.ts',
         }

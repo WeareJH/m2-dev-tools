@@ -54,16 +54,16 @@ export function flattenNodes(nodes: NodeItem[]): NodeItems {
 
     const root = {
         path: [],
-        id: '$$root',
+        id: ROOT_ID,
         children: nodes.map(x => x.id),
         index: 0,
         parent: null,
         namePath: []
     };
 
-    const output: NodeItems = {'$$root': root};
+    const output: NodeItems = {[ROOT_ID]: root};
 
-    return flattenChildren(nodes, '$$root', [], []), output;
+    return flattenChildren(nodes, ROOT_ID, [], []), output;
 
     function flattenChildren(nodes: NodeItem[], parentId: string, path: NodePath, namePath: {name: string, type: string}[]) {
         nodes.forEach((node, index) => {
@@ -85,7 +85,7 @@ export function flattenNodes(nodes: NodeItem[]): NodeItems {
 
 export function getSearchNodes(searchTerm: string, flatNodes: App['state']['flatNodes'], nodes: NodeItem[]) {
     const matches = Object.keys(flatNodes)
-        .filter(x => x!== '$$root')
+        .filter(x => x!== ROOT_ID)
         .map(x => flatNodes[x])
         .map(x => dlv(nodes, x.path))
         .filter((node: NodeItem) => {
@@ -96,4 +96,16 @@ export function getSearchNodes(searchTerm: string, flatNodes: App['state']['flat
         });
 
     return matches;
+}
+
+export const ROOT_ID = '$$root';
+export function getRootNode(): NodeItem {
+    return {
+        name: ROOT_ID,
+        children: [],
+        data: {type: "root", name: ROOT_ID},
+        hasRelatedElement: false,
+        path: [],
+        id: ROOT_ID
+    }
 }

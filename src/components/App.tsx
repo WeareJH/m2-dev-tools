@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Node} from "./Node";
 
 declare var require;
-import {collectIds, flattenNodes, getSearchNodes} from "../utils";
+import {collectIds, flattenNodes, getRootNode, getSearchNodes, ROOT_ID} from "../utils";
 import {NodeId, NodeItem, NodeItems, NodeItemShort, NodePath} from "../types";
 import {Observable} from "../rx";
 import {Subject, Subscription} from "../rx";
@@ -13,44 +13,34 @@ import {keyPresses} from "./keypresses";
 export interface AppProps {
     incoming$: Subject<Msg.PanelIncomingMessages>,
     outgoing$: Subject<Msg.PanelOutgoingMessages>,
-
-    hover(name: string): void
-
-    removeHover(name: string): void
 }
 
-export class App extends React.Component<AppProps, any> {
+export interface AppState {
+    collapsed: Set<string>,
+    selected: {
+        node: NodeItemShort | null,
+        head: boolean,
+        tail: boolean,
+    } | null,
+    root: NodeItem,
+    searchTerm: string,
+    inspecting: boolean
+    selectionOverlay: boolean,
+    stripComments: boolean,
+    flatNodes: NodeItems | null,
+    baseNodes: NodeItem[],
+    baseFlatNodes: NodeItems | null,
+}
+
+export class App extends React.Component<AppProps, AppState> {
     props: AppProps;
     sub: Subscription | null;
     ref: any;
-    state: {
-        collapsed: Set<string>,
-        selected: {
-            node: NodeItemShort | null,
-            head: boolean,
-            tail: boolean,
-        } | null,
-        root: NodeItem,
-        searchTerm: string,
-        inspecting: boolean
-        selectionOverlay: boolean,
-        stripComments: boolean,
-        flatNodes: NodeItems | null,
-        baseNodes: NodeItem[],
-        baseFlatNodes: NodeItems | null,
-
-    } = {
+    state: AppState = {
         inspecting: false,
         collapsed: new Set<NodeId>([]),
         selected: {node: null, head: false, tail: false},
-        root: {
-            name: "$$root",
-            children: [],
-            data: {type: "root", name: "$$root"},
-            hasRelatedElement: false,
-            path: [],
-            id: "$$root"
-        },
+        root: getRootNode(),
         searchTerm: "",
         selectionOverlay: false,
         stripComments: true,
@@ -108,7 +98,7 @@ export class App extends React.Component<AppProps, any> {
             };
             const flattened = flattenNodes(nodes);
             const collapsed = opts.collapseAll
-                ? new Set(Object.keys(flattened).filter(x => x !== '$$root'))
+                ? new Set(Object.keys(flattened).filter(x => x !== ROOT_ID))
                 : prev.collapsed;
             const selected = opts.clearSelection
                 ? {
@@ -171,7 +161,7 @@ export class App extends React.Component<AppProps, any> {
                     flatNodes={this.state.flatNodes}
                     selectionOverlay={this.state.selectionOverlay}
                     stripComments={this.state.stripComments}
-                    clearSelected={() => this.setState({selected: {id: null, path: null}})}
+                    clearSelected={() => this.setState({selected: {node: null, head: false, tail: false}})}
                     expandAll={() => this.setState({collapsed: new Set([])})}
                     collapseAll={() => {
                         this.setState(() => ({

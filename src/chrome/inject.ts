@@ -1,6 +1,6 @@
 declare var chrome;
 
-import {Inputs, NodeItem} from "../types";
+import {Inputs} from "../types";
 import {Msg} from "../messages.types";
 import {parseComments} from "./content-scripts/parseComments";
 import {incomingMessageHandler} from "./content-scripts/incomingMessageHandler";

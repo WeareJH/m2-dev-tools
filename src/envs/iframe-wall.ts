@@ -1,12 +1,12 @@
-import {Msg} from "./messages.types";
-import {Subject} from "./rx";
+import {Msg} from "../messages.types";
+import {Subject} from "../rx";
 import {ChromeWall} from "./chrome-wall";
-import {keyPress} from "./listeners/keypress";
+import {keyPress} from "../listeners/keypress";
 
 declare var chrome;
 
 //Created a port with background page for continuous message communication
-export function createWall(iframe): ChromeWall {
+export function createIframeWall(iframe): ChromeWall {
 
     const incoming$ = new Subject<Msg.PanelIncomingMessages>();
     const outgoing$ = new Subject<Msg.PanelOutgoingMessages>();

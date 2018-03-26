@@ -1,5 +1,6 @@
 import {App} from "../components/App";
 import {NodeItems} from "../types";
+import {ROOT_ID} from "../utils";
 
 type Selected = App['state']['selected'];
 
@@ -7,7 +8,7 @@ export function down(selection: Selected, data: NodeItems, collapsed: App['state
     const {node, head, tail} = selection;
     if (!node) {
         return {
-            node: data['$$root'],
+            node: data[ROOT_ID],
             head: true,
             tail: false
         }
@@ -17,9 +18,9 @@ export function down(selection: Selected, data: NodeItems, collapsed: App['state
     const nextSibling = getNextSibling(node.id, data);
     const isCollapsed = collapsed.has(node.id);
     const hasChildren = current.children && current.children.length > 0;
-    const isRoot = node.id === '$$root';
+    const isRoot = node.id === ROOT_ID;
 
-    if (tail && node.id === '$$root') {
+    if (tail && node.id === ROOT_ID) {
         return {
             node: current,
             head,
@@ -46,7 +47,7 @@ export function down(selection: Selected, data: NodeItems, collapsed: App['state
             tail: false
         }
     } else {
-        if (parent.id === '$$root') {
+        if (parent.id === ROOT_ID) {
             return {
                 node: current,
                 head,
@@ -63,9 +64,9 @@ export function down(selection: Selected, data: NodeItems, collapsed: App['state
 
 export function up(selection: Selected, data: NodeItems, collapsed: App['state']['collapsed']): Selected {
     const {node, head, tail} = selection;
-    if (!node || (node.id ==='$$root' && head)) {
+    if (!node || (node.id ===ROOT_ID && head)) {
         return {
-            node: data['$$root'],
+            node: data[ROOT_ID],
             head: true,
             tail: false
         }
@@ -112,7 +113,7 @@ export function up(selection: Selected, data: NodeItems, collapsed: App['state']
                 };
             }
         }
-        if (parent.id === '$$root') {
+        if (parent.id === ROOT_ID) {
             return {
                 node: current,
                 head: true,
@@ -128,7 +129,7 @@ export function up(selection: Selected, data: NodeItems, collapsed: App['state']
     const prevSiblingIsCollapsed = collapsed.has(prevSibling.id);
     const prevSiblingHasChildren = (prevSibling.children||[]).length > 0;
     if (prevSibling) {
-        if (prevSibling.id === '$$root') {
+        if (prevSibling.id === ROOT_ID) {
             return {
                 node: current,
                 head: true,
@@ -159,20 +160,20 @@ export function up(selection: Selected, data: NodeItems, collapsed: App['state']
 
 export function left(selection: Selected, data: NodeItems, collapsed: App['state']['collapsed']): {selected: Selected, collapsed: string[]} {
     const {node, head, tail} = selection;
-    if (!node || (node.id === '$$root')) {
+    if (!node || (node.id === ROOT_ID)) {
         if (head) {
             return {
                 selected: {
-                    node: data['$$root'],
+                    node: data[ROOT_ID],
                     head: true,
                     tail: false
                 },
-                collapsed: ['$$root']
+                collapsed: [ROOT_ID]
             }
         } else if (tail) {
             return {
                 selected: {
-                    node: data['$$root'],
+                    node: data[ROOT_ID],
                     head: true,
                     tail: false
                 },
@@ -184,7 +185,7 @@ export function left(selection: Selected, data: NodeItems, collapsed: App['state
     const isCollapsed = collapsed.has(node.id);
     if (head) {
         if (isCollapsed) {
-            if (node.parent == '$$root') {
+            if (node.parent == ROOT_ID) {
                 return {
                     selected: {
                         node,

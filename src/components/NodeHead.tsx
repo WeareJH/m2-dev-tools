@@ -4,6 +4,7 @@ import {NodeAttr} from "./NodeAttr";
 import * as  classnames from 'classnames';
 import {NodeToggle} from "./NodeToggle";
 import {NodeInfoButton} from "./NodeInfoButton";
+import {ROOT_ID} from "../utils";
 
 export interface NodeInfoProps {
     node: NodeItem,
@@ -29,7 +30,7 @@ export class NodeHead extends React.PureComponent<NodeInfoProps> {
     public render() {
         const {props} = this;
         const {node, indent, hasChildren, isCollapsed, isSelected} = props;
-        if (node.id === '$$root') {
+        if (node.id === ROOT_ID) {
             return null;
         }
         const classes = classnames({
