@@ -5,6 +5,10 @@ watch:
     'tests:src': '@npm mocha -r ts-node/register tests/**'
 
 tasks:
+
+  test: >
+    @npm mocha -r ts-node/register tests/**
+
   build-all:
     description: |
       Build all shells.
@@ -31,7 +35,7 @@ tasks:
     description: Run the extension in regular browser window
     adaptor: npm
     command: >
-      parcel plain.html
+      webpack-dev-server --inline
 
   test-watch:
     cb watch 'tests:src -> ' --block

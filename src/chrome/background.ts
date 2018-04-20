@@ -1,5 +1,5 @@
 declare var chrome;
-import {Msg} from "../messages.types";
+import * as Msg from "../messages.types";
 
 chrome.extension.onConnect.addListener(function (port) {
     const wall = {

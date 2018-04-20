@@ -4,11 +4,17 @@ import {Node} from "./Node";
 declare var require;
 import {collectIds, flattenNodes, getRootNode, getSearchNodes, ROOT_ID} from "../utils";
 import {NodeId, NodeItem, NodeItems, NodeItemShort, NodePath} from "../types";
-import {Observable} from "../rx";
-import {Subject, Subscription} from "../rx";
-import {Msg, ScrapeConfiguration} from "../messages.types";
+import * as Msg from "../messages.types";
 import {ActionBar} from "./ActionBar";
 import {keyPresses} from "./keypresses";
+import {Subject} from "rxjs/Subject";
+import {Subscription} from "rxjs/Subscription";
+import {merge} from "rxjs/observable/merge";
+import {of} from "rxjs/observable/of";
+import {filter} from "rxjs/operators/filter";
+import {pluck} from "rxjs/operators/pluck";
+import {tap} from "rxjs/operators/tap";
+import {groupBy, mergeMap} from "rxjs/operators";
 
 export interface AppProps {
     incoming$: Subject<Msg.PanelIncomingMessages>,
@@ -51,39 +57,41 @@ export class App extends React.Component<AppProps, AppState> {
 
     componentDidMount() {
         this.sendScrape();
-        this.sub = Observable.merge(
-            this.props.incoming$
-                .filter(x => x.type === Msg.Names.ParsedComments)
-                .pluck('payload')
-                .do((nodes: NodeItem[]) => {
+        this.sub = merge(
+            this.props.incoming$.pipe(
+                filter(x => x.type === Msg.Names.ParsedComments)
+                , pluck('payload')
+                , tap((nodes: NodeItem[]) => {
                     this.setState({
                         baseNodes: nodes,
                         baseFlatNodes: flattenNodes(nodes)
                     }, () => {
                         this.resetNodes(nodes, {collapseAll: true, clearSelection: true});
                     });
-                }),
-            this.props.incoming$
-                .filter(x => x.type === Msg.Names.KeyUp)
-                .groupBy(x => x.payload)
-                .mergeMap(obs => {
+                })
+            ),
+            this.props.incoming$.pipe(
+                filter(x => x.type === Msg.Names.KeyUp)
+                , groupBy(x => x.payload)
+                , mergeMap(obs => {
                     return keyPresses[obs.key as number](obs, {
-                        state$: Observable.of(this.state),
+                        state$: of(this.state),
                         getState: () => this.state
                     });
                 })
-                .do(x => {
+                , tap(x => {
                     this.setState(x);
-                }),
-            this.props.incoming$
-                .filter(x => x.type === Msg.Names.Ping)
-                .do(() => this.sendScrape())
+                })
+            ),
+            this.props.incoming$.pipe(
+                filter(x => x.type === Msg.Names.Ping)
+                , tap(() => this.sendScrape())
+            )
         ).subscribe();
-
     }
 
     sendScrape = () => {
-        const config: ScrapeConfiguration = {
+        const config: Msg.ScrapeConfiguration = {
             stripComments: this.state.stripComments,
         };
         const scrapeMessage: Msg.Scrape = {type: Msg.Names.Scrape, payload: config};

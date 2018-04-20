@@ -1,6 +1,6 @@
 import {NodeId, NodeItem, NodeItems, NodeItemShort, NodePath} from "./types";
 import {App} from "./components/App";
-const dlv = require("dlv");
+import * as dlv from 'dlv';
 
 export function collectIds(nodes: NodeItem[]) {
     const names = [];

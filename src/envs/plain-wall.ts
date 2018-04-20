@@ -1,7 +1,7 @@
-import {Msg} from "../messages.types";
-import {Subject} from "../rx";
+import * as Msg from "../messages.types";
 import {ChromeWall} from "./chrome-wall";
 import {keyPress} from "../listeners/keypress";
+import {Subject} from "rxjs/Subject";
 
 declare var chrome;
 

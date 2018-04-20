@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const { CheckerPlugin } = require('awesome-typescript-loader');
 
 const extractSass = new ExtractTextPlugin({
     filename: "panel.css",
@@ -54,7 +55,9 @@ module.exports = {
     devServer: {},
     plugins: env({
         shared: [extractSass],
-        dev: [],
+        dev: [
+            new CheckerPlugin(),
+        ],
         production: [
             new UglifyJSPlugin({
                 sourceMap: true

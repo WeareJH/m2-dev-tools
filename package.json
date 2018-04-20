@@ -34,7 +34,7 @@
     "mocha": "^5.0.4",
     "node-sass": "4.8.3",
     "ts-node": "^5.0.1",
-    "typescript": "^2.8.0-rc",
+    "typescript": "2.8",
     "uglifyjs-webpack-plugin": "1.2.4",
     "webpack": "3",
     "webpack-dev-server": "2"

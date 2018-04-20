@@ -3,7 +3,7 @@ import {NodeId, NodeItem, NodePath} from "../types";
 import {NodeHead} from "./NodeHead";
 import {NodeEnd} from "./NodeEnd";
 import {App} from "./App";
-const dlv = require('dlv');
+import * as dlv from 'dlv';
 
 export interface NodeProps {
     key?: string|number,

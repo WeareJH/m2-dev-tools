@@ -1,4 +1,4 @@
-import {Msg} from "../../messages.types";
+import * as Msg from "../../messages.types";
 import {Overlay} from "../Overlay";
 import {removeComments} from "./stripComments";
 import {parseComments} from "./parseComments";
@@ -8,7 +8,6 @@ import {Inputs} from "../../types";
  * This function returns a handler for message coming from the background script.
  * @param {Inputs} inputs
  * @param transform
- * @returns {(message: Msg.InjectIncomingActions) => void}
  */
 export function incomingMessageHandler(inputs: Inputs, transform = (msg) => msg) {
 

@@ -1,5 +1,5 @@
-import {Msg} from "../messages.types";
-import {Observable} from "../rx";
+import * as Msg from "../messages.types";
+import {Observable} from "rxjs/Observable";
 
 export function keyPress() {
     return Observable.create(obs => {

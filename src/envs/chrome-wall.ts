@@ -1,6 +1,6 @@
-import {Msg} from "../messages.types";
-import {Subject} from "../rx";
+import * as Msg from "../messages.types";
 import {keyPress} from "../listeners/keypress";
+import {Subject} from "rxjs/Subject";
 
 declare var chrome;
 //Created a port with background page for continuous message communication
