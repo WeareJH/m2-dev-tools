@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {NodeId, NodeItem, NodePath} from "../types";
 import {NodeHead} from "./NodeHead";
-import {NodeEnd} from "./NodeEnd";
+import {NodeTail} from "./NodeTail";
 import {App} from "./App";
 import * as dlv from 'dlv';
 
@@ -61,7 +61,7 @@ export class Node extends React.PureComponent<NodeProps> {
         />;
         const tailIsSelected = props.selected.tail && dlv(props, 'selected.node.id') === node.id;
         const tail = (!isCollapsed) && (
-            <NodeEnd
+            <NodeTail
                 node={node}
                 hasChildren={hasNodes}
                 indent={indent}

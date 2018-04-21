@@ -1,0 +1,48 @@
+.token {
+    color: $token;
+    &.lt,
+    &.gt {
+        //color: #67070f;
+    }
+}
+
+.token--icon {
+    margin-left: 5px;
+    position: relative;
+}
+
+.token--name {
+    color: $brand-purple;
+}
+
+.token--attr {
+    color: $token-attr;
+    margin-left: 5px;
+}
+
+.token--attr-name {
+    &:before {
+        margin-left: 5px;
+        content: attr(data-label);
+        color: $token-attr;
+        .node--selected & {
+            color: #cccccc;
+        }
+    }
+}
+
+.token--value {
+    //color: red
+}
+
+.token--key {
+    //color: #777777;
+}
+
+.token--string {
+    color: $brand-pink;
+}
+
+.token--search {
+    background: $brand-yellow;
+}

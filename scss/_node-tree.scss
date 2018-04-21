@@ -1,0 +1,12 @@
+.node-tree {
+    overflow: auto;
+    max-height: calc(100vh - 120px);
+    max-width: 100vw;
+    @media (min-width: 600px) {
+        max-height: calc(100vh - 69px);
+    }
+}
+
+.node-tree-pending {
+    padding: 10px;
+}

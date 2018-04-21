@@ -1,0 +1,44 @@
+.controls {
+    width: 100%;
+    @media (min-width: 600px) {
+        display: flex;
+        align-items: center;
+        > * {
+            width: 50%;
+        }
+    }
+}
+
+.controls__buttons {
+    display: flex;
+    align-items: center;
+    //outline: 1px solid red;
+    width: 100%;
+    margin-bottom: 10px;
+
+    @media (min-width: 600px) {
+        width: 50%;
+    }
+}
+
+.controls__checkboxes {
+    margin-bottom: 10px;
+    @media (min-width: 600px) {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.controls__checkbox {
+    margin-right: 10px;
+    padding: 10px 0;
+    display: inline-block;
+    @media (min-width: 600px) {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+.controls__button {
+    margin-right: 10px;
+}

@@ -15,7 +15,7 @@ export interface NodeEndProps {
     select(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
     addHover(id: NodeId, path: NodePath, pos: {head: boolean, tail: boolean}): void,
 }
-export class NodeEnd extends React.PureComponent<NodeEndProps> {
+export class NodeTail extends React.PureComponent<NodeEndProps> {
     props: NodeEndProps;
     addHover = () => {
         this.props.addHover(this.props.node.id, this.props.node.path, {head: true, tail: false});
@@ -25,14 +25,14 @@ export class NodeEnd extends React.PureComponent<NodeEndProps> {
     };
     render() {
         const {props} = this;
-        const {node, hasChildren, indent, addHover} = props;
+        const {node, hasChildren, indent} = props;
         if (node.id === ROOT_ID) {
             return null;
         }
         const classes = classnames({
-            node_info: true,
-            'node_info--tail': true,
-            'node_info--selected': props.isSelected
+            node: true,
+            'node--tail': true,
+            'node--selected': props.isSelected
         });
         return hasChildren && (
             <div
@@ -40,6 +40,7 @@ export class NodeEnd extends React.PureComponent<NodeEndProps> {
                 style={{paddingLeft: String(indent) + 'px'}}
                 onMouseEnter={this.addHover}
                 onClick={this.select}
+                id={`${node.id}-tail`}
             >
                 {props.isSelected && (
                     <NodeInfoButton

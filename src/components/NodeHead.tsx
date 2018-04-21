@@ -34,8 +34,8 @@ export class NodeHead extends React.PureComponent<NodeInfoProps> {
             return null;
         }
         const classes = classnames({
-            node_info: true,
-            'node_info--selected': props.isSelected
+            node: true,
+            'node--selected': props.isSelected
         });
         const nodeName = node.data && node.data.type;
         const renderAttrs = [
@@ -45,12 +45,13 @@ export class NodeHead extends React.PureComponent<NodeInfoProps> {
         const lineClasses = classnames({
             node__line: true,
             'node__line--sync': node.hasRelatedElement
-        })
+        });
         return (
             <div style={{paddingLeft: String(indent) + 'px'}}
                  className={classes}
                  onMouseEnter={this.addHover}
                  onClick={this.select}
+                 id={`${node.id}-head`}
             >
                 {isSelected && (
                     <NodeInfoButton
