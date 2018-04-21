@@ -71,7 +71,7 @@ describe('left', function () {
         const {selected, collapsed} = left(currentSelection, data, currentCollapsed);
         deepEqual(selected, expected);
     });
-    it('can move back from collasped head to parent', function () {
+    it('does nothing when collapsed, but parent is root', function () {
         const currentCollapsed = new Set(['0']);
         const currentSelection = {
             node: data['0'],
@@ -79,11 +79,11 @@ describe('left', function () {
             tail: false
         };
         const expected = {
-            node: data['$$root'],
+            node: data['0'],
             head: true,
             tail: false
         };
-        const {selected, collapsed} = left(currentSelection, data, currentCollapsed);
+        const {selected} = left(currentSelection, data, currentCollapsed);
         deepEqual(selected, expected);
     });
     it('can close root', function () {
