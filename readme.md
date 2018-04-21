@@ -1,4 +1,4 @@
-# M2 Dev Tools
+# M2 Dev Tools [![Build Status](https://travis-ci.org/shakyShane/m2-dev-tools.svg?branch=master)](https://travis-ci.org/shakyShane/m2-dev-tools)
 
 ## Development 
 
@@ -21,12 +21,14 @@ $ crossbow run <taskname>
 ```
 |Task name|Description|
 |---|---|
+|<pre>`test`</pre>|**Alias for:**<br>- `build-all`<br>- `mocha`<br>- `cypress`|
+|<pre>`mocha`</pre>|**Alias for:**<br>- `@npm mocha -r ts-node/register tests/**`|
+|<pre>`cypress`</pre>|**Alias for:**<br>- `cypress/setup/run.js`|
+|<pre>`cypress-open`</pre>|**Alias for:**<br>- `@npm cypress open --env TEST_URL=http://localhost:8080/plain.html`|
 |<pre>`build-all`</pre>|Build all shells.|
-|<pre>`start`</pre>|Run the application in a regular Browser window with sample data|
-|<pre>`build-chrome`</pre>|**Alias for:**<br>- `@npm parcel build chrome.html --out-dir shells/chrome/dist --no-cache`|
-|<pre>`app-watch`</pre>|**Alias for:**<br>- `@npm parcel plain.html`|
-|<pre>`lc`</pre>|**Alias for:**<br>- `@sh /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome https://selco.m2`|
-|<pre>`chrome`</pre>|**Alias for:**<br>- `@npm tsc src/chrome/** --outdir shells/chrome/build`|
-|<pre>`chrome-watch`</pre>|**Alias for:**<br>- `@npm tsc src/chrome/** -w --outdir shells/chrome/build`|
+|<pre>`webpack`</pre>|**Alias for:**<br>- `@npm webpack`|
+|<pre>`start`</pre>|Run the application in a regular Browser window with sample data + cypress|
+|<pre>`app-watch`</pre>|**Alias for:**<br>- `@npm webpack-dev-server --inline`|
+|<pre>`lc`</pre>|**Alias for:**<br>- `@sh /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --auto-open-devtools-for-tabs https://gg.m2`|
 |<pre>`clean`</pre>|**Alias for:**<br>- `@sh rm -rf shells/chrome/dist/**`|
 <!--crossbow-docs-end-->
