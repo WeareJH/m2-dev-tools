@@ -22,6 +22,7 @@ module.exports = {
             inject: './src/chrome/inject.ts',
             background: './src/chrome/background.ts',
             main: './src/chrome/main.ts',
+            plain: './src/envs/plain.tsx',
         }
     }),
     devtool: env({dev: 'inline-source-map', production: "source-map"}),

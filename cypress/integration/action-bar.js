@@ -1,6 +1,6 @@
 describe('Action bar', function () {
     beforeEach(() => {
-        cy.visit('http://localhost:8080/plain.html');
+        cy.visit(Cypress.env('TEST_URL'));
     });
     it('expand all', function () {
         cy.wait(300);

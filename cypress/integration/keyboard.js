@@ -1,6 +1,6 @@
 describe('Keyboard nav', function () {
     beforeEach(() => {
-        cy.visit('http://localhost:8080/plain.html');
+        cy.visit(Cypress.env('TEST_URL'));
     });
     it('down key focusses first element', function () {
         cy.get(`.node--active`).should('have.length', 0);

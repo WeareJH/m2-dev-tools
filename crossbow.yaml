@@ -7,7 +7,16 @@ watch:
 tasks:
 
   test:
-    - '@npm mocha -r ts-node/register tests/**'
+    - build-all
+    - mocha
+    - cypress
+
+  mocha: '@npm mocha -r ts-node/register tests/**'
+  cypress: cypress/setup/run.js
+
+  cypress-open:
+    adaptor: npm
+    command: cypress open --env TEST_URL=http://localhost:8080/plain.html
 
   build-all:
     description: |
@@ -24,9 +33,11 @@ tasks:
 
   start:
     description: |
-      Run the application in a regular Browser window with sample data
+      Run the application in a regular Browser window with sample data + cypress
+    runMode: parallel
     tasks:
       - app-watch
+      - cypress-open
 
 
   app-watch:
