@@ -1,12 +1,26 @@
 # M2 Dev Tools [![Build Status](https://travis-ci.org/shakyShane/m2-dev-tools.svg?branch=master)](https://travis-ci.org/shakyShane/m2-dev-tools)
 
+## About
+
+This is a chrome extension that provides the user with a tree-view of the container/block structure
+of any page in a Magento 2 website 
+
+<img src="https://media.giphy.com/media/cIIlwdKYkKNp6VnMoY/giphy.gif"/>
+
+## Usage 
+
+* 1. First, install & enable [m2-module-jh-block-logger](https://github.com/WeareJH/m2-module-jh-block-logger)
+* 2. Then add this extension via the Chrome Extension Store
+
 ## Development 
 
-You can run the code for the Dev Tools with sample data in a normal 
-browser window - this is useful   
+Run the following command to launch a version of the Chrome Extension in a regular browser window.
 
 ```bash
+# install dependencies
 yarn
+
+# start the development server
 yarn start
 ```
 
