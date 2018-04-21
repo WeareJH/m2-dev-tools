@@ -46,12 +46,14 @@ export class ActionBar extends React.PureComponent<ActionBarProps> {
                         <button
                             type="button"
                             className="controls__button"
+                            data-action="expandAll"
                             onClick={props.expandAll}
                         >Expand all
                         </button>
                         <button
                             type="button"
                             className="controls__button"
+                            data-action="collapseAll"
                             onClick={props.collapseAll}
                         >Collapse all
                         </button>

@@ -1,4 +1,6 @@
 const SELECTED_CLASS = 'node--selected';
+const EXPAND_ALL = '[data-action="expandAll"]';
+const COLLAPSE_ALL = '[data-action="collapseAll"]';
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -43,3 +45,9 @@ Cypress.Commands.add("escape", (path) => {
 Cypress.Commands.add("selected", (path) => {
     cy.escape(path).should('have.class', SELECTED_CLASS);
 });
+Cypress.Commands.add('expandAll', () => {
+    cy.get(EXPAND_ALL).click();
+});
+Cypress.Commands.add('collapseAll', () => {
+    cy.get(COLLAPSE_ALL).click();
+})
