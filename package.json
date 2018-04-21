@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "classnames": "^2.2.5",
+    "crossbow": "^4.3.0",
     "dlv": "^1.1.1",
     "lodash.memoize": "4.1.2",
     "mitt": "^1.1.3",
