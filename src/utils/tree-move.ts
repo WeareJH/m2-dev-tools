@@ -7,8 +7,10 @@ type Selected = App['state']['selected'];
 export function down(selection: Selected, data: NodeItems, collapsed: App['state']['collapsed']): Selected {
     const {node, head, tail} = selection;
     if (!node) {
+        const root = data[ROOT_ID];
+        const firstChild = root.children[0];
         return {
-            node: data[ROOT_ID],
+            node: data[firstChild],
             head: true,
             tail: false
         }

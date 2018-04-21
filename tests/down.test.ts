@@ -92,7 +92,7 @@ describe('down', function () {
             tail: false
         };
         const expected = {
-            node: data['$$root'],
+            node: data['0'],
             head: true,
             tail: false
         };

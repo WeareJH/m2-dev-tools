@@ -72,6 +72,7 @@ export class App extends React.Component<AppProps, AppState> {
             ),
             this.props.incoming$.pipe(
                 filter(x => x.type === Msg.Names.KeyUp)
+                , filter(() => this.state.baseNodes.length > 0)
                 , groupBy(x => x.payload)
                 , mergeMap(obs => {
                     return keyPresses[obs.key as number](obs, {
