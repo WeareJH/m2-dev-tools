@@ -9,8 +9,8 @@ of any page in a Magento 2 website
 
 ## Usage 
 
-* 1. First, install & enable [m2-module-jh-block-logger](https://github.com/WeareJH/m2-module-jh-block-logger)
-* 2. Then add this extension via the Chrome Extension Store
+* First, install & enable [m2-module-jh-block-logger](https://github.com/WeareJH/m2-module-jh-block-logger)
+* Then add this extension via the [Chrome Extension Store](https://chrome.google.com/webstore/detail/nomdlhobjjlnomlieegpbobfddpkmhgh/publish-accepted?authUser=2&hl=en-US)
 
 ## Development 
 
