@@ -16,4 +16,19 @@ describe('Keyboard nav', function () {
         cy.get('body').type('{leftarrow}');
         cy.get('.node').should('have.length', 3);
     });
+    it('respects top/bottom boundaries', function () {
+        cy.wait(300);
+        cy.get(`body`).type('{downarrow}');
+        cy.get(`body`).type('{downarrow}');
+        cy.get(`body`).type('{downarrow}');
+        cy.get(`body`).type('{downarrow}');
+        cy.get(`body`).type('{downarrow}');
+        cy.get(`#2-head`).should('have.class', 'node--selected');
+        cy.get(`body`).type('{uparrow}');
+        cy.get(`body`).type('{uparrow}');
+        cy.get(`body`).type('{uparrow}');
+        cy.get(`body`).type('{uparrow}');
+        cy.get(`body`).type('{uparrow}');
+        cy.get(`#0-head`).should('have.class', 'node--selected');
+    });
 });
