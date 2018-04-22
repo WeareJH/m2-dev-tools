@@ -1,3 +1,8 @@
+const {from} = require('rxjs/observable/from');
+const {concatMap} = require('rxjs/operators/concatMap');
+const {reduce} = require('rxjs/operators/reduce');
+const {tap} = require('rxjs/operators/tap');
+
 module.exports = function(opts, ctx, done) {
 
     const cypress = require('cypress');
@@ -10,14 +15,22 @@ module.exports = function(opts, ctx, done) {
     server.listen();
     const address = server.address();
 
-    cypress.run({
-        spec: 'cypress/integration/keyboard.js',
-        env: `TEST_URL=http://localhost:${address.port}/test.html`,
-    }).then((results) => {
-        server.close();
-        if (results.failures > 0) {
-            return process.exit(1);
+    from(opts.specs).pipe(
+        concatMap(path => cypress.run({
+            spec: path,
+            env: `TEST_URL=http://localhost:${address.port}/test.html`,
+        })),
+        reduce((sum, item) => sum + item.failures,  0),
+        tap(() => server.close())
+    ).subscribe((failures) => {
+        if (failures > 0) {
+            done(new Error('Failures'))
+        } else {
+            done()
         }
-        process.exit(0);
+    }, (err) => {
+        done(new Error(err));
+    }, () => {
+        done();
     });
 };

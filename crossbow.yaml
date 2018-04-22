@@ -12,7 +12,14 @@ tasks:
     - cypress
 
   mocha: '@npm mocha -r ts-node/register tests/**'
-  cypress: cypress/setup/run.js
+  cypress:
+    options:
+      specs:
+        - cypress/integration/action-bar.js
+        - cypress/integration/keyboard.js
+        - cypress/integration/search.js
+    tasks: >
+      cypress/setup/run.js
 
   cypress-open:
     adaptor: npm
