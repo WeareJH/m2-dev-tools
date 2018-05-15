@@ -87,6 +87,29 @@ export class App extends React.Component<AppProps, AppState> {
             this.props.incoming$.pipe(
                 filter(x => x.type === Msg.Names.Ping)
                 , tap(() => this.sendScrape())
+            ),
+            this.props.incoming$.pipe(
+                filter(x => x.type === Msg.Names.InspectEnd)
+                , tap(() => this.setState({inspecting: false}))
+            ),
+            this.props.incoming$.pipe(
+                filter(x => x.type === Msg.Names.DomHover)
+                , filter(x => Boolean(this.state.flatNodes[x.payload]))
+                , tap((x) => {
+                    const nodeId = x.payload;
+                    this.setState({
+                        collapsed: new Set([]),
+                        selected: {
+                            node: this.state.flatNodes[nodeId],
+                            head: true,
+                            tail: false,
+                        }
+                    });
+                    const matchingDomNode = document.querySelector(`[id="${nodeId}-head"]`);
+                    if (matchingDomNode) {
+                        matchingDomNode.scrollIntoView();
+                    }
+                })
             )
         ).subscribe();
     }

@@ -33,9 +33,7 @@ const inputs: Inputs = {
 /**
  * Only add listeners if results were found
  */
-if (results && results.length) {
-    wall.listen(incomingMessageHandler(inputs));
-}
+wall.listen(incomingMessageHandler(inputs));
 
 /**
  * Always ping dev-tools on every page load

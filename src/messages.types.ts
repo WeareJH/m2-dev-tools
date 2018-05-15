@@ -23,6 +23,7 @@ export enum Names {
     Ping = 'Ping',
     KeyUp = 'KeyUp',
     DomHover = 'DomHover',
+    InspectEnd = 'InspectEnd',
 }
 
 export type StripComments = A<Names.StripComments>;
@@ -32,6 +33,7 @@ export type Hover = A<Names.Hover, string>;
 export type RemoveHover = A<Names.RemoveHover, string>;
 export type KeyUp = A<Names.KeyUp, KeyCodes>;
 export type DomHover = A<Names.DomHover, NodeId>;
+export type InspectEnd = A<Names.InspectEnd>;
 
 export type InjectIncomingActions
     = StripComments
@@ -47,6 +49,7 @@ export type InjectOutgoingActions
     = ParsedComments
     | Ping
     | DomHover
+    | InspectEnd
     ;
 
 export type PanelOutgoingMessages
@@ -62,6 +65,7 @@ export type PanelIncomingMessages
     | KeyUp
     | Ping
     | DomHover
+    | InspectEnd
     ;
 
 export type BackgroundToContent

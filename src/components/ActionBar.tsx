@@ -46,6 +46,12 @@ export class ActionBar extends React.PureComponent<ActionBarProps> {
                         <button
                             type="button"
                             className="controls__button"
+                            data-action="inspect"
+                            onClick={props.toggleInspecting}
+                        >{props.inspecting ? 'Inspecting' : 'Inspect'}</button>
+                        <button
+                            type="button"
+                            className="controls__button"
                             data-action="expandAll"
                             onClick={props.expandAll}
                         >Expand all

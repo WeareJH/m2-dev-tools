@@ -60,7 +60,7 @@ tasks:
     command: >
       /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
       --auto-open-devtools-for-tabs
-      https://gg.m2
+      http://localhost:3000/page.html
 
   clean:
     - '@sh rm -rf shells/chrome/dist/**'

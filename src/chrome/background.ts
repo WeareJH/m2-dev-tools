@@ -31,6 +31,10 @@ chrome.extension.onConnect.addListener(function (port) {
                 wall.emitPanel(message);
                 break;
             }
+            case Msg.Names.InspectEnd: {
+                wall.emitPanel(message);
+                break;
+            }
             case Msg.Names.Scrape: {
                 return wall.emitTab(message);
             }
