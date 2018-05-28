@@ -49,7 +49,7 @@ export class App extends React.Component<AppProps, AppState> {
         root: getRootNode(),
         searchTerm: "",
         selectionOverlay: false,
-        stripComments: true,
+        stripComments: false,
         flatNodes: null,
         baseNodes: [],
         baseFlatNodes: null,
